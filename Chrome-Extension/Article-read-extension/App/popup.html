@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="popup.js"></script>
+    <style>
+        .popup {
+            min-width :400px;
+            min-height: 460px;
+            padding:10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container popup">
+        <h2>Article Form</h2>
+        <div>
+            <div class="form-group">
+                <label for="email">Title</label>
+                <input type="text" id="txtTitle" style="width: 100%;" />
+            </div>
+            <div class="form-group">
+                <label for="email">Content</label>
+                <textarea id="txtAreaArticle" style="width: 100%;min-height:300px;"></textarea>
+            </div>
+            <button id="btnRead" class="btn btn-default">Load Article</button>
+        </div>
+    </div>
+
+</body>
+</html>
