@@ -33,7 +33,7 @@ namespace TechPortalWeb.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Your contact page is here.";
 
             return View();
         }
