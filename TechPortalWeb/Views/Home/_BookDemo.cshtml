@@ -1,0 +1,54 @@
+﻿    <!-- The Modal -->
+<div class="modal fade" id="divBookDemo" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="formModalLabel">Submit Your Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="detailsForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number</label>
+                        <input type="tel" class="form-control" id="mobile" placeholder="Enter your mobile number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="skillset">Skill Set</label>
+                        <select class="form-select" id="skillsetSelect" aria-label="Select Skillset">
+                            <option selected disabled>Choose Skillset</option>
+                            <option value="java_fullstack">Java Fullstack</option>
+                            <option value="dotnet_fullstack">.NET Fullstack</option>
+                            <option value="automation_testing">Automation Testing</option>
+                            <option value="manual_testing">Manual Testing</option>
+                            <option value="performance_testing">Performance Testing</option>
+                            <option value="cpp">C++</option>
+                            <option value="servicenow">ServiceNow</option>
+                            <option value="sap">SAP</option>
+                            <option value="oracle_apps">Oracle Apps</option>
+                            <option value="salesforce">Salesforce</option>
+                            <!-- Add more skillsets as needed -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="comments">Comments</label>
+                        <textarea class="form-control" id="comments" rows="3" placeholder="Enter your comments"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" form="detailsForm" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

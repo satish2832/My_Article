@@ -16,6 +16,11 @@ namespace TechPortalWeb.Controllers
             return View();
         }
 
+        public ActionResult Test()
+        {
+            return View();
+        }
+
         public ActionResult Content()
         {
             var fileName = "60a7a1a6-c2d5-4616-867e-75327e824bb413_02_2024_08_34_23";
@@ -28,6 +33,11 @@ namespace TechPortalWeb.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
+            return View();
+        }
+
+        public ActionResult CourceDetails(string courseName)
+        {
             return View();
         }
 

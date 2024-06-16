@@ -1,0 +1,102 @@
+﻿<div class="carousel-container">
+    <div class="carousel_items">
+        <div class="carousel_item item1">
+            <div class="carousel_text">
+                <h6>Student Review</h6>
+                <p>
+                    "Learning with Intellipaat provided me the technical confidence to clear the Associate Cloud Engineer Certificate,
+                    which helped me land 2 job offers with a 400% hike within just six months of the training."
+                </p>
+            </div>
+        </div>
+        <div class="carousel_item item2">
+            <div class="carousel_text">
+                <h6>Student Review</h6>
+                <p>
+                    "Learning with Intellipaat provided me the technical confidence to clear the Associate Cloud Engineer Certificate,
+                    which helped me land 2 job offers with a 400% hike within just six months of the training."
+                </p>
+            </div>
+        </div>
+        <div class="carousel_item item3">
+            <div class="carousel_text">
+                <h6>Student Review</h6>
+                <p>
+                    "Learning with Intellipaat provided me the technical confidence to clear the Associate Cloud Engineer Certificate,
+                    which helped me land 2 job offers with a 400% hike within just six months of the training."
+                </p>
+            </div>
+        </div>
+        <div class="carousel_item item4">
+            <div class="carousel_text">
+                <h6>Student Review</h6>
+                <p>
+                    "Learning with Intellipaat provided me the technical confidence to clear the Associate Cloud Engineer Certificate,
+                    which helped me land 2 job offers with a 400% hike within just six months of the training."
+                </p>
+            </div>
+        </div>
+        <div class="carousel_item item5">
+            <div class="carousel_text">
+                <h6>Student Review</h6>
+                <p>
+                    "Learning with Intellipaat provided me the technical confidence to clear the Associate Cloud Engineer Certificate,
+                    which helped me land 2 job offers with a 400% hike within just six months of the training."
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .carousel_items {
+        display: flex;
+        wrap: nowrap;
+        overflow: hidden;
+    }
+
+    .carousel_item {
+        min-width: 100%;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        min-height:100px;
+        height: auto;
+        transition: all 0.8s linear;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    .carousel_text {
+        font-weight: 600;
+    }
+
+        .carousel_text h6 {
+            font-weight: bold;
+            font-size: 20px;
+            margin: 10px;
+        }
+</style>
+<script>
+    const carouselItems = document.querySelectorAll(".carousel_item");
+    const prevBtn = document.querySelector(".prev");
+    const nextBtn = document.querySelector(".next");
+    let i = 1;
+    let duration = 5000;
+    // Running the condition every 2 seconds using setInterval
+    setInterval(() => {
+        // Accessing All the carousel Items
+        Array.from(carouselItems).forEach((item, index) => {
+            if (i < carouselItems.length) {
+                item.style.transform = `translateX(-${i * 100}%)`;
+            }
+        });
+        if (i < carouselItems.length) {
+            i++;
+        }
+        else {
+            i = 0;
+        }
+    }, duration);
+
+</script>
