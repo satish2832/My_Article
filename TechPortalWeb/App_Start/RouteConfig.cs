@@ -13,6 +13,8 @@ namespace TechPortalWeb
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapMvcAttributeRoutes();
+            routes.MapRoute(name: "course-details", url: "course/{name}",
+                  defaults: new { controller = "Home", action = "CourseDetails", name = UrlParameter.Optional });
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

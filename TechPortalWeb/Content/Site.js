@@ -5,3 +5,8 @@
     });
     divBookDemo.show();
 });
+
+$('div[data-course-details-url]').on('click', function () {
+    var url = $(this).attr("data-course-details-url");
+    document.location.href = "/course/" + url;
+});

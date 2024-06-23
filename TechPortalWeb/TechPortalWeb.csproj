@@ -275,13 +275,14 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Content.cshtml" />
     <Content Include="Views\Home\_SuccessStories.cshtml" />
-    <Content Include="Views\Home\CourceDetails.cshtml" />
+    <Content Include="Views\Home\CourseDetails.cshtml" />
     <Content Include="Views\Home\_BookDemo.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\Home\_About.cshtml" />
     <Content Include="Views\Home\_Programs.cshtml" />
     <Content Include="Views\Home\_Services.cshtml" />
     <Content Include="Views\Home\_ContactUs.cshtml" />
+    <Content Include="Views\Home\DotnetCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

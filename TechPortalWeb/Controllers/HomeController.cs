@@ -36,9 +36,18 @@ namespace TechPortalWeb.Controllers
             return View();
         }
 
-        public ActionResult CourceDetails(string courseName)
+        public ActionResult CourseDetails(string name)
         {
-            return View();
+            var viewName = "DotnetCourse";
+            if (name == "java-full-stack-development")
+            {
+                viewName = "DotnetCourse";
+            }
+            else if (name == "dotnet-full-stack-development")
+            {
+                viewName = "DotnetCourse";
+            }
+            return View(viewName);
         }
 
         public ActionResult Contact()
