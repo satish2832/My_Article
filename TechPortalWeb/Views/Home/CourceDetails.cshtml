@@ -1,20 +1,536 @@
-﻿<section class="section">
-    <div class="container">
+﻿<style>
+    .trainingBanner {
+        padding: 50px 10px;
+        background: linear-gradient(to right, #00BCD4 0%, #673AB7 100%, #03A9F4 100%);
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        background-position: right center;
+        color: white;
+    }
+
+    .course-curriculum h4 {
+        justify-content: left;
+        font-size: 16px;
+        padding: 5px 0px;
+        font-weight: 600;
+    }
+
+    .course-title h1 {
+        border-bottom: 1px solid white;
+        padding-bottom: 10px;
+    }
+
+    ul.custom-bullet {
+        list-style: none;
+        padding-left: 0;
+    }
+
+        ul.custom-bullet li {
+            position: relative;
+            line-height: 30px;
+            padding-left: 25px; /* Adjust padding to create space for the bullet */
+        }
+
+            ul.custom-bullet li::before {
+                content: '✔'; /* Unicode character for the tick mark */
+                font-size: 14px; /* Adjust font size as needed */
+                color: white; /* Color of the tick mark */
+                background-color: #eb5d1e; /* Background color of the round mark */
+                border-radius: 50%; /* Makes the background a circle */
+                width: 18px; /* Width of the circle */
+                height: 18px; /* Height of the circle */
+                line-height: 18px; /* Centers the tick vertically */
+                text-align: center; /* Centers the tick horizontally */
+                display: inline-block;
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+    .course-features .icon-box {
+        background: linear-gradient(to right, #00BCD4 0%, #673AB7 100%, #03A9F4 100%);
+        color: white;
+    }
+</style>
+<section class="section">
+    <div class="container trainingBanner">
         <div class="row">
             <div class="course-title">
                 <h1>.Net Full stack development training</h1>
             </div>
         </div>
         <div class="row">
-            <div class="course-points col-md-8">
-                <ul>
+            <div class="course-points col-md-10">
+                <ul class="custom-bullet">
                     <li>Enroll for the best Selenium Certification Course designed by Industry Experts and SME’s</li>
                     <li>Master Selenium Tools such as Selenium IDE, RC, WebDriver and Grid with our Online Automation Testing Course</li>
                     <li>Get Hands on exposure by working on Real-Time Projects and Case Studies</li>
                     <li>Get Placement Assistance upon course completion</li>
                 </ul>
             </div>
-            <div class="course-points col-md-4">
+        </div>
+    </div>
+</section>
+<section id="services" class="services course-features section-bg">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Key Features</h2>
+            <p>Explore our features</p>
+        </div>
+        <div class="sub-programs">
+            <div class="section-sub-title">
+                <h3>Fullstack Development</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bx bxl-dribbble"></i></div>
+                        <h4 class="title"><a href="">JAVA Fullstack</a></h4>
+                        <p class="description">.Net 8,Angular,Entity Framework,SQL Server ..etc</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bx bx-file"></i></div>
+                        <h4 class="title"><a href="">.Net Fullstack</a></h4>
+                        <p class="description">.Net 8,Angular,Entity Framework,SQL Server ..etc</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bx bx-tachometer"></i></div>
+                        <h4 class="title"><a href="">Python Fullstack</a></h4>
+                        <p class="description">.Net 8,Angular,Entity Framework,SQL Server ..etc</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bx bx-world"></i></div>
+                        <h4 class="title"><a href="">Continuous Learning</a></h4>
+                        <p class="description">.Net 8,Angular,Entity Framework,SQL Server ..etc</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bx bx-world"></i></div>
+                        <h4 class="title"><a href="">Continuous Learning</a></h4>
+                        <p class="description">.Net 8,Angular,Entity Framework,SQL Server ..etc</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bx bx-tachometer"></i></div>
+                        <h4 class="title"><a href="">Python Fullstack</a></h4>
+                        <p class="description">.Net 8,Angular,Entity Framework,SQL Server ..etc</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bx bx-world"></i></div>
+                        <h4 class="title"><a href="">Continuous Learning</a></h4>
+                        <p class="description">.Net 8,Angular,Entity Framework,SQL Server ..etc</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bx bx-world"></i></div>
+                        <h4 class="title"><a href="">Continuous Learning</a></h4>
+                        <p class="description">.Net 8,Angular,Entity Framework,SQL Server ..etc</p>
+                    </div>
+                </div>
             </div>
         </div>
+
+    </div>
+</section>
+<section class="section course-curriculum section-bg">
+    <div class="accordion container" data-aos="fade-up" id="accordionExample">
+        <div class="section-title">
+            <h2>Key Features</h2>
+            <p>Explore our features</p>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    .NET and .NET Core
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="content">
+                        <ul class="custom-bullet">
+                            <li>Understanding .NET Framework </li>
+                            <li>.NET Framework Version History</li>
+                            <li>.NET Framework 4.5 Architecture</li>
+                            <li>Common Language Runtime (CLR) </li>
+                            <li>CLR Components</li>
+                            <li>Microsoft Intermediate language (MSIL) </li>
+                            <li>Common Type System (CTS)</li>
+                            <li>Common Language Specification (CLS) </li>
+                            <li>Relationship Between CTS and CLS</li>
+                            <li>Framework Class Library (FCL)</li>
+                            <li>Just-In Time Compilation (JIT)</li>
+                            <li>Types of JIT Compiler</li>
+                            <li>Normal JIT, Pre-JIT, Econo JIT</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    C# Fundamentals
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="content">
+                        <div style="height:500px;overflow-y:scroll" class="w-100">
+                            <h4>C# Programming Language</h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to C#</li>
+                                <li>History of C# Version</li>
+                                <li>C# Advantages</li>
+                            </ul><ul class="custom-bullet">
+                            </ul>
+                            <h4>Creating Your First C# Program</h4>
+                            <ul class="custom-bullet">
+                                <li>Structure of a C# Program</li>
+                                <li>Basic Input / Output Operations</li>
+                                <li>Compiling, Running, and Debugging</li>
+                            </ul>
+                            <h4>Data Type</h4>
+                            <ul class="custom-bullet">
+                                <li>Understanding Data Type</li>
+                                <li>Types of Data Type – Value Type &amp; Reference Type</li>
+                            </ul>
+                            <h4>Variable &amp; Typecasting</h4>
+                            <ul class="custom-bullet">
+                                <li>Naming a variable</li>
+                                <li>Boxing and Unboxing</li>
+                                <li>Data Conversions – Implicit &amp; Explicit</li>
+                                <li>Safe Type Casting with IS and AS Operator</li>
+                            </ul>
+
+                            <h4>Operators</h4>
+                            <ul class="custom-bullet">
+                                <li>Different Types of Operators</li>
+                                <li>Operators precedence</li>
+                            </ul>
+                            <h4>Conditional Statements</h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to conditional statement</li>
+                                <li>If statements</li>
+                                <li>If-else statement</li>
+                                <li>If-else-if ladder</li>
+                                <li>Switch statement</li>
+                            </ul>
+                            <h4>Loops</h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to loop</li>
+                                <li>..while loop</li>
+                                <li>while loop</li>
+                                <li>for loop</li>
+                                <li>foreach loop</li>
+                            </ul>
+                            <h4>Jump Statements</h4>
+                            <ul class="custom-bullet">
+                                <li>break statement</li>
+                                <li>continue statement</li>
+                                <li>goto statement</li>
+                                <li>return statement</li>
+                                <li>throw statement</li>
+                            </ul>
+
+                            <h4>Arrays</h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to Array</li>
+                                <li>One Dimensional Array</li>
+                                <li>Multi-Dimensional Array</li>
+                                <li>Jagged Array</li>
+                                <li>Array Class</li>
+                            </ul>
+                            <h4>Strings</h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to strings</li>
+                                <li>Mutable strings</li>
+                                <li>Immutable strings</li>
+                                <li>Strings methods</li>
+                                <li>Verbatim String</li>
+                            </ul>
+
+                            <h4>Introduction to Object-Oriented Programming</h4>
+                            <ul class="custom-bullet">
+                                <li>Object-Oriented Programming</li>
+                                <li>Classes and Objects</li>
+                                <li>Inheritance</li>
+                                <li>Polymorphism</li>
+                                <li>Abstraction</li>
+                                <li>Encapsulation</li>
+                            </ul>
+                            <h4>Class and Objects</h4>
+                            <ul class="custom-bullet">
+                                <li>Creating a class</li>
+                                <li>Access Modifiers</li>
+                                <li>Instance members</li>
+                                <li>Creating an object</li>
+                            </ul>
+                            <h4>Constructor and Destructor</h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to Constructor</li>
+                                <li>Types of Constructor</li>
+                                <li>Default Constructor</li>
+                                <li>Parameterized Constructor</li>
+                                <li>Introduction to Destructor</li>
+                                <li>Creating Destructor</li>
+                            </ul>
+
+                            <h4>Inheritance</h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to Inheritance</li>
+                                <li>Types of inheritance</li>
+                                <li>Advantage of Inheritance</li>
+                                <li>Single Level Inheritance</li>
+                                <li>Multi-Level Inheritance</li>
+                                <li>Multiple Inheritance</li>
+                                <li>Hybrid Inheritance</li>
+                            </ul>
+                            <h4>Methods</h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to Methods</li>
+                                <li>Method Parameters</li>
+                                <li>Value, Out, Ref, Params and Optional Parameters</li>
+                                <li>Methods Overloading</li>
+                                <li>Methods Overriding</li>
+                                <li>Method Hiding</li>
+                            </ul><ul class="custom-bullet">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Advanced C#
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="content">
+                        <div style="height:500px;overflow-y:scroll" class="w-100">
+
+                            <h4>Property<br></h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to Property</li>
+                                <li>Uses of Property</li>
+                                <li>Types of Property</li>
+                                <li>Read-Write Property</li>
+                                <li>Read Only Property</li>
+                                <li>Write Only Property</li>
+                            </ul>
+
+                            <h4>Enum</h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to Enum</li>
+                                <li>Creating Enum</li>
+                                <li>Using Enum</li>
+                            </ul>
+                            <h4>Exception Handling</h4>
+                            <ul class="custom-bullet">
+                                <li>Understanding Exceptions</li>
+                                <li>Try, Catch and Finally block</li>
+                                <li>Throw exception</li>
+                                <li>Handling Exception</li>
+                                <li>Custom Exception</li>
+                            </ul>
+                            <h4>Attributes</h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to attributes</li>
+                                <li>Creating attributes</li>
+                                <li>Custom attributes</li>
+                            </ul>
+
+                            <h4>Abstract Class</h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to Abstract Class</li>
+                                <li>Creating Abstract class</li>
+                                <li>Need of Abstract class</li>
+                                <li>Advantages of abstract class</li>
+                            </ul>
+                            <h4>Interface</h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to Interface</li>
+                                <li>Creating Interface</li>
+                                <li>Need of Interface</li>
+                                <li>Abstract class vs. Interface</li>
+                            </ul>
+                            <h4>Static Class</h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to static class</li>
+                                <li>Creating static class and static methods</li>
+                                <li>Need of static class</li>
+                                <li>Normal class vs. Static class</li>
+                            </ul>
+                            <h4>Partial Class</h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to partial class</li>
+                                <li>Creating partial class</li>
+                                <li>Need of partial class</li>
+                            </ul>
+
+                            <h4>Anonymous Type, Dynamic Type and Tuples</h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to Anonymous Type</li>
+                                <li>Using Anonymous Type</li>
+                                <li>Introduction to Dynamic</li>
+                                <li>Using Dynamic Type</li>
+                            </ul>
+                            <h4>Anonymous Method and Lambda Expression</h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to Anonymous Method</li>
+                                <li>Using Anonymous Method</li>
+                                <li>Introduction to Lambda Expression</li>
+                                <li>Types of Lambda Expression</li>
+                            </ul>
+                            <h4>Delegates</h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to delegates</li>
+                                <li>Types of delegates</li>
+                                <li>Single Delegate</li>
+                                <li>Multicast Delegate</li>
+                            </ul><ul class="custom-bullet">
+                            </ul>
+                            <h4>Events</h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to events</li>
+                                <li>Creating Events</li>
+                                <li>Event Handler</li>
+                            </ul>
+
+                            <h4>Collections</h4>
+                            <ul class="custom-bullet">
+                                <li>Introduction to .NET Collections</li>
+                                <li>Relations between Collection Interfaces and Classes</li>
+                            </ul>
+                            <h4>Collection classes</h4>
+                            <ul class="custom-bullet">
+                                <li>ArrayList</li>
+                                <li>SortedList</li>
+                                <li>Dictionary</li>
+                                <li>Hashtable</li>
+                                <li>Stack</li>
+                                <li>Queue</li>
+                            </ul>
+                            <h4>Generics</h4>
+                            <ul class="custom-bullet">
+                                <li>Understanding .NET Generics</li>
+                                <li>Generics Advantages</li>
+                                <li>Collections vs. Generics</li>
+                            </ul><ul class="custom-bullet">
+                            </ul>
+                            <h4>Generics Collection Classes</h4>
+                            <ul class="custom-bullet">
+                                <li>List&lt;T&gt;</li>
+                                <li>SortedList&lt;TKey, TValue&gt;</li>
+                                <li>Dictionary&lt;TKey, TValue&gt;</li>
+                                <li>Hashset&lt;T&gt;</li>
+                                <li>Stack&lt;T&gt;</li>
+                                <li>Queue&lt;T&gt;</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    SQL Server
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="content">
+                        <div style="height:500px;overflow-y:scroll" class="w-100">
+                            <h4>SQL Server Basics</h4>
+                            <ul class="custom-bullet">
+                                <li>Understanding SQL Server</li>
+                                <li>SQL Server Version History</li>
+                                <li>Advantage of SQL Server</li>
+                            </ul>
+                            <h4>T - SQL</h4>
+                            <ul class="custom-bullet">
+                                <li>Types of SQL Commands</li>
+                                <li>Creating Database</li>
+                                <li>Altering Database</li>
+                                <li>Deleting Database</li>
+                                <li>Creating Table</li>
+                                <li>Altering Table</li>
+                                <li>Deleting Table</li>
+                            </ul>
+                            <h4>SQL Keys, Commands and Clauses</h4>
+                            <ul class="custom-bullet">
+                                <li>Types of SQL Keys</li>
+                                <li>Using SQL Commands</li>
+                                <li>Querying Database</li>
+                                <li>Delete vs. Truncate</li>
+                                <li>SQL Operators</li>
+                                <li>SQL Clauses</li>
+                            </ul>
+                            <h4>SQL Joins</h4>
+                            <ul class="custom-bullet">
+                                <li>Types of Joins</li>
+                                <li>Inner Join</li>
+                                <li>Outer Join</li>
+                                <li>Cross Join</li>
+                                <li>Self-Join</li>
+                            </ul>
+                            <h4>Views</h4>
+                            <ul class="custom-bullet">
+                                <li>Understanding Views</li>
+                                <li>Need of Views</li>
+                                <li>Creating, Altering and Dropping Views</li>
+                                <li>Simple and Complex Views</li>
+                            </ul>
+
+                            <h4>Functions</h4>
+                            <ul class="custom-bullet">
+                                <li>Built-In Functions</li>
+                                <li>Scalar Functions</li>
+                                <li>Aggregate Functions</li>
+                                <li>Creating, Altering and Dropping Functions</li>
+                            </ul>
+                            <h4>Stored Procedures</h4>
+                            <ul class="custom-bullet">
+                                <li>Creating, Altering and Dropping Procedure</li>
+                                <li>Optional Parameters</li>
+                                <li>Input and Output Parameters</li>
+                            </ul>
+                            <h4>Triggers</h4>
+                            <ul class="custom-bullet">
+                                <li>Understanding Triggers</li>
+                                <li>Stored Procedures VS Functions VS Triggers</li>
+                                <li>Types of Triggers</li>
+                                <li>Creating, Altering and Dropping Triggers</li>
+                            </ul>
+                            <h4>Cursors</h4>
+                            <ul class="custom-bullet">
+                                <li>Understanding Cursors</li>
+                                <li>Types of Cursors</li>
+                                <li>Using Cursors</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>

@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{ 
     Layout = null;
 }
 <!DOCTYPE html>
@@ -7,35 +6,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form with Select Dropdown</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/css/bootstrap.min.css">
+    <title>Bootstrap 5 Modal Example</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 </head>
 <body>
+    <br />
+    <br />
+    <!-- Button to trigger modal with JavaScript -->
+    <button type="button" class="btn btn-primary" id="btnBookDemo">
+        Book Demo
+    </button>
 
-    <div class="container mt-5">
-        <form>
-            <div class="form-group">
-                <label for="skillsetSelect">Select Skillset</label>
-                <select class="form-select" id="skillsetSelect" aria-label="Select Skillset">
-                    <option selected disabled>Choose Skillset</option>
-                    <option value="java_fullstack">Java Fullstack</option>
-                    <option value="dotnet_fullstack">.NET Fullstack</option>
-                    <option value="automation_testing">Automation Testing</option>
-                    <option value="manual_testing">Manual Testing</option>
-                    <option value="performance_testing">Performance Testing</option>
-                    <option value="cpp">C++</option>
-                    <option value="servicenow">ServiceNow</option>
-                    <option value="sap">SAP</option>
-                    <option value="oracle_apps">Oracle Apps</option>
-                    <option value="salesforce">Salesforce</option>
-                    <!-- Add more skillsets as needed -->
-                </select>
+    <!-- Modal -->
+    <div class="modal fade" id="divBookDemo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Book Demo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    This is the content of the Book Demo modal.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
+    @{
+        var popperjs = "@popperjs";
+    }
+    <!-- Bootstrap JS and dependencies -->
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript to launch modal -->
+    <script>
+        document.getElementById('btnBookDemo').addEventListener('click', function () {
+            var divBookDemo = new bootstrap.Modal(document.getElementById('divBookDemo'), {
+                backdrop: 'static',
+                keyboard: false
+            });
+            divBookDemo.show();
+        });
+    </script>
 </body>
 </html>
-
