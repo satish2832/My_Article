@@ -1,7 +1,7 @@
 ﻿<style>
     .trainingBanner {
         padding: 50px 10px;
-        background: linear-gradient(to right, #00BCD4 0%, #673AB7 100%, #03A9F4 100%);
+        background: linear-gradient(to right, #363636 0%, #eb5d1e 100%, #363636 100%);
         background-size: auto 100%;
         background-repeat: no-repeat;
         background-position: right center;
@@ -49,12 +49,19 @@
             }
 
     .course-features .icon-box {
-        background: linear-gradient(to right, #00BCD4 0%, #673AB7 100%, #03A9F4 100%);
-        color: white;
+        /*background: linear-gradient(to right, #363636 0%, #eb5d1e 100%, #363636 100%);
+        color: white;*/
     }
 
     .course-features .icon i {
-        color: white;
+        /*color: white;*/
+    }
+
+    .accordion-button:not(.collapsed) {
+        color: #ffffff;
+        font-weight: bold;
+        background-color: #ef7f4d;
+        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .125);
     }
 </style>
 <section class="section">
@@ -84,67 +91,87 @@
         </div>
         <div class="sub-programs">
             <div class="section-sub-title">
-                <h3>Fullstack Development</h3>
+                <h3>.Net Fullstack Development</h3>
             </div>
             <div class="row">
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                     <div class="icon-box">
-                        <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                        <h4 class="title"><a href="">JAVA Fullstack</a></h4>
-                        <p class="description">.Net 8,Angular,Entity Framework,SQL Server ..etc</p>
+                        <div class="icon"><i class="bx bx-tachometer"></i></div>
+                        <h4 class="title"><a href="">.Net Core</a></h4>
+                        <p class="description">Explore new .Net 8 + concepts.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bx bx-tachometer"></i></div>
+                        <h4 class="title"><a href="">C# .Net</a></h4>
+                        <p class="description">Explore new C# 12 concepts.</p>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
                     <div class="icon-box">
-                        <div class="icon"><i class="bx bx-file"></i></div>
-                        <h4 class="title"><a href="">.Net Fullstack</a></h4>
-                        <p class="description">.Net 8,Angular,Entity Framework,SQL Server ..etc</p>
+                        <div class="icon"><i class="bx bx-tachometer"></i></div>
+                        <h4 class="title"><a href="">Asp.net MVC</a></h4>
+                        <p class="description">Explore Asp.net MVC features.</p>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-tachometer"></i></div>
-                        <h4 class="title"><a href="">Python Fullstack</a></h4>
-                        <p class="description">.Net 8,Angular,Entity Framework,SQL Server ..etc</p>
+                        <h4 class="title"><a href="">Web API</a></h4>
+                        <p class="description">Explore REST API and many features.</p>
                     </div>
                 </div>
 
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="400">
                     <div class="icon-box">
-                        <div class="icon"><i class="bx bx-world"></i></div>
-                        <h4 class="title"><a href="">Continuous Learning</a></h4>
-                        <p class="description">.Net 8,Angular,Entity Framework,SQL Server ..etc</p>
+                        <div class="icon"><i class="bx bx-tachometer"></i></div>
+                        <h4 class="title"><a href="">Entity Framework</a></h4>
+                        <p class="description">Explore EF Core + features.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="400">
                     <div class="icon-box">
-                        <div class="icon"><i class="bx bx-world"></i></div>
-                        <h4 class="title"><a href="">Continuous Learning</a></h4>
-                        <p class="description">.Net 8,Angular,Entity Framework,SQL Server ..etc</p>
+                        <div class="icon"><i class="bx bx-tachometer"></i></div>
+                        <h4 class="title"><a href="">LINQ</a></h4>
+                        <p class="description">Explore LINQ to SQL and many.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
                     <div class="icon-box">
                         <div class="icon"><i class="bx bx-tachometer"></i></div>
-                        <h4 class="title"><a href="">Python Fullstack</a></h4>
-                        <p class="description">.Net 8,Angular,Entity Framework,SQL Server ..etc</p>
+                        <h4 class="title"><a href="">Async Programming</a></h4>
+                        <p class="description">Explore TPL library and new concepts.</p>
                     </div>
                 </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="400">
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
                     <div class="icon-box">
-                        <div class="icon"><i class="bx bx-world"></i></div>
-                        <h4 class="title"><a href="">Continuous Learning</a></h4>
-                        <p class="description">.Net 8,Angular,Entity Framework,SQL Server ..etc</p>
+                        <div class="icon"><i class="bx bx-tachometer"></i></div>
+                        <h4 class="title"><a href="">Angular 18</a></h4>
+                        <p class="description">Explore new Angular 18 + features.</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="400">
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
                     <div class="icon-box">
-                        <div class="icon"><i class="bx bx-world"></i></div>
-                        <h4 class="title"><a href="">Continuous Learning</a></h4>
-                        <p class="description">.Net 8,Angular,Entity Framework,SQL Server ..etc</p>
+                        <div class="icon"><i class="bx bx-tachometer"></i></div>
+                        <h4 class="title"><a href="">HTML &Aacute; CSS</a></h4>
+                        <p class="description">Explore HTML 5 and CSS new concepts.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bx bx-tachometer"></i></div>
+                        <h4 class="title"><a href="">SQL Server</a></h4>
+                        <p class="description">Explore SQL Server development concepts.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bx bx-tachometer"></i></div>
+                        <h4 class="title"><a href="">Azure Clound</a></h4>
+                        <p class="description">Explore Azure development services.</p>
                     </div>
                 </div>
             </div>
@@ -456,11 +483,11 @@
         </div>
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
                     SQL Server
                 </button>
             </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <div class="content">
                         <div style="height:500px;overflow-y:scroll" class="w-100">
@@ -530,6 +557,154 @@
                                 <li>Understanding Cursors</li>
                                 <li>Types of Cursors</li>
                                 <li>Using Cursors</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
+                    Angular Development
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="content">
+                        <div style="height:500px;overflow-y:scroll" class="w-100">
+                            <ul class="custom-bullet">
+                                <li>Modules</li>
+                                <li>Components</li>
+                                <li>Templates</li>
+                                <li>Data Binding</li>
+                                <li>Directives</li>
+                                <li>Services and Dependency Injection</li>
+                                <li>Routing</li>
+                                <li>Forms</li>
+                                <li>Pipes</li>
+                                <li>HTTP Client</li>
+                                <li>Lifecycle Hooks</li>
+                                <li>Change Detection</li>
+                                <li>Angular CLI</li>
+                                <li>Animations</li>
+                                <li>Observables and RxJS</li>
+                                <li>State Management</li>
+                                <li>Testing</li>
+                                <li>Internationalization (i18n)</li>
+                                <li>Angular Universal (Server-Side Rendering)</li>
+                                <li>Performance Optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseThree">
+                    Azure Development
+                </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="content">
+                        <div style="height:500px;overflow-y:scroll" class="w-100">
+                            <ul class="custom-bullet">
+                                <li>Azure App Service</li>
+                                <li>Azure Functions</li>
+                                <li>Azure Logic Apps</li>
+                                <li>Azure Kubernetes Service (AKS)</li>
+                                <li>Azure DevOps</li>
+                                <li>Azure Resource Manager (ARM)</li>
+                                <li>Azure Virtual Machines</li>
+                                <li>Azure SQL Database</li>
+                                <li>Azure Cosmos DB</li>
+                                <li>Azure Storage (Blob, Table, Queue, File)</li>
+                                <li>Azure Virtual Network (VNet)</li>
+                                <li>Azure Active Directory (Azure AD)</li>
+                                <li>Azure Key Vault</li>
+                                <li>Azure Monitor</li>
+                                <li>Azure Cognitive Services</li>
+                                <li>Azure Machine Learning</li>
+                                <li>Azure API Management</li>
+                                <li>Azure Event Hubs</li>
+                                <li>Azure Service Bus</li>
+                                <li>Azure Sentinel</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseThree">
+                    HTML, CSS and Javascript
+                </button>
+            </h2>
+            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="content">
+                        <div style="height:500px;overflow-y:scroll" class="w-100">
+                            <ul class="custom-bullet">
+                                <li>HTML Document Structure</li>
+                                <li>HTML Elements and Tags</li>
+                                <li>HTML Attributes</li>
+                                <li>HTML Headings</li>
+                                <li>HTML Paragraphs</li>
+                                <li>HTML Links</li>
+                                <li>HTML Images</li>
+                                <li>HTML Lists (ul, ol, li)</li>
+                                <li>HTML Tables</li>
+                                <li>HTML Forms</li>
+                                <li>HTML Input Types</li>
+                                <li>HTML Semantic Elements</li>
+                                <li>HTML5 New Elements</li>
+                                <li>HTML Canvas</li>
+                                <li>HTML SVG</li>
+                                <li>HTML Media Elements (audio, video)</li>
+                                <li>HTML Meta Tags</li>
+                                <li>HTML iframes</li>
+                                <li>HTML Inline vs Block Elements</li>
+                                <li>HTML Accessibility</li>
+                                <li>CSS Selectors</li>
+                                <li>CSS Box Model</li>
+                                <li>CSS Flexbox</li>
+                                <li>CSS Grid Layout</li>
+                                <li>CSS Positioning</li>
+                                <li>CSS Colors</li>
+                                <li>CSS Typography</li>
+                                <li>CSS Backgrounds</li>
+                                <li>CSS Margins and Paddings</li>
+                                <li>CSS Borders</li>
+                                <li>CSS Media Queries</li>
+                                <li>CSS Pseudo-classes and Pseudo-elements</li>
+                                <li>CSS Animations and Transitions</li>
+                                <li>CSS Responsive Design</li>
+                                <li>CSS Variables</li>
+                                <li>CSS Specificity</li>
+                                <li>CSS Frameworks (e.g., Bootstrap)</li>
+                                <li>JavaScript Variables</li>
+                                <li>JavaScript Data Types</li>
+                                <li>JavaScript Operators</li>
+                                <li>JavaScript Functions</li>
+                                <li>JavaScript Objects</li>
+                                <li>JavaScript Arrays</li>
+                                <li>JavaScript Loops</li>
+                                <li>JavaScript Conditional Statements</li>
+                                <li>JavaScript Events</li>
+                                <li>JavaScript DOM Manipulation</li>
+                                <li>JavaScript ES6 Features (let, const, arrow functions)</li>
+                                <li>JavaScript Promises</li>
+                                <li>JavaScript Async/Await</li>
+                                <li>JavaScript Callbacks</li>
+                                <li>JavaScript Closures</li>
+                                <li>JavaScript Hoisting</li>
+                                <li>JavaScript Scope</li>
+                                <li>JavaScript Prototype</li>
+                                <li>JavaScript Modules</li>
+                                <li>JavaScript Event Loop</li>
                             </ul>
                         </div>
                     </div>
