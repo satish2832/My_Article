@@ -40,3 +40,26 @@
     font-weight: 700;
     color: #4e4039;
 }
+
+.container-header {
+    max-width: 100% !important;
+}
+
+.about-section p {
+    text-align:justify !important;
+}
+.service-items p {
+    text-align: justify !important;
+    font-size: 16px !important;
+}
+.contact-items h4{
+    justify-content:left !important;
+    padding:5px !important
+}
+.contact-items p {
+    justify-content: left !important;
+    padding: 0 0 10px 0px !important
+}
+.d-flex{
+    justify-content:space-around;
+}

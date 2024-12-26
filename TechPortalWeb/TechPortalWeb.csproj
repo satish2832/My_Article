@@ -141,6 +141,18 @@
     <Content Include="Content\assets\img\clients\client-6.png" />
     <Content Include="Content\assets\img\clients\client-7.png" />
     <Content Include="Content\assets\img\clients\client-8.png" />
+    <Content Include="Content\assets\img\companies\company-1.png" />
+    <Content Include="Content\assets\img\companies\company-10.png" />
+    <Content Include="Content\assets\img\companies\company-11.png" />
+    <Content Include="Content\assets\img\companies\company-12.png" />
+    <Content Include="Content\assets\img\companies\company-2.png" />
+    <Content Include="Content\assets\img\companies\company-3.png" />
+    <Content Include="Content\assets\img\companies\company-4.png" />
+    <Content Include="Content\assets\img\companies\company-5.png" />
+    <Content Include="Content\assets\img\companies\company-6.png" />
+    <Content Include="Content\assets\img\companies\company-7.png" />
+    <Content Include="Content\assets\img\companies\company-8.png" />
+    <Content Include="Content\assets\img\companies\company-9.png" />
     <Content Include="Content\assets\img\favicon.png" />
     <Content Include="Content\assets\img\hero-img.svg" />
     <Content Include="Content\assets\img\portfolio\portfolio-1.jpg" />
@@ -319,7 +331,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>64900</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:64900/</IISUrl>
+          <IISUrl>http://localhost:64911/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

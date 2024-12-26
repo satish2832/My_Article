@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TechPortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="PageURL" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="PageImageURLs" Type="varchar(max)" Nullable="false" />
+          <Property Name="Tags" Type="varchar" MaxLength="2000" />
+          <Property Name="SkillsetId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" />
+          <Property Name="CreateDT" Type="datetime" />
+          <Property Name="UpdatedBy" Type="uniqueidentifier" />
+          <Property Name="UpdateDT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CandidateEnquiry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LocationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SkillsetId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Comments" Type="varchar(max)" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" />
+          <Property Name="CreateDT" Type="datetime" />
+          <Property Name="UpdatedBy" Type="uniqueidentifier" />
+          <Property Name="UpdateDT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Skillset">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CandidateEnquiry_SkillsetId">
+          <End Role="Skillset" Type="Self.Skillset" Multiplicity="1" />
+          <End Role="CandidateEnquiry" Type="Self.CandidateEnquiry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skillset">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CandidateEnquiry">
+              <PropertyRef Name="SkillsetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TechPortalModelStoreContainer">
+          <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CandidateEnquiry" EntityType="Self.CandidateEnquiry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Skillset" EntityType="Self.Skillset" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CandidateEnquiry_SkillsetId" Association="Self.FK_CandidateEnquiry_SkillsetId">
+            <End Role="Skillset" EntitySet="Skillset" />
+            <End Role="CandidateEnquiry" EntitySet="CandidateEnquiry" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TechPortalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PageURL" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PageImageURLs" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tags" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="SkillsetId" Type="Guid" Nullable="false" />
+          <Property Name="CreatedBy" Type="Guid" />
+          <Property Name="CreateDT" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Guid" />
+          <Property Name="UpdateDT" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CandidateEnquiry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LocationId" Type="Guid" Nullable="false" />
+          <Property Name="SkillsetId" Type="Guid" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="Guid" />
+          <Property Name="CreateDT" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Guid" />
+          <Property Name="UpdateDT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Skillset" Relationship="TechPortalModel.FK_CandidateEnquiry_SkillsetId" FromRole="CandidateEnquiry" ToRole="Skillset" />
+        </EntityType>
+        <EntityType Name="Skillset">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CandidateEnquiries" Relationship="TechPortalModel.FK_CandidateEnquiry_SkillsetId" FromRole="Skillset" ToRole="CandidateEnquiry" />
+        </EntityType>
+        <EntityContainer Name="TechPortalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Articles" EntityType="Self.Article" />
+          <EntitySet Name="CandidateEnquiries" EntityType="Self.CandidateEnquiry" />
+          <EntitySet Name="Skillsets" EntityType="Self.Skillset" />
+          <AssociationSet Name="FK_CandidateEnquiry_SkillsetId" Association="TechPortalModel.FK_CandidateEnquiry_SkillsetId">
+            <End Role="Skillset" EntitySet="Skillsets" />
+            <End Role="CandidateEnquiry" EntitySet="CandidateEnquiries" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_CandidateEnquiry_SkillsetId">
+          <End Type="TechPortalModel.Skillset" Role="Skillset" Multiplicity="1" />
+          <End Type="TechPortalModel.CandidateEnquiry" Role="CandidateEnquiry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skillset">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CandidateEnquiry">
+              <PropertyRef Name="SkillsetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TechPortalModelStoreContainer" CdmEntityContainer="TechPortalEntities">
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="TechPortalModel.Article">
+              <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="PageURL" ColumnName="PageURL" />
+                <ScalarProperty Name="PageImageURLs" ColumnName="PageImageURLs" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="SkillsetId" ColumnName="SkillsetId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CandidateEnquiries">
+            <EntityTypeMapping TypeName="TechPortalModel.CandidateEnquiry">
+              <MappingFragment StoreEntitySet="CandidateEnquiry">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="SkillsetId" ColumnName="SkillsetId" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skillsets">
+            <EntityTypeMapping TypeName="TechPortalModel.Skillset">
+              <MappingFragment StoreEntitySet="Skillset">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
