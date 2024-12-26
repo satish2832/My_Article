@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using TechPortalWeb.Helpers;
 
 namespace TechPortalWeb
 {
@@ -12,6 +13,7 @@ namespace TechPortalWeb
     {
         protected void Application_Start()
         {
+            UnityConfigHelper.RegisterComponents();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

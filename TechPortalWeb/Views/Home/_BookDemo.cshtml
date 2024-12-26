@@ -3,26 +3,26 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="formModalLabel"><i class="fa-solid fa-circle-info"></i> Submit Your Details</h5>               
+                <h5 class="modal-title" id="formModalLabel"><i class="fa-solid fa-circle-info"></i> Submit Your Details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="divEnquiryModalBody">
                 <form id="detailsForm">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                        <input type="text" class="form-control" id="enquiry-name" placeholder="Enter your name" required>
                     </div>
                     <div class="form-group">
-                        <label for="mobile">Mobile Number</label>
-                        <input type="tel" class="form-control" id="mobile" placeholder="Enter your mobile number" required>
+                        <label for="mobile">Phone Number</label>
+                        <input type="tel" class="form-control" id="enquiry-phone" placeholder="Enter your phone number" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                        <input type="email" class="form-control" id="enquiry-email" placeholder="Enter your email" required>
                     </div>
                     <div class="form-group">
                         <label for="skillset">Skill Set</label>
-                        <select class="form-select" id="skillsetSelect" aria-label="Select Skillset">
+                        <select class="form-select" id="enquiry-skillset" aria-label="Select Skillset">
                             <option selected disabled>Choose Skillset</option>
                             <option value="java_fullstack">Java Fullstack</option>
                             <option value="dotnet_fullstack">.NET Fullstack</option>
@@ -39,14 +39,25 @@
                     </div>
                     <div class="form-group">
                         <label for="comments">Comments</label>
-                        <textarea class="form-control" id="comments" rows="3" placeholder="Enter your comments"></textarea>
+                        <textarea class="form-control" id="enquiry-comments" rows="3" placeholder="Enter your comments"></textarea>
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
+            <div id="divEnquirySuccess" style="display:none;">
+                <div class="success-container">
+                    <div class="circle">
+                        <div class="tick"></div>
+                    </div>
+                    <p class="success-text">Success!</p>
+                    <p>Your Enquiry Added. Our team will contact you shortly!</p>
+                </div>
+            </div>
+            <div class="modal-footer" id="divEnquiryFooter">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" form="detailsForm" class="btn btn-primary">Submit</button>
+                <button type="submit" id="btnDetailsForm" form="detailsForm" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </div>
 </div>
+
+

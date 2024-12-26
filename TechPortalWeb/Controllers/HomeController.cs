@@ -2,14 +2,38 @@
 using System.IO;
 using System.Text;
 using System.Web.Mvc;
+using AppRepository.Enquiry;
+using TechPortalWeb.Models;
+using TechPortalWeb.Helpers;
+using AppRepository;
 
 namespace TechPortalWeb.Controllers
 {
     public class HomeController : Controller
     {
+        public IEnquiryService EnquiryService { get; }
+
+        public HomeController(IEnquiryService enquiryService)
+        {
+            EnquiryService = enquiryService;
+        }
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult SubmitEnquiry(EnquiryFormModel enquiryFormModel)
+        {
+            try
+            {
+                var customerEnquiry = MapperHelper.Map<EnquiryFormModel, CandidateEnquiry>(enquiryFormModel);
+                var isSaved = EnquiryService.Save(customerEnquiry);
+                return Json(new { IsValid = isSaved }, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json(new { IsValid = false }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         public ActionResult Test()
