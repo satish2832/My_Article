@@ -1,4 +1,4 @@
-﻿document.getElementById('btnBookDemo').addEventListener('click', function () {
+﻿$(".btnBookDemo").on('click', function () {
     var divBookDemo = new bootstrap.Modal(document.getElementById('divBookDemo'), {
         backdrop: 'static',
         keyboard: false
