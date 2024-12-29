@@ -29,40 +29,45 @@
 }
 
 .section-sub-title {
-    text-align: left;
-    padding-bottom: 10px;
+    text-align: center;
+    padding-bottom: 20px;
+    text-decoration: underline;
 }
 
-.section-sub-title h3 {
-    padding-bottom: 5px;
-    margin-bottom: 5px;
-    position: relative;
-    font-size: 24px;
-    font-weight: 700;
-    color: #4e4039;
-}
+    .section-sub-title h3 {
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+        position: relative;
+        font-size: 24px;
+        font-weight: 700;
+        color: #4e4039;
+    }
 
 .container-header {
     max-width: 100% !important;
 }
 
 .about-section p {
-    text-align:justify !important;
+    text-align: justify !important;
 }
+
 .service-items p {
     text-align: justify !important;
     font-size: 16px !important;
 }
-.contact-items h4{
-    justify-content:left !important;
-    padding:5px !important
+
+.contact-items h4 {
+    justify-content: left !important;
+    padding: 5px !important
 }
+
 .contact-items p {
     justify-content: left !important;
     padding: 0 0 10px 0px !important
 }
-.d-flex{
-    justify-content:space-around;
+
+.d-flex {
+    justify-content: space-around;
 }
 
 .mt-5 {
@@ -164,3 +169,91 @@
     }
 }
 
+.training-banner {
+    padding: 50px 10px;
+    background: #7a6960;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: right center;
+    color: white;
+    max-width: 100%;
+}
+
+.section-training-banner {
+    padding: 0% !important;
+}
+
+.course-curriculum h4 {
+    justify-content: left;
+    font-size: 16px;
+    padding: 5px 0px;
+    font-weight: 600;
+}
+
+.course-title h1 {
+    border-bottom: 1px solid white;
+    padding-bottom: 10px;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+ul.custom-bullet {
+    list-style: none;
+    padding-left: 0;
+}
+
+    ul.custom-bullet li {
+        position: relative;
+        line-height: 40px;
+        padding-left: 25px;
+    }
+
+        ul.custom-bullet li p {
+            position: relative;
+            line-height: 20px;
+            font-size: 16px;
+        }
+
+        ul.custom-bullet li::before {
+            content: '✔';
+            font-size: 14px;
+            color: white;
+            background-color: #eb5d1e;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            line-height: 18px;
+            text-align: center;
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+.course-features .icon-box {
+}
+
+.course-features .icon i {
+}
+
+.accordion-button:not(.collapsed) {
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #ef7f4d;
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .125);
+}
+
+.course-points-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.course-points-header .image-container {
+    margin-bottom: 25px;
+}
+
+.course-points-header ul {
+}
