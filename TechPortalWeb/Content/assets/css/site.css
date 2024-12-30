@@ -321,3 +321,20 @@ ul.custom-bullet {
 .qa-training-section .img-fluid {
     border: 2px solid;
 }
+
+/*
+    QA training page
+*/
+.devops-training-section .training-banner {
+    background: #1d5f2d !important;
+}
+
+.devops-training-section ul.custom-bullet li::before {
+    background: white !important;
+    color: #1d5f2d !important;
+}
+
+.devops-training-section .img-fluid {
+    border: 2px solid;
+}
+

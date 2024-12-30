@@ -182,6 +182,7 @@
     <Content Include="Content\assets\img\companies\company-7.png" />
     <Content Include="Content\assets\img\companies\company-8.png" />
     <Content Include="Content\assets\img\companies\company-9.png" />
+    <Content Include="Content\assets\img\courses\devops-tech-stack.png" />
     <Content Include="Content\assets\img\courses\java-fullstack-development.png" />
     <Content Include="Content\assets\img\courses\net-fullstack-development.png" />
     <Content Include="Content\assets\img\courses\python-fullstack-development.png" />
@@ -316,6 +317,7 @@
     <Content Include="Views\Home\JavaCourse.cshtml" />
     <Content Include="Views\Home\PythonCourse.cshtml" />
     <Content Include="Views\Home\QACourse.cshtml" />
+    <Content Include="Views\Home\DevOpsCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

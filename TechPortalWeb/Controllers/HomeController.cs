@@ -85,6 +85,10 @@ namespace TechPortalWeb.Controllers
             {
                 viewName = "QACourse";
             }
+            else if (name == "devops-tech-stack")
+            {
+                viewName = "DevOpsCourse";
+            }
             return View(viewName);
         }
 
