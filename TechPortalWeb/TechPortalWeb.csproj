@@ -182,24 +182,12 @@
     <Content Include="Content\assets\img\companies\company-7.png" />
     <Content Include="Content\assets\img\companies\company-8.png" />
     <Content Include="Content\assets\img\companies\company-9.png" />
+    <Content Include="Content\assets\img\courses\java-fullstack-development.png" />
+    <Content Include="Content\assets\img\courses\net-fullstack-development.png" />
+    <Content Include="Content\assets\img\courses\python-fullstack-development.png" />
+    <Content Include="Content\assets\img\courses\testing-tech-stack.png" />
     <Content Include="Content\assets\img\favicon.png" />
     <Content Include="Content\assets\img\hero-img.svg" />
-    <Content Include="Content\assets\img\portfolio\portfolio-1.jpg" />
-    <Content Include="Content\assets\img\portfolio\portfolio-2.jpg" />
-    <Content Include="Content\assets\img\portfolio\portfolio-3.jpg" />
-    <Content Include="Content\assets\img\portfolio\portfolio-4.jpg" />
-    <Content Include="Content\assets\img\portfolio\portfolio-5.jpg" />
-    <Content Include="Content\assets\img\portfolio\portfolio-6.jpg" />
-    <Content Include="Content\assets\img\portfolio\portfolio-7.jpg" />
-    <Content Include="Content\assets\img\portfolio\portfolio-8.jpg" />
-    <Content Include="Content\assets\img\portfolio\portfolio-9.jpg" />
-    <Content Include="Content\assets\img\portfolio\portfolio-details-1.jpg" />
-    <Content Include="Content\assets\img\portfolio\portfolio-details-2.jpg" />
-    <Content Include="Content\assets\img\portfolio\portfolio-details-3.jpg" />
-    <Content Include="Content\assets\img\team\team-1.jpg" />
-    <Content Include="Content\assets\img\team\team-2.jpg" />
-    <Content Include="Content\assets\img\team\team-3.jpg" />
-    <Content Include="Content\assets\img\team\team-4.jpg" />
     <Content Include="Content\assets\js\main.js" />
     <Content Include="Content\assets\scss\Readme.txt" />
     <Content Include="Content\assets\vendor\aos\aos.cjs.js" />
@@ -325,6 +313,9 @@
     <Content Include="Views\Home\DotnetCourse.cshtml" />
     <Content Include="Views\Home\PrivacyPolicy.cshtml" />
     <Content Include="Views\Home\TermsAndConditions.cshtml" />
+    <Content Include="Views\Home\JavaCourse.cshtml" />
+    <Content Include="Views\Home\PythonCourse.cshtml" />
+    <Content Include="Views\Home\QACourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

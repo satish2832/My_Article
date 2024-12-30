@@ -2,7 +2,9 @@
     font-size: 14px;
     font-weight: 600;
 }
-
+div [data-course-details-url] {
+    cursor: pointer;
+}
 .form-group {
     margin: 10px;
 }
@@ -256,4 +258,66 @@ ul.custom-bullet {
 }
 
 .course-points-header ul {
+}
+/*
+    Dotnet traning page
+*/
+.dotnet-training-section .training-banner {
+    background: #005ea8 !important;
+}
+
+.dotnet-training-section ul.custom-bullet li::before {
+    background: white !important;
+    color: #005ea8 !important;
+}
+.dotnet-training-section .img-fluid{
+    border: 2px solid;
+}
+
+/*
+    Java training page
+*/
+.java-training-section .training-banner {
+    background: #008b9b !important;
+}
+
+.java-training-section ul.custom-bullet li::before {
+    background: white !important;
+    color: #008b9b !important;
+}
+
+.java-training-section .img-fluid {
+    border: 2px solid;
+}
+
+/*
+    Pyhton training page
+*/
+.python-training-section .training-banner {
+    background: #646206 !important;
+}
+
+.python-training-section ul.custom-bullet li::before {
+    background: white !important;
+    color: #646206 !important;
+}
+
+.python-training-section .img-fluid {
+    border: 2px solid;
+}
+
+/*
+    QA training page
+*/
+.qa-training-section .training-banner {
+    background: #6f005b !important;
+}
+
+.qa-training-section ul.custom-bullet li::before {
+    background: white !important;
+    color: #6f005b !important;
+}
+
+.qa-training-section .img-fluid {
+    border: 2px solid;
 }

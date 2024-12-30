@@ -71,11 +71,19 @@ namespace TechPortalWeb.Controllers
             var viewName = "DotnetCourse";
             if (name == "java-full-stack-development")
             {
-                viewName = "DotnetCourse";
+                viewName = "JavaCourse";
             }
             else if (name == "dotnet-full-stack-development")
             {
                 viewName = "DotnetCourse";
+            }
+            else if (name == "python-full-stack-development")
+            {
+                viewName = "PythonCourse";
+            }
+            else if (name == "testing-tech-stack")
+            {
+                viewName = "QACourse";
             }
             return View(viewName);
         }
