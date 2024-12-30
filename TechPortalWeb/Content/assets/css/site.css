@@ -172,7 +172,7 @@ div [data-course-details-url] {
 }
 
 .training-banner {
-    padding: 50px 10px;
+    padding: 20px 10px;
     background: #7a6960;
     background-size: auto 100%;
     background-repeat: no-repeat;
@@ -337,4 +337,9 @@ ul.custom-bullet {
 .devops-training-section .img-fluid {
     border: 2px solid;
 }
-
+.img-fluid{
+    min-height:250px !important;
+    max-height:250px !important;
+    width : 100%;
+    min-width:100%;
+}

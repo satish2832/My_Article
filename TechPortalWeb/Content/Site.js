@@ -3,11 +3,46 @@
         backdrop: 'static',
         keyboard: false
     });
+    setSkillset();
     $("#divEnquiryModalBody").show();
     $("#divEnquiryFooter").show();
     $("#divEnquirySuccess").hide();  
     divBookDemo.show();
 });
+
+function setSkillset() {
+    // AJAX request
+    $.ajax({
+        url: '/Home/GetSkillset',
+        type: 'GET',
+        contentType: 'application/json',        
+        success: function (response) {
+            var skillSets = response.data;
+            var $select = $('#enquiry-skillset');
+
+            // Clear existing options
+            $select.empty();
+
+            // Add a default option
+            $select.append($('<option>', {
+                value: '',
+                text: 'Select a Skillset'
+            }));
+
+            // Populate the select element with options
+            $.each(skillSets, function (index, skill) {
+                $select.append($('<option>', {
+                    value: skill.id,
+                    text: skill.name
+                }));
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error('Error:', error);
+            alert('An error occurred while GetSkillset. Please try again.');
+        }
+    });
+}
 
 $('div[data-course-details-url]').on('click', function () {
     var url = $(this).attr("data-course-details-url");
@@ -33,7 +68,7 @@ $(document).ready(function () {
 
         // AJAX request
         $.ajax({
-            url: 'Home/SubmitEnquiry', 
+            url: '/Home/SubmitEnquiry', 
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData), 

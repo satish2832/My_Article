@@ -24,9 +24,11 @@ namespace AppRepository.Enquiry
         {
             try
             {
+                this.TechPortalEntities.CandidateEnquiries.Add(candidateEnquiry);
+                this.TechPortalEntities.SaveChanges();
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }

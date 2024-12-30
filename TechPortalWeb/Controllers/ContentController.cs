@@ -11,7 +11,7 @@ using TechPortalWeb.Models;
 namespace TechPortalWeb.Controllers
 {
     [RoutePrefix("api/content")]
-    public class ContentController : Controller
+    public class ContentController : BaseController
     {
         [HttpGet]
         [Route("read")]

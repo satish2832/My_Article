@@ -29,11 +29,17 @@ namespace TechPortalWeb.Helpers
             if (enquiryFormModel == null) throw new ArgumentNullException(nameof(enquiryFormModel));
             if (candidateEnquiry == null) candidateEnquiry = new CandidateEnquiry();
 
+            candidateEnquiry.Id = Guid.NewGuid();
             candidateEnquiry.Name = enquiryFormModel.Name;
             candidateEnquiry.PhoneNumber = enquiryFormModel.PhoneNumber;
             candidateEnquiry.Email = enquiryFormModel.Email;
+            candidateEnquiry.SkillsetId = Guid.Parse(enquiryFormModel.Skillset);
+            candidateEnquiry.LocationId = Guid.Parse(Constants.GlobalLocationId);
             candidateEnquiry.Comments = enquiryFormModel.Comments;
-
+            candidateEnquiry.CreatedBy = Guid.Parse(Constants.GlobalUserId);
+            candidateEnquiry.CreateDT = DateTime.Now;
+            candidateEnquiry.UpdatedBy = Guid.Parse(Constants.GlobalUserId);
+            candidateEnquiry.UpdateDT = DateTime.Now;
             return candidateEnquiry;
         }
     }

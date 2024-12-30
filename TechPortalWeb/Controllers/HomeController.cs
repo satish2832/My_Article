@@ -9,13 +9,15 @@ using AppRepository;
 
 namespace TechPortalWeb.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public IEnquiryService EnquiryService { get; }
+        public ISkillsetService SkillsetService { get; }
 
-        public HomeController(IEnquiryService enquiryService)
+        public HomeController(IEnquiryService enquiryService, ISkillsetService skillsetService)
         {
             EnquiryService = enquiryService;
+            SkillsetService = skillsetService;
         }
         public ActionResult Index()
         {
@@ -46,9 +48,10 @@ namespace TechPortalWeb.Controllers
             }
         }
 
-        public ActionResult Test()
+        public ActionResult GetSkillset()
         {
-            return View();
+            var skillSets = SkillsetService.GetSkillsetList();
+            return Json(new { Data = skillSets }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Content()

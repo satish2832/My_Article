@@ -18,6 +18,7 @@ namespace TechPortalWeb.Helpers
             var container = new UnityContainer();
             container.RegisterType<DbContext, TechPortalEntities>();
             // Register your types here
+            container.RegisterType<ISkillsetService, SkillsetService>();
             container.RegisterType<IEnquiryService, EnquiryService>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
