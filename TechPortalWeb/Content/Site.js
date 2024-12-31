@@ -44,7 +44,7 @@ function setSkillset() {
     });
 }
 
-$('div[data-course-details-url]').on('click', function () {
+$('div[data-course-details-url],li[data-course-details-url]').on('click', function () {
     var url = $(this).attr("data-course-details-url");
     document.location.href = "/course/" + url;
 });

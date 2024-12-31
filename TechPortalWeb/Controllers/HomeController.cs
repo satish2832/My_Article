@@ -6,6 +6,8 @@ using AppRepository.Enquiry;
 using TechPortalWeb.Models;
 using TechPortalWeb.Helpers;
 using AppRepository;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace TechPortalWeb.Controllers
 {
@@ -51,7 +53,16 @@ namespace TechPortalWeb.Controllers
         public ActionResult GetSkillset()
         {
             var skillSets = SkillsetService.GetSkillsetList();
-            return Json(new { Data = skillSets }, JsonRequestBehavior.AllowGet);
+            var skillSetsModel = skillSets.Select(x => MapperHelper.Map<Skillset, SkillsetModel>(x));
+            return Json(new { Data = skillSetsModel }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Route("enquiry-list")]
+        public ActionResult Enquiries()
+        {
+            var enquiryList = EnquiryService.GetAll();
+            var enquiryFormModels = enquiryList.Select(x => MapperHelper.Map<CandidateEnquiry, EnquiryFormModel>(x));
+            return View(enquiryFormModels);
         }
 
         public ActionResult Content()

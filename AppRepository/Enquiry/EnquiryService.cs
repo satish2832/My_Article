@@ -9,6 +9,7 @@ namespace AppRepository.Enquiry
     public interface IEnquiryService
     {
         bool Save(CandidateEnquiry candidateEnquiry);
+        IList<CandidateEnquiry> GetAll();
     }
 
     public class EnquiryService : IEnquiryService
@@ -19,6 +20,11 @@ namespace AppRepository.Enquiry
         }
 
         public TechPortalEntities TechPortalEntities { get; }
+
+        public IList<CandidateEnquiry> GetAll()
+        {
+            return this.TechPortalEntities.CandidateEnquiries.ToList();
+        }
 
         public bool Save(CandidateEnquiry candidateEnquiry)
         {

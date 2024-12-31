@@ -158,6 +158,7 @@
     <Compile Include="Helpers\UnityConfigHelper.cs" />
     <Compile Include="Models\ContentModel.cs" />
     <Compile Include="Models\EnquiryFormModel.cs" />
+    <Compile Include="Models\SkillsetModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -321,6 +322,7 @@
     <Content Include="Views\Home\PythonCourse.cshtml" />
     <Content Include="Views\Home\QACourse.cshtml" />
     <Content Include="Views\Home\DevOpsCourse.cshtml" />
+    <Content Include="Views\Home\Enquiries.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

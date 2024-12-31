@@ -20,6 +20,14 @@ namespace TechPortalWeb.Helpers
             {
                 return ConvertToCandidateEnquiry(source as EnquiryFormModel, destination as CandidateEnquiry) as Destination;
             }
+            else if (source is CandidateEnquiry && destination is EnquiryFormModel)
+            {
+                return ConvertToEnquiryFormModel(source as CandidateEnquiry, destination as EnquiryFormModel) as Destination;
+            }
+            else if (source is Skillset && destination is SkillsetModel)
+            {
+                return ConvertToSkillsetModel(source as Skillset, destination as SkillsetModel) as Destination;
+            }
 
             throw new InvalidOperationException($"Mapping from {typeof(Source)} to {typeof(Destination)} is not supported.");
         }
@@ -42,6 +50,31 @@ namespace TechPortalWeb.Helpers
             candidateEnquiry.UpdateDT = DateTime.Now;
             return candidateEnquiry;
         }
-    }
 
+        private static EnquiryFormModel ConvertToEnquiryFormModel(CandidateEnquiry candidateEnquiry, EnquiryFormModel enquiryFormModel)
+        {
+            if (candidateEnquiry == null) throw new ArgumentNullException(nameof(candidateEnquiry));
+
+            enquiryFormModel = new EnquiryFormModel
+            {
+                Name = candidateEnquiry.Name,
+                PhoneNumber = candidateEnquiry.PhoneNumber,
+                Email = candidateEnquiry.Email,
+                Skillset = candidateEnquiry.Skillset.Name,
+                Comments = candidateEnquiry.Comments
+            };
+            return enquiryFormModel;
+        }
+
+        private static SkillsetModel ConvertToSkillsetModel(Skillset skillset, SkillsetModel skillsetModel)
+        {
+            if (skillset == null) throw new ArgumentNullException(nameof(Skillset));
+            if (skillsetModel == null) skillsetModel = new SkillsetModel();
+
+            skillsetModel.Id = skillset.Id;
+            skillsetModel.Name = skillset.Name;
+
+            return skillsetModel;
+        }
+    }
 }

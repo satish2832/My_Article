@@ -2,9 +2,11 @@
     font-size: 14px;
     font-weight: 600;
 }
+
 div [data-course-details-url] {
     cursor: pointer;
 }
+
 .form-group {
     margin: 10px;
 }
@@ -172,7 +174,7 @@ div [data-course-details-url] {
 }
 
 .training-banner {
-    padding: 20px 10px;
+    padding: 40px 10px 20px 10px;
     background: #7a6960;
     background-size: auto 100%;
     background-repeat: no-repeat;
@@ -253,93 +255,126 @@ ul.custom-bullet {
     justify-content: center;
 }
 
-.course-points-header .image-container {
-    margin-bottom: 25px;
-}
+    .course-points-header .image-container {
+        margin-bottom: 25px;
+    }
 
-.course-points-header ul {
-}
+    .course-points-header ul {
+    }
 /*
     Dotnet traning page
 */
 .dotnet-training-section .training-banner {
-    background: #005ea8 !important;
+    background: #7a6960 !important;
 }
 
 .dotnet-training-section ul.custom-bullet li::before {
     background: white !important;
-    color: #005ea8 !important;
+    color: #7a6960 !important;
 }
-.dotnet-training-section .img-fluid{
+
+.dotnet-training-section .img-fluid {
     border: 2px solid;
+    border-radius: 10px;
 }
 
 /*
     Java training page
 */
 .java-training-section .training-banner {
-    background: #008b9b !important;
+    background: #7a6960 !important;
 }
 
 .java-training-section ul.custom-bullet li::before {
     background: white !important;
-    color: #008b9b !important;
+    color: #7a6960 !important;
 }
 
 .java-training-section .img-fluid {
     border: 2px solid;
+    border-radius: 10px;
 }
 
 /*
     Pyhton training page
 */
 .python-training-section .training-banner {
-    background: #646206 !important;
+    background: #7a6960 !important;
 }
 
 .python-training-section ul.custom-bullet li::before {
     background: white !important;
-    color: #646206 !important;
+    color: #7a6960 !important;
 }
 
 .python-training-section .img-fluid {
     border: 2px solid;
+    border-radius: 10px;
 }
 
 /*
     QA training page
 */
 .qa-training-section .training-banner {
-    background: #6f005b !important;
+    background: #7a6960 !important;
 }
 
 .qa-training-section ul.custom-bullet li::before {
     background: white !important;
-    color: #6f005b !important;
+    color: #7a6960 !important;
 }
 
 .qa-training-section .img-fluid {
     border: 2px solid;
+    border-radius: 10px;
 }
 
 /*
     QA training page
 */
 .devops-training-section .training-banner {
-    background: #1d5f2d !important;
+    background: #7a6960 !important;
 }
 
 .devops-training-section ul.custom-bullet li::before {
     background: white !important;
-    color: #1d5f2d !important;
+    color: #7a6960 !important;
 }
 
 .devops-training-section .img-fluid {
     border: 2px solid;
+    border-radius: 10px;
 }
-.img-fluid{
-    min-height:250px !important;
-    max-height:250px !important;
-    width : 100%;
-    min-width:100%;
+
+.img-fluid {
+    min-height: 250px !important;
+    max-height: 250px !important;
+    width: 100%;
+    min-width: 100%;
+}
+
+.btn-course-started {
+    background: #eb5d1e !important;
+    border: 2px solid white !important;
+}
+
+    .btn-course-started a {
+        color: white !important;
+        font-weight: bold;
+    }
+
+.logo i {
+    color: #eb5d1e;
+}
+
+.navbar i {
+    font-weight: bold !important;
+}
+
+.enquiry-section {
+    min-height: 500px !important;
+}
+.enquiry-section h2{
+    font-size:22px;
+    font-weight:bold;
 }

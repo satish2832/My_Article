@@ -1,0 +1,38 @@
+﻿@model IEnumerable<TechPortalWeb.Models.EnquiryFormModel>
+<div class="container">
+    <section class="enquiry-section">
+        <h2><i class="fa-solid fa-circle-info"></i> Enquiry List</h2>
+        <hr />
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Skillset</th>
+                    <th>Comments</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var enquiry in Model)
+                {
+                    <tr>
+                        <td>@enquiry.Name</td>
+                        <td>@enquiry.PhoneNumber</td>
+                        <td>@enquiry.Email</td>
+                        <td>@enquiry.Skillset</td>
+                        <td>@enquiry.Comments</td>
+                        <td>
+                            <a href="javascript:void(0)">Edit</a> |
+                            <a href="javascript:void(0)">Followup</a> |
+                            <a href="javascript:void(0)">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+    <hr />
+</div>
+
