@@ -346,7 +346,7 @@ ul.custom-bullet {
     border-radius: 10px;
 }
 
-.img-fluid {
+.course-points-header .img-fluid {
     min-height: 250px !important;
     max-height: 250px !important;
     width: 100%;
@@ -374,7 +374,51 @@ ul.custom-bullet {
 .enquiry-section {
     min-height: 500px !important;
 }
-.enquiry-section h2{
-    font-size:22px;
-    font-weight:bold;
+
+    .enquiry-section h2 {
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+.enquiry-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.getstarted.btnLogout {
+    background-color: #ff4d4d; 
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.getstarted.btnLogout:hover {
+    background-color: #e60000; 
+}
+td.actions{
+    text-align:center;
 }

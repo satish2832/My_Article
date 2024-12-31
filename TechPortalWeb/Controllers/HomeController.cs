@@ -8,6 +8,8 @@ using TechPortalWeb.Helpers;
 using AppRepository;
 using System.Linq;
 using System.Collections.Generic;
+using System.Web.Security;
+using System;
 
 namespace TechPortalWeb.Controllers
 {
@@ -57,12 +59,60 @@ namespace TechPortalWeb.Controllers
             return Json(new { Data = skillSetsModel }, JsonRequestBehavior.AllowGet);
         }
 
+        [AdminAuthorize]
         [Route("enquiry-list")]
         public ActionResult Enquiries()
         {
             var enquiryList = EnquiryService.GetAll();
             var enquiryFormModels = enquiryList.Select(x => MapperHelper.Map<CandidateEnquiry, EnquiryFormModel>(x));
             return View(enquiryFormModels);
+        }
+
+        [AdminAuthorize]
+        [Route("enquiry-candidate/{id}")]
+        public ActionResult CandidateEnquiry(Guid id)
+        {
+            var enquiry = EnquiryService.GetById(id);
+            if (enquiry == null)
+            {
+                return RedirectToAction("Index", "Error", new { message = "Enquiry not found." });
+            }
+            var enquiryModel = MapperHelper.Map<CandidateEnquiry, EnquiryFormModel>(enquiry);
+            return View(enquiryModel);
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(LoginModel model)
+        {
+            if (ModelState.IsValid)
+            {                
+                if (model.Username == "admin" && model.Password == "password")
+                {
+                    // Set the authentication cookie
+                    FormsAuthentication.SetAuthCookie(model.Username, false);
+                    return Redirect("~/enquiry-list");
+                }
+                ViewData["login-error"] = "Invalid username or password.";
+            }
+            return View(model);
+        }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return Redirect("~/"); 
+        }
+
+        public JsonResult GetEnquiryData()
+        {
+            var enquiryList = EnquiryService.GetAll();
+            var enquiryFormModels = enquiryList.Select(x => MapperHelper.Map<CandidateEnquiry, EnquiryFormModel>(x));
+            return Json(enquiryFormModels, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Content()
@@ -111,7 +161,7 @@ namespace TechPortalWeb.Controllers
             ViewBag.Message = "Your contact page is here.";
 
             return View();
-        }
+        }       
 
         private string ReadContentFromGzipFile(string fileName)
         {

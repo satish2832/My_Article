@@ -57,11 +57,16 @@ namespace TechPortalWeb.Helpers
 
             enquiryFormModel = new EnquiryFormModel
             {
+                Id = candidateEnquiry.Id,
                 Name = candidateEnquiry.Name,
                 PhoneNumber = candidateEnquiry.PhoneNumber,
                 Email = candidateEnquiry.Email,
                 Skillset = candidateEnquiry.Skillset.Name,
-                Comments = candidateEnquiry.Comments
+                Comments = candidateEnquiry.Comments,
+                followUp= new FollowUpModel()
+                {
+                    PreviousFollowUps = new List<FollowUpDetail>()
+                }
             };
             return enquiryFormModel;
         }

@@ -1,0 +1,84 @@
+﻿@model TechPortalWeb.Models.EnquiryFormModel
+
+<div class="container">
+    <section class="enquiry-detail-section">
+        <div class="d-flex justify-content-end mt-3">
+            <a href="/enquiry-list" class="btn btn-secondary">Back to List</a>
+        </div>
+        <h2><i class="fa-solid fa-user"></i> Enquiry Candidate Details</h2>
+        <hr />
+        <div class="row">
+            <!-- First Column -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control" value="@Model.Name" readonly />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" value="@Model.PhoneNumber" readonly />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="text" class="form-control" value="@Model.Email" readonly />
+                </div>
+            </div>
+
+            <!-- Second Column -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">Skillset</label>
+                    <input type="text" class="form-control" value="@Model.Skillset" readonly />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Comments</label>
+                    <textarea class="form-control" rows="6" readonly>@Model.Comments</textarea>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="container">
+    <section>
+        <h2><i class="fa-solid fa-arrow-up"></i> Follow-up Details</h2>
+        <div class="follow-up-form mb-4">
+            <label for="followUpText" class="form-label">Add Follow-Up Details:</label>
+            <textarea id="followUpText" class="form-control" rows="4" placeholder="Enter follow-up details..."></textarea>
+            <div class="text-danger" id="errorMessage" style="display:none;"></div>
+            <button id="saveFollowUpButton" class="btn btn-primary mt-2">Save Follow-Up</button>
+        </div>
+    </section>
+
+    <section>
+        <h3>Previous Follow-Ups</h3>
+        <div class="follow-up-history">
+            <ul class="list-group" id="followUpList">
+                @if (Model.followUp.PreviousFollowUps != null && Model.followUp.PreviousFollowUps.Any())
+                {
+                    foreach (var followUp in Model.followUp.PreviousFollowUps)
+                    {
+                        <li class="list-group-item">
+                            <div>
+                                <strong>Last Updated By:</strong> @followUp.LastUpdatedBy
+                            </div>
+                            <div>
+                                <strong>Content:</strong> @followUp.Content
+                            </div>
+                            <div class="text-muted">
+                                <small><strong>Date:</strong> @followUp.LastUpdatedOn.ToString("g")</small>
+                            </div>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted">No follow-ups have been added yet.</p>
+                }
+            </ul>
+        </div>
+    </section>
+</div>
+
+
+

@@ -10,6 +10,7 @@ namespace AppRepository.Enquiry
     {
         bool Save(CandidateEnquiry candidateEnquiry);
         IList<CandidateEnquiry> GetAll();
+        CandidateEnquiry GetById(Guid id);
     }
 
     public class EnquiryService : IEnquiryService
@@ -23,7 +24,12 @@ namespace AppRepository.Enquiry
 
         public IList<CandidateEnquiry> GetAll()
         {
-            return this.TechPortalEntities.CandidateEnquiries.ToList();
+            return this.TechPortalEntities.CandidateEnquiries.OrderByDescending(x => x.UpdateDT).ToList();
+        }
+
+        public CandidateEnquiry GetById(Guid id)
+        {
+            return this.TechPortalEntities.CandidateEnquiries.FirstOrDefault(x => x.Id == id);
         }
 
         public bool Save(CandidateEnquiry candidateEnquiry)
@@ -34,7 +40,7 @@ namespace AppRepository.Enquiry
                 this.TechPortalEntities.SaveChanges();
                 return true;
             }
-            catch 
+            catch
             {
                 return false;
             }

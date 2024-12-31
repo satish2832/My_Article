@@ -1,9 +1,15 @@
 ﻿@model IEnumerable<TechPortalWeb.Models.EnquiryFormModel>
 <div class="container">
     <section class="enquiry-section">
-        <h2><i class="fa-solid fa-circle-info"></i> Enquiry List</h2>
+        <div class="enquiry-header">
+            <h2><i class="fa-solid fa-circle-info"></i> Enquiry List</h2>
+            <span id="loadingIcon" style="display:none;">
+                <i class="fa fa-spinner fa-spin"></i> Loading...
+            </span>
+            <button id="refreshButton" class="btn btn-primary"><i class="fa-solid fa-rotate"></i> Refresh</button>
+        </div>        
         <hr />
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="enquiryTable">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -23,16 +29,13 @@
                         <td>@enquiry.Email</td>
                         <td>@enquiry.Skillset</td>
                         <td>@enquiry.Comments</td>
-                        <td>
-                            <a href="javascript:void(0)">Edit</a> |
-                            <a href="javascript:void(0)">Followup</a> |
-                            <a href="javascript:void(0)">Delete</a>
+                        <td class="actions">
+                            <a href="/enquiry-candidate/@enquiry.Id"><i class="fa fa-edit" aria-hidden="true"></i></a>                          
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
-    </section>
-    <hr />
+    </section>    
 </div>
 

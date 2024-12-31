@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using TechPortalWeb.Helpers;
 
 namespace TechPortalWeb
 {
@@ -7,7 +8,7 @@ namespace TechPortalWeb
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            filters.Add(new HandleErrorAttribute());            
         }
     }
 }

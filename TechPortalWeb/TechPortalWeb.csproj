@@ -148,16 +148,20 @@
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CamelCaseJsonResult.cs" />
     <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Helpers\AdminAuthorizeAttribute.cs" />
     <Compile Include="Helpers\MapperHelper.cs" />
     <Compile Include="Helpers\UnityConfigHelper.cs" />
     <Compile Include="Models\ContentModel.cs" />
     <Compile Include="Models\EnquiryFormModel.cs" />
+    <Compile Include="Models\FollowUpModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\SkillsetModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -309,7 +313,7 @@
     <Content Include="Views\Home\Content.cshtml" />
     <Content Include="Views\Home\_SuccessStories.cshtml" />
     <Content Include="Views\Home\CourseDetails.cshtml" />
-    <Content Include="Views\Home\_BookDemo.cshtml" />
+    <Content Include="Views\Shared\_BookDemo.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\Home\_About.cshtml" />
     <Content Include="Views\Home\_Programs.cshtml" />
@@ -323,6 +327,9 @@
     <Content Include="Views\Home\QACourse.cshtml" />
     <Content Include="Views\Home\DevOpsCourse.cshtml" />
     <Content Include="Views\Home\Enquiries.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\CandidateEnquiry.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
