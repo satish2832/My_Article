@@ -28,5 +28,6 @@ namespace AppRepository
         public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<CandidateEnquiry> CandidateEnquiries { get; set; }
         public virtual DbSet<Skillset> Skillsets { get; set; }
+        public virtual DbSet<CandidateEnquiryFollowup> CandidateEnquiryFollowups { get; set; }
     }
 }

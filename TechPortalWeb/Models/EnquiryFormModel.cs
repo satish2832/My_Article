@@ -13,6 +13,6 @@ namespace TechPortalWeb.Models
         public string Email { get; set; }
         public string Skillset { get; set; }
         public string Comments { get; set; }
-        public FollowUpModel followUp { get; set; }
+        public IList<FollowUpModel> followUps { get; set; }
     }
 }

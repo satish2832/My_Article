@@ -24,6 +24,14 @@ namespace TechPortalWeb.Helpers
             {
                 return ConvertToEnquiryFormModel(source as CandidateEnquiry, destination as EnquiryFormModel) as Destination;
             }
+            else if (source is FollowUpModel && destination is CandidateEnquiryFollowup)
+            {
+                return ConvertToCandidateEnquiryFollowup(source as FollowUpModel, destination as CandidateEnquiryFollowup) as Destination;
+            }
+            else if (source is CandidateEnquiryFollowup && destination is FollowUpModel)
+            {
+                return ConvertToFollowUpModel(source as CandidateEnquiryFollowup, destination as FollowUpModel) as Destination;
+            }
             else if (source is Skillset && destination is SkillsetModel)
             {
                 return ConvertToSkillsetModel(source as Skillset, destination as SkillsetModel) as Destination;
@@ -63,10 +71,14 @@ namespace TechPortalWeb.Helpers
                 Email = candidateEnquiry.Email,
                 Skillset = candidateEnquiry.Skillset.Name,
                 Comments = candidateEnquiry.Comments,
-                followUp= new FollowUpModel()
+                followUps = candidateEnquiry.CandidateEnquiryFollowups.Select(x => new FollowUpModel()
                 {
-                    PreviousFollowUps = new List<FollowUpDetail>()
-                }
+                    Id = x.Id,
+                    CandidateEnquiryId = x.CandidateEnquiryId,
+                    Content = x.Text,
+                    LastUpdatedBy = x.UpdatedBy.ToString(),
+                    LastUpdatedOn = x.UpdateDT ?? DateTime.Now,
+                }).ToList(),
             };
             return enquiryFormModel;
         }
@@ -80,6 +92,37 @@ namespace TechPortalWeb.Helpers
             skillsetModel.Name = skillset.Name;
 
             return skillsetModel;
+        }
+
+        private static CandidateEnquiryFollowup ConvertToCandidateEnquiryFollowup(FollowUpModel followUpModel, CandidateEnquiryFollowup candidateEnquiryFollowup)
+        {
+            if (followUpModel == null) throw new ArgumentNullException(nameof(FollowUpModel));
+            if (candidateEnquiryFollowup == null) candidateEnquiryFollowup = new CandidateEnquiryFollowup();
+
+            candidateEnquiryFollowup.Id = Guid.NewGuid();
+            candidateEnquiryFollowup.Text = followUpModel.Content;
+            candidateEnquiryFollowup.CandidateEnquiryId = followUpModel.CandidateEnquiryId;
+            candidateEnquiryFollowup.CreatedBy = Guid.Parse(Constants.GlobalUserId);
+            candidateEnquiryFollowup.CreateDT = DateTime.Now;
+            candidateEnquiryFollowup.UpdatedBy = Guid.Parse(Constants.GlobalUserId);
+            candidateEnquiryFollowup.UpdateDT = DateTime.Now;
+
+            return candidateEnquiryFollowup;
+        }
+
+        private static FollowUpModel ConvertToFollowUpModel(CandidateEnquiryFollowup candidateEnquiryFollowup, FollowUpModel followUpModel)
+        {
+            if (candidateEnquiryFollowup == null) throw new ArgumentNullException(nameof(candidateEnquiryFollowup));
+
+            followUpModel = new FollowUpModel
+            {
+                Content = candidateEnquiryFollowup.Text,
+                CandidateEnquiryId = candidateEnquiryFollowup.CandidateEnquiryId,
+                LastUpdatedBy = candidateEnquiryFollowup.UpdatedBy.ToString(),
+                LastUpdatedOn = candidateEnquiryFollowup.UpdateDT ?? DateTime.Now
+            };
+
+            return followUpModel;
         }
     }
 }

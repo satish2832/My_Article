@@ -56,6 +56,9 @@
     <Compile Include="CandidateEnquiry.cs">
       <DependentUpon>TechPortal.tt</DependentUpon>
     </Compile>
+    <Compile Include="CandidateEnquiryFollowup.cs">
+      <DependentUpon>TechPortal.tt</DependentUpon>
+    </Compile>
     <Compile Include="Enquiry\EnquiryService.cs" />
     <Compile Include="Enquiry\SkillsetService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +82,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <None Include="packages.config" />
     <EntityDeploy Include="TechPortal.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

@@ -36,6 +36,18 @@
           <Property Name="UpdatedBy" Type="uniqueidentifier" />
           <Property Name="UpdateDT" Type="datetime" />
         </EntityType>
+        <EntityType Name="CandidateEnquiryFollowup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Text" Type="varchar(max)" />
+          <Property Name="CandidateEnquiryId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" />
+          <Property Name="CreateDT" Type="datetime" />
+          <Property Name="UpdatedBy" Type="uniqueidentifier" />
+          <Property Name="UpdateDT" Type="datetime" />
+        </EntityType>
         <EntityType Name="Skillset">
           <Key>
             <PropertyRef Name="Id" />
@@ -55,13 +67,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CandidateEnquiryFollowup_CandidateEnquiry">
+          <End Role="CandidateEnquiry" Type="Self.CandidateEnquiry" Multiplicity="1" />
+          <End Role="CandidateEnquiryFollowup" Type="Self.CandidateEnquiryFollowup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CandidateEnquiry">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CandidateEnquiryFollowup">
+              <PropertyRef Name="CandidateEnquiryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="TechPortalModelStoreContainer">
           <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CandidateEnquiry" EntityType="Self.CandidateEnquiry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CandidateEnquiryFollowup" EntityType="Self.CandidateEnquiryFollowup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Skillset" EntityType="Self.Skillset" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CandidateEnquiry_SkillsetId" Association="Self.FK_CandidateEnquiry_SkillsetId">
             <End Role="Skillset" EntitySet="Skillset" />
             <End Role="CandidateEnquiry" EntitySet="CandidateEnquiry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CandidateEnquiryFollowup_CandidateEnquiry" Association="Self.FK_CandidateEnquiryFollowup_CandidateEnquiry">
+            <End Role="CandidateEnquiry" EntitySet="CandidateEnquiry" />
+            <End Role="CandidateEnquiryFollowup" EntitySet="CandidateEnquiryFollowup" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -99,6 +128,7 @@
           <Property Name="UpdatedBy" Type="Guid" />
           <Property Name="UpdateDT" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Skillset" Relationship="TechPortalModel.FK_CandidateEnquiry_SkillsetId" FromRole="CandidateEnquiry" ToRole="Skillset" />
+          <NavigationProperty Name="CandidateEnquiryFollowups" Relationship="TechPortalModel.FK_CandidateEnquiryFollowup_CandidateEnquiry" FromRole="CandidateEnquiry" ToRole="CandidateEnquiryFollowup" />
         </EntityType>
         <EntityType Name="Skillset">
           <Key>
@@ -116,6 +146,11 @@
             <End Role="Skillset" EntitySet="Skillsets" />
             <End Role="CandidateEnquiry" EntitySet="CandidateEnquiries" />
           </AssociationSet>
+          <EntitySet Name="CandidateEnquiryFollowups" EntityType="TechPortalModel.CandidateEnquiryFollowup" />
+          <AssociationSet Name="FK_CandidateEnquiryFollowup_CandidateEnquiry" Association="TechPortalModel.FK_CandidateEnquiryFollowup_CandidateEnquiry">
+            <End Role="CandidateEnquiry" EntitySet="CandidateEnquiries" />
+            <End Role="CandidateEnquiryFollowup" EntitySet="CandidateEnquiryFollowups" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_CandidateEnquiry_SkillsetId">
           <End Type="TechPortalModel.Skillset" Role="Skillset" Multiplicity="1" />
@@ -126,6 +161,31 @@
             </Principal>
             <Dependent Role="CandidateEnquiry">
               <PropertyRef Name="SkillsetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CandidateEnquiryFollowup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CandidateEnquiryId" Type="Guid" Nullable="false" />
+          <Property Name="CreatedBy" Type="Guid" />
+          <Property Name="CreateDT" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Guid" />
+          <Property Name="UpdateDT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CandidateEnquiry" Relationship="TechPortalModel.FK_CandidateEnquiryFollowup_CandidateEnquiry" FromRole="CandidateEnquiryFollowup" ToRole="CandidateEnquiry" />
+        </EntityType>
+        <Association Name="FK_CandidateEnquiryFollowup_CandidateEnquiry">
+          <End Type="TechPortalModel.CandidateEnquiry" Role="CandidateEnquiry" Multiplicity="1" />
+          <End Type="TechPortalModel.CandidateEnquiryFollowup" Role="CandidateEnquiryFollowup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CandidateEnquiry">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CandidateEnquiryFollowup">
+              <PropertyRef Name="CandidateEnquiryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -173,6 +233,19 @@
               <MappingFragment StoreEntitySet="Skillset">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CandidateEnquiryFollowups">
+            <EntityTypeMapping TypeName="TechPortalModel.CandidateEnquiryFollowup">
+              <MappingFragment StoreEntitySet="CandidateEnquiryFollowup">
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CandidateEnquiryId" ColumnName="CandidateEnquiryId" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -9,6 +9,8 @@
         <EntityTypeShape EntityType="TechPortalModel.CandidateEnquiry" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TechPortalModel.Skillset" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="TechPortalModel.FK_CandidateEnquiry_SkillsetId" />
+        <EntityTypeShape EntityType="TechPortalModel.CandidateEnquiryFollowup" Width="1.5" PointX="4.875" PointY="2.875" />
+        <AssociationConnector Association="TechPortalModel.FK_CandidateEnquiryFollowup_CandidateEnquiry" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

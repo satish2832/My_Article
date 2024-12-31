@@ -1,6 +1,7 @@
 ﻿@model TechPortalWeb.Models.EnquiryFormModel
 
 <div class="container">
+    <input type="hidden" value="@Model.Id" id="hdnCandidateEnquiryId" />
     <section class="enquiry-detail-section">
         <div class="d-flex justify-content-end mt-3">
             <a href="/enquiry-list" class="btn btn-secondary">Back to List</a>
@@ -49,14 +50,13 @@
             <button id="saveFollowUpButton" class="btn btn-primary mt-2">Save Follow-Up</button>
         </div>
     </section>
-
     <section>
         <h3>Previous Follow-Ups</h3>
         <div class="follow-up-history">
             <ul class="list-group" id="followUpList">
-                @if (Model.followUp.PreviousFollowUps != null && Model.followUp.PreviousFollowUps.Any())
+                @if (Model.followUps != null && Model.followUps.Any())
                 {
-                    foreach (var followUp in Model.followUp.PreviousFollowUps)
+                    foreach (var followUp in Model.followUps)
                     {
                         <li class="list-group-item">
                             <div>
@@ -73,7 +73,7 @@
                 }
                 else
                 {
-                    <p class="text-muted">No follow-ups have been added yet.</p>
+                    <p class="text-muted" id="txt-no-followups">No follow-ups have been added yet.</p>
                 }
             </ul>
         </div>

@@ -14,6 +14,12 @@ namespace AppRepository
     
     public partial class CandidateEnquiry
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CandidateEnquiry()
+        {
+            this.CandidateEnquiryFollowups = new HashSet<CandidateEnquiryFollowup>();
+        }
+    
         public System.Guid Id { get; set; }
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
@@ -27,5 +33,7 @@ namespace AppRepository
         public Nullable<System.DateTime> UpdateDT { get; set; }
     
         public virtual Skillset Skillset { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CandidateEnquiryFollowup> CandidateEnquiryFollowups { get; set; }
     }
 }

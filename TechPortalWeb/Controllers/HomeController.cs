@@ -81,6 +81,21 @@ namespace TechPortalWeb.Controllers
             return View(enquiryModel);
         }
 
+        public ActionResult SaveFollowup(FollowUpModel followUpModel)
+        {
+            try
+            {
+                var candidateEnquiryFollowup = MapperHelper.Map<FollowUpModel, CandidateEnquiryFollowup>(followUpModel);
+                candidateEnquiryFollowup = EnquiryService.SaveFollowup(candidateEnquiryFollowup);
+                followUpModel = MapperHelper.Map<CandidateEnquiryFollowup, FollowUpModel>(candidateEnquiryFollowup);
+                return Json(new { IsValid = true, Data = followUpModel }, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json(new { IsValid = false }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public ActionResult Login()
         {
             return View();
@@ -90,7 +105,7 @@ namespace TechPortalWeb.Controllers
         public ActionResult Login(LoginModel model)
         {
             if (ModelState.IsValid)
-            {                
+            {
                 if (model.Username == "admin" && model.Password == "password")
                 {
                     // Set the authentication cookie
@@ -105,7 +120,7 @@ namespace TechPortalWeb.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return Redirect("~/"); 
+            return Redirect("~/");
         }
 
         public JsonResult GetEnquiryData()
@@ -161,7 +176,7 @@ namespace TechPortalWeb.Controllers
             ViewBag.Message = "Your contact page is here.";
 
             return View();
-        }       
+        }
 
         private string ReadContentFromGzipFile(string fileName)
         {

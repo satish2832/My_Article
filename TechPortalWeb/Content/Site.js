@@ -130,20 +130,28 @@ $(document).ready(function () {
             $("#errorMessage").text("Follow-up details cannot be empty.").show();
             return;
         }
+        var formData = {
+            candidateEnquiryId: $('#hdnCandidateEnquiryId').val(),
+            content: content              
+        };
 
         $("#errorMessage").hide();
         $.ajax({
-            url: '/Home/GetEnquiryData',
+            url: '/Home/SaveFollowup',
             type: 'POST',
             contentType: 'application/json',
-            data: JSON.stringify({ Content: content }),
+            data: JSON.stringify(formData),
             success: function (response) {
                 // Append new follow-up to the list
+                if ($("#txt-no-followups").val() != undefined) {
+                    $("#txt-no-followups").empty();
+                }
+                var candidateEnquiryFollowup = response.data;
                 $("#followUpList").prepend(`
                         <li class="list-group-item">
-                            <div><strong>Last Updated By:</strong> ${response.lastUpdatedBy}</div>
-                            <div><strong>Content:</strong> ${response.content}</div>
-                            <div class="text-muted"><small><strong>Date:</strong> ${response.lastUpdatedOn}</small></div>
+                            <div><strong>Last Updated By:</strong> ${candidateEnquiryFollowup.lastUpdatedBy}</div>
+                            <div><strong>Content:</strong> ${candidateEnquiryFollowup.content}</div>
+                            <div class="text-muted"><small><strong>Date:</strong> ${formatDate(candidateEnquiryFollowup.lastUpdatedOn)}</small></div>
                         </li>
                     `);
                 $("#followUpText").val(""); // Clear text area
@@ -153,4 +161,20 @@ $(document).ready(function () {
             }
         });
     });
+
 });
+
+function formatDate(date) {
+    var lastUpdatedOn = new Date(date);
+
+    // Format the date as short date + short time
+    var formattedDate = lastUpdatedOn.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true // For 12-hour clock format
+    }).replace(',', '');
+    return formattedDate;
+}
