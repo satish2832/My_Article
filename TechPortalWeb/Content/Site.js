@@ -105,10 +105,8 @@ $(document).ready(function () {
                                 <td>${enquiry.email}</td>
                                 <td>${enquiry.skillset}</td>
                                 <td>${enquiry.comments}</td>
-                                <td>
-                                    <a href="javascript:void(0)">Edit</a> |
-                                    <a href="javascript:void(0)">Followup</a> |
-                                    <a href="javascript:void(0)">Delete</a>
+                                <td class='actions'>
+                                    <a href="/enquiry-candidate/${enquiry.id}"><i class="fa fa-edit" aria-hidden="true"></i></a>                          
                                 </td>
                             </tr>
                         `);
