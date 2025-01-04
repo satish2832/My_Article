@@ -50,7 +50,7 @@ $('div[data-course-details-url],li[data-course-details-url]').on('click', functi
 });
 
 $(document).ready(function () {
-    $('#btnDetailsForm').click(function (e) {
+    $('#btnDetailsForm').on('click', function (e) {
         e.preventDefault();
 
         var formData = {
@@ -87,7 +87,7 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $('#refreshButton').click(function () {
+    $('#refreshButton').on('click', function (e) {
         $('#loadingIcon').show();
         $.ajax({
             url: '/Admin/GetEnquiryData', // API endpoint
@@ -106,7 +106,7 @@ $(document).ready(function () {
                                 <td>${enquiry.skillset}</td>
                                 <td>${enquiry.comments}</td>
                                 <td class='actions'>
-                                    <a href="/candidate/${enquiry.id}"><i class="fa fa-edit" aria-hidden="true"></i></a>                          
+                                    <a href="/admin/candidate/${enquiry.id}"><i class="fa fa-edit" aria-hidden="true"></i></a>                          
                                 </td>
                             </tr>
                         `);
@@ -122,7 +122,7 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $("#saveFollowUpButton").click(function () {
+    $(document).on('click', '#saveFollowUpButton', function (e) {
         var content = $("#followUpText").val().trim();
         if (content === "") {
             $("#errorMessage").text("Follow-up details cannot be empty.").show();
@@ -130,7 +130,7 @@ $(document).ready(function () {
         }
         var formData = {
             candidateEnquiryId: $('#hdnCandidateEnquiryId').val(),
-            content: content              
+            content: content
         };
 
         $("#errorMessage").hide();
@@ -178,16 +178,28 @@ function formatDate(date) {
 }
 
 $(document).ready(function () {
-    $('.admin-container .nav-link').on('click', function () {
-        // Remove 'active' class from all links
-        $('.admin-container .nav-link').removeClass('active');
+    let firstNavLink = $('.admin-container .nav-item:first-child .nav-link');
+    if (!firstNavLink || firstNavLink.length == 0) {
+        return;
+    }
+    loadPageContent('.admin-container .nav-item:first-child .nav-link', '.admin-container');
+    // Handle sidebar link click
+    $('.admin-container .nav-link').on('click', function (e) {
+        e.preventDefault(); // Prevent default link behavior
 
-        // Add 'active' class to the clicked link
+        // Remove active class from all links and add it to the clicked one
+        $('.admin-container .nav-link').removeClass('active');
         $(this).addClass('active');
+        loadPageContent(this, '.admin-container');
     });
 });
 
 $(document).ready(function () {
+    let firstNavLink = $('.admin-candidate-container .nav-item:first-child .nav-link');
+    if (!firstNavLink || firstNavLink.length == 0) {
+        return;
+    }
+    loadPageContent('.admin-candidate-container .nav-item:first-child .nav-link', '.admin-candidate-container');
     // Handle sidebar link click
     $('.admin-candidate-container .nav-link').on('click', function (e) {
         e.preventDefault(); // Prevent default link behavior
@@ -195,21 +207,26 @@ $(document).ready(function () {
         // Remove active class from all links and add it to the clicked one
         $('.admin-candidate-container .nav-link').removeClass('active');
         $(this).addClass('active');
-
-        // Get the URL from the data attribute
-        const url = $(this).data('url');
-
-        // Load content asynchronously
-        $.ajax({
-            url: url,
-            method: 'GET',
-            success: function (data) {
-                // Load the fetched content into the right-side panel
-                $('.admin-candidate-container #content-area').html(data);
-            },
-            error: function () {
-                $('.admin-candidate-container #content-area').html('<p class="text-danger">Failed to load content. Please try again.</p>');
-            }
-        });
+        loadPageContent(this, '.admin-candidate-container');
     });
 });
+
+function loadPageContent(selector, parentSelector) {
+    // Get the URL from the data attribute
+    const url = $(selector).data('url');
+    if (!url) {
+        return;
+    }
+    // Load content asynchronously
+    $.ajax({
+        url: url,
+        method: 'GET',
+        success: function (data) {
+            // Load the fetched content into the right-side panel
+            $(`${parentSelector} #content-area`).html(data);
+        },
+        error: function (error) {
+            $(`${parentSelector} #content-area`).html('<p class="text-danger">Failed to load content. Please try again.</p>');
+        }
+    });
+}

@@ -1,6 +1,7 @@
 ﻿@{
     var candidateId = ViewBag.Id;
 }
+<input type="hidden" value="@candidateId" id="hdnCandidateEnquiryId" />
 <div style="margin-top:20px;">
     <section class="admin-candidate-container">
         <div class="container">
@@ -11,18 +12,18 @@
                         <div class="position-sticky sidebar-container">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-url="/enquiry-candidate/@candidateId">
-                                        <i class="fa fa-check-square"></i> Enquiry List
+                                    <a class="nav-link active" data-url="/admin/enquiry-candidate/@candidateId/basic-information">
+                                        <i class="fa fa-check-square"></i> Information
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-url="/enquiry-candidate/@candidateId">
-                                        <i class="fa fa-check-square"></i> Candidates
+                                    <a class="nav-link" data-url="/admin/enquiry-candidate/@candidateId/followup-details">
+                                        <i class="fa fa-check-square"></i> Followup Details
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-url="/enquiry-candidate/@candidateId">
-                                        <i class="fa fa-check-square"></i> Jobs
+                                    <a class="nav-link" data-url="/admin/enquiry-candidate/@candidateId/followup-details">
+                                        <i class="fa fa-check-square"></i> Payment Setails
                                     </a>
                                 </li>
                             </ul>
@@ -31,8 +32,7 @@
 
                     <!-- Main Content -->
                     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="content-area">
-                        <h1>Welcome to the Admin Panel</h1>
-                        <p>Select a page from the sidebar to load content.</p>
+                       
                     </main>
                 </div>
             </div>

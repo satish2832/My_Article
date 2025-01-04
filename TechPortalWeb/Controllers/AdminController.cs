@@ -10,7 +10,7 @@ using TechPortalWeb.Helpers;
 using TechPortalWeb.Models;
 
 namespace TechPortalWeb.Controllers
-{
+{    
     public class AdminController : BaseController
     {
         public IEnquiryService EnquiryService { get; }
@@ -22,13 +22,15 @@ namespace TechPortalWeb.Controllers
             SkillsetService = skillsetService;            
         }
 
+        [AdminAuthorize]
         [Route("admin")]
         public ActionResult Admin()
         {
             return View();
         }
 
-        [Route("candidate/{id}")]
+        [AdminAuthorize]
+        [Route("admin/candidate/{id}")]
         public ActionResult Candidate(Guid id)
         {
             ViewBag.Id = id;
@@ -36,16 +38,16 @@ namespace TechPortalWeb.Controllers
         }
 
         [AdminAuthorize]
-        [Route("enquiry-list")]
+        [Route("admin/enquiry-list")]
         public ActionResult Enquiries()
         {
             var enquiryList = EnquiryService.GetAll();
-            var enquiryFormModels = enquiryList.Select(x => MapperHelper.Map<CandidateEnquiry, EnquiryFormModel>(x));
-            return View(enquiryFormModels);
+            var enquiryFormModels = enquiryList.Select(x => MapperHelper.Map<CandidateEnquiry, EnquiryFormModel>(x)).ToList();
+            return PartialView(enquiryFormModels);
         }
 
         [AdminAuthorize]
-        [Route("enquiry-candidate/{id}")]
+        [Route("admin/enquiry-candidate/{id}/basic-information")]
         public ActionResult CandidateEnquiry(Guid id)
         {
             var enquiry = EnquiryService.GetById(id);
@@ -54,9 +56,23 @@ namespace TechPortalWeb.Controllers
                 return RedirectToAction("Index", "Error", new { message = "Enquiry not found." });
             }
             var enquiryModel = MapperHelper.Map<CandidateEnquiry, EnquiryFormModel>(enquiry);
-            return View(enquiryModel);
+            return PartialView(enquiryModel);
         }
 
+        [AdminAuthorize]
+        [Route("admin/enquiry-candidate/{id}/followup-details")]
+        public ActionResult CandidateFollowupDetails(Guid id)
+        {
+            var enquiry = EnquiryService.GetById(id);
+            if (enquiry == null)
+            {
+                return RedirectToAction("Index", "Error", new { message = "Enquiry not found." });
+            }
+            var enquiryModel = MapperHelper.Map<CandidateEnquiry, EnquiryFormModel>(enquiry);
+            return PartialView(enquiryModel.followUps);
+        }
+
+        [AdminAuthorize]
         public ActionResult SaveFollowup(FollowUpModel followUpModel)
         {
             try
@@ -72,6 +88,7 @@ namespace TechPortalWeb.Controllers
             }
         }
 
+        [AdminAuthorize]
         public JsonResult GetEnquiryData()
         {
             var enquiryList = EnquiryService.GetAll();
@@ -101,6 +118,8 @@ namespace TechPortalWeb.Controllers
             return View(model);
         }
 
+        [AdminAuthorize]
+        [Route("logout")]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();

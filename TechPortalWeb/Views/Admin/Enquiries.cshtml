@@ -1,7 +1,4 @@
-﻿@{
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
-}
-@model IEnumerable<TechPortalWeb.Models.EnquiryFormModel>
+﻿@model IEnumerable<TechPortalWeb.Models.EnquiryFormModel>
 <div class="container">
     <section class="enquiry-section">
         <div class="enquiry-header">
@@ -33,7 +30,7 @@
                         <td>@enquiry.Skillset</td>
                         <td>@enquiry.Comments</td>
                         <td class="actions">
-                            <a href="/candidate/@enquiry.Id"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                            <a href="/admin/candidate/@enquiry.Id"><i class="fa fa-edit" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 }
