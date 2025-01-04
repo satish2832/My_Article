@@ -30,8 +30,42 @@
     <!-- ======= Header ======= -->
     @{Html.RenderPartial("_Header");}
     <!-- End Header -->
-    <div style="margin-top:45px;">
-        @RenderBody()
+    <div style="margin-top:20px;">
+        <section class="admin-container">
+            <div class="container">
+                <div class="container-fluid">
+                    <div class="row">
+                        <!-- Sidebar -->
+                        <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+                            <div class="position-sticky sidebar-container">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="/enquiry-list">
+                                            <i class="fa fa-check-square"></i> Enquiry List
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/enquiry-list">
+                                            <i class="fa fa-check-square"></i> Candidates
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/enquiry-list">
+                                            <i class="fa fa-check-square"></i> Jobs
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+
+                        <!-- Main Content -->
+                        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                            @RenderBody()
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
     <!-- ======= Footer ======= -->
     @{Html.RenderPartial("_Footer");}

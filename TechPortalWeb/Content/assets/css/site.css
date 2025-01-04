@@ -403,22 +403,103 @@ ul.custom-bullet {
     background-color: #f9f9f9;
 }
 
-.login-box h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
+    .login-box h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
 
 .getstarted.btnLogout {
-    background-color: #ff4d4d; 
+    background-color: #ff4d4d;
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
     text-decoration: none;
 }
 
-.getstarted.btnLogout:hover {
-    background-color: #e60000; 
+    .getstarted.btnLogout:hover {
+        background-color: #e60000;
+    }
+
+td.actions {
+    text-align: center;
 }
-td.actions{
-    text-align:center;
+
+/* Sidebar General Styles */
+.admin-container, .admin-candidate-container .sidebar {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa; /* Light gray background */
+    border-right: 1px solid #dee2e6;
+    box-shadow: inset 1px 1px 0px 1px #FF5722;
+}
+
+.admin-container, .admin-candidate-container .sidebar-container {
+    padding: 10px;
+}
+
+.admin-container, .admin-candidate-container .nav-item {
+    margin-bottom: 0.5rem;
+}
+
+.admin-container, .admin-candidate-container .nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: #495057;
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+    .admin-container, .admin-candidate-container .nav-link i {
+        font-size: 1.25rem;
+        margin-right: 0.75rem;
+        color: #6c757d;
+        transition: color 0.3s;
+    }
+
+    /* Hover Effects */
+    .admin-container, .admin-candidate-container .nav-link:hover {
+        background-color: #e9ecef;
+        color: #007bff;
+    }
+
+        .admin-container, .admin-candidate-container .nav-link:hover i {
+            color: #007bff;
+        }
+
+    /* Active Link */
+    .admin-container, .admin-candidate-container .nav-link.active {
+        background-color: #FF5722;
+        color: #ffffff;
+        font-weight: 600;
+    }
+
+        .admin-container, .admin-candidate-container .nav-link.active i {
+            color: #ffffff;
+        }
+
+/* Sidebar Responsive Adjustments */
+@media (max-width: 767.98px) {
+    .admin-container, .admin-candidate-container .sidebar {
+        position: fixed;
+        z-index: 1030;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .admin-container, .admin-candidate-container .sidebar-container {
+        display: flex;
+        justify-content: center;
+        padding: 0.5rem;
+    }
+
+    .admin-container, .admin-candidate-container .nav-link {
+        font-size: 0.875rem;
+        padding: 0.5rem 0.75rem;
+    }
 }

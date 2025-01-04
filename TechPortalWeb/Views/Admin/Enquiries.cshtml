@@ -1,4 +1,7 @@
-﻿@model IEnumerable<TechPortalWeb.Models.EnquiryFormModel>
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model IEnumerable<TechPortalWeb.Models.EnquiryFormModel>
 <div class="container">
     <section class="enquiry-section">
         <div class="enquiry-header">
@@ -7,7 +10,7 @@
                 <i class="fa fa-spinner fa-spin"></i> Loading...
             </span>
             <button id="refreshButton" class="btn btn-primary"><i class="fa-solid fa-rotate"></i> Refresh</button>
-        </div>        
+        </div>
         <hr />
         <table class="table table-bordered" id="enquiryTable">
             <thead>
@@ -30,12 +33,12 @@
                         <td>@enquiry.Skillset</td>
                         <td>@enquiry.Comments</td>
                         <td class="actions">
-                            <a href="/enquiry-candidate/@enquiry.Id"><i class="fa fa-edit" aria-hidden="true"></i></a>                          
+                            <a href="/candidate/@enquiry.Id"><i class="fa fa-edit" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
-    </section>    
+    </section>
 </div>
 

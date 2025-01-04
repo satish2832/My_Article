@@ -1,0 +1,44 @@
+﻿<header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container container-header d-flex align-items-center justify-content-between">
+
+        <div class="logo">
+            <h1 class="text-light"><a href="/"><b><i class="fa-solid fa-school"></i> Tech School</b></a></h1>
+        </div>
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a class="nav-link scrollto active" href="/">Home</a></li>
+                <li class="dropdown">
+                    <a href="#services"><span>Trainings</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li data-course-details-url="java-full-stack-development">
+                            <a href="#"><span><i class="bx bxl-dribbble"></i> JAVA Fullstack</span></a>
+                        </li>
+                        <li data-course-details-url="dotnet-full-stack-development">
+                            <a href="#"><span><i class="bx bxl-dribbble"></i> .Net Fullstack</span></a>
+                        </li>
+                        <li data-course-details-url="python-full-stack-development">
+                            <a href="#"><span><i class="bx bxl-dribbble"></i> Python Fullstack</span></a>
+                        </li>
+                        <li data-course-details-url="testing-tech-stack">
+                            <a href="#"><span><i class="bx bxl-dribbble"></i> QA Engineering</span></a>
+                        </li>
+                        <li data-course-details-url="devops-tech-stack">
+                            <a href="#"><span><i class="bx bxl-dribbble"></i> Dev Ops Engineering</span></a>
+                        </li>
+                    </ul>
+                </li>
+                <li data-course-details-url="dotnet-full-stack-development"><a class="nav-link scrollto" href="#services">Free Courses</a></li>
+                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                <li><a class="getstarted btnBookDemo" href="javascript:void(0)">Book Demo / Enquiry</a></li>
+                @if (User.Identity.IsAuthenticated && Request.Url.AbsolutePath.Contains("enquiry"))
+                {
+                    <li>
+                        <a class="getstarted btnLogout" href="@Url.Action("Logout", "Home")">Logout</a>
+                    </li>
+                }
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+    </div>
+</header>

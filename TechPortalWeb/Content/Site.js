@@ -90,7 +90,7 @@ $(document).ready(function () {
     $('#refreshButton').click(function () {
         $('#loadingIcon').show();
         $.ajax({
-            url: '/Home/GetEnquiryData', // API endpoint
+            url: '/Admin/GetEnquiryData', // API endpoint
             method: 'GET',
             success: function (data) {
                 // Clear the table body
@@ -106,7 +106,7 @@ $(document).ready(function () {
                                 <td>${enquiry.skillset}</td>
                                 <td>${enquiry.comments}</td>
                                 <td class='actions'>
-                                    <a href="/enquiry-candidate/${enquiry.id}"><i class="fa fa-edit" aria-hidden="true"></i></a>                          
+                                    <a href="/candidate/${enquiry.id}"><i class="fa fa-edit" aria-hidden="true"></i></a>                          
                                 </td>
                             </tr>
                         `);
@@ -135,7 +135,7 @@ $(document).ready(function () {
 
         $("#errorMessage").hide();
         $.ajax({
-            url: '/Home/SaveFollowup',
+            url: '/Admin/SaveFollowup',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData),
@@ -176,3 +176,40 @@ function formatDate(date) {
     }).replace(',', '');
     return formattedDate;
 }
+
+$(document).ready(function () {
+    $('.admin-container .nav-link').on('click', function () {
+        // Remove 'active' class from all links
+        $('.admin-container .nav-link').removeClass('active');
+
+        // Add 'active' class to the clicked link
+        $(this).addClass('active');
+    });
+});
+
+$(document).ready(function () {
+    // Handle sidebar link click
+    $('.admin-candidate-container .nav-link').on('click', function (e) {
+        e.preventDefault(); // Prevent default link behavior
+
+        // Remove active class from all links and add it to the clicked one
+        $('.admin-candidate-container .nav-link').removeClass('active');
+        $(this).addClass('active');
+
+        // Get the URL from the data attribute
+        const url = $(this).data('url');
+
+        // Load content asynchronously
+        $.ajax({
+            url: url,
+            method: 'GET',
+            success: function (data) {
+                // Load the fetched content into the right-side panel
+                $('.admin-candidate-container #content-area').html(data);
+            },
+            error: function () {
+                $('.admin-candidate-container #content-area').html('<p class="text-danger">Failed to load content. Please try again.</p>');
+            }
+        });
+    });
+});

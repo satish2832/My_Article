@@ -11,7 +11,7 @@ namespace TechPortalWeb.Helpers
             if (!filterContext.HttpContext.User.Identity.IsAuthenticated)
             {
                 // Redirect to the login page
-                filterContext.Result = new RedirectResult("~/Home/Login");
+                filterContext.Result = new RedirectResult("~/login");
             }
 
             base.OnActionExecuting(filterContext);
