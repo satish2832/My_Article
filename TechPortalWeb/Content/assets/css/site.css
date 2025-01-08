@@ -3,6 +3,10 @@
     font-weight: 600;
 }
 
+.container-body {
+    margin-top: 40px !important;
+}
+
 div [data-course-details-url] {
     cursor: pointer;
 }
@@ -30,7 +34,6 @@ div [data-course-details-url] {
 h4 {
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid #e4d1c8;
 }
 
 .section-sub-title {
@@ -93,7 +96,7 @@ h4 {
 }
 
 .sub-programs .icon-box {
-    background: #dee2e6 !important;
+    background: #fde6da !important;
 }
 
 .success-container {
@@ -181,8 +184,9 @@ h4 {
     background-size: auto 100%;
     background-repeat: no-repeat;
     background-position: right center;
-    color: white;
+    color: #4e4039;
     max-width: 100%;
+    font-weight: 600;
 }
 
 .section-training-banner {
@@ -196,11 +200,35 @@ h4 {
     font-weight: 600;
 }
 
-.course-title h1 {
-    border-bottom: 1px solid white;
-    padding-bottom: 10px;
-    font-weight: 600;
-    font-size: 24px;
+.course-title {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start;
+    align-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    margin: 15px 0px;
+}
+
+    .course-title .title-icon {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .course-title .title-text {
+        font-size: 24px;
+        margin-left: 15px !important;
+    }
+
+    .course-title h1 {
+        font-weight: 600;
+        font-size: 24px;
+        margin-bottom: 0px !important;
+    }
+
+.course-title-hr {
+    border-bottom: 2px solid #eb5d1e;
 }
 
 ul.custom-bullet {
@@ -268,16 +296,16 @@ ul.custom-bullet {
     Dotnet traning page
 */
 .dotnet-training-section .training-banner {
-    background: #7a6960 !important;
+    background: #fde6da !important;
 }
 
 .dotnet-training-section ul.custom-bullet li::before {
     background: white !important;
-    color: #7a6960 !important;
+    color: #4e4039 !important;
 }
 
 .dotnet-training-section .img-fluid {
-    border: 2px solid;
+    border: 2px solid white;
     border-radius: 10px;
 }
 
@@ -285,16 +313,16 @@ ul.custom-bullet {
     Java training page
 */
 .java-training-section .training-banner {
-    background: #7a6960 !important;
+    background: #fde6da !important;
 }
 
 .java-training-section ul.custom-bullet li::before {
     background: white !important;
-    color: #7a6960 !important;
+    color: #4e4039 !important;
 }
 
 .java-training-section .img-fluid {
-    border: 2px solid;
+    border: 2px solid white;
     border-radius: 10px;
 }
 
@@ -302,16 +330,16 @@ ul.custom-bullet {
     Pyhton training page
 */
 .python-training-section .training-banner {
-    background: #7a6960 !important;
+    background: #fde6da !important;
 }
 
 .python-training-section ul.custom-bullet li::before {
     background: white !important;
-    color: #7a6960 !important;
+    color: #4e4039 !important;
 }
 
 .python-training-section .img-fluid {
-    border: 2px solid;
+    border: 2px solid white;
     border-radius: 10px;
 }
 
@@ -319,16 +347,16 @@ ul.custom-bullet {
     QA training page
 */
 .qa-training-section .training-banner {
-    background: #7a6960 !important;
+    background: #fde6da !important;
 }
 
 .qa-training-section ul.custom-bullet li::before {
     background: white !important;
-    color: #7a6960 !important;
+    color: #4e4039 !important;
 }
 
 .qa-training-section .img-fluid {
-    border: 2px solid;
+    border: 2px solid white;
     border-radius: 10px;
 }
 
@@ -336,16 +364,16 @@ ul.custom-bullet {
     QA training page
 */
 .devops-training-section .training-banner {
-    background: #7a6960 !important;
+    background: #fde6da !important;
 }
 
 .devops-training-section ul.custom-bullet li::before {
     background: white !important;
-    color: #7a6960 !important;
+    color: #4e4039 !important;
 }
 
 .devops-training-section .img-fluid {
-    border: 2px solid;
+    border: 2px solid white;
     border-radius: 10px;
 }
 
@@ -414,7 +442,7 @@ ul.custom-bullet {
 .getstarted.btnLogout {
     background-color: #ff4d4d;
     color: white;
-    padding: 10px 20px;   
+    padding: 10px 20px;
     text-decoration: none;
 }
 
@@ -458,38 +486,38 @@ td.actions {
     display: flex;
     align-items: center;
     transition: background-color 0.3s, color 0.3s;
-    cursor:pointer;
+    cursor: pointer;
 }
 
- .admin-container .nav-link i,
- .admin-candidate-container .nav-link i {
-     font-size: 1.25rem;
-     margin-right: 0.75rem;
-     color: #6c757d;
-     transition: color 0.3s;
- }
+    .admin-container .nav-link i,
+    .admin-candidate-container .nav-link i {
+        font-size: 1.25rem;
+        margin-right: 0.75rem;
+        color: #6c757d;
+        transition: color 0.3s;
+    }
 
- /* Hover Effects */
- .admin-container .nav-link:hover,
- .admin-candidate-container .nav-link:hover {
-     background-color: #e9ecef;
-     color: #007bff;
- }
+    /* Hover Effects */
+    .admin-container .nav-link:hover,
+    .admin-candidate-container .nav-link:hover {
+        background-color: #e9ecef;
+        color: #007bff;
+    }
 
-     .admin-container .nav-link:hover i,
-     .admin-candidate-container .nav-link:hover i {
-         color: #007bff;
-     }
+        .admin-container .nav-link:hover i,
+        .admin-candidate-container .nav-link:hover i {
+            color: #007bff;
+        }
 
- /* Active Link */
- .admin-container .nav-link.active,
- .admin-candidate-container .nav-link.active {
-     background-color: #FF5722;
-     color: #ffffff;
-     font-weight: 600;
- }
+    /* Active Link */
+    .admin-container .nav-link.active,
+    .admin-candidate-container .nav-link.active {
+        background-color: #FF5722;
+        color: #ffffff;
+        font-weight: 600;
+    }
 
- .admin-container .nav-link.active i,
- .admin-candidate-container .nav-link.active i {
-     color: #ffffff;
- }
+        .admin-container .nav-link.active i,
+        .admin-candidate-container .nav-link.active i {
+            color: #ffffff;
+        }
