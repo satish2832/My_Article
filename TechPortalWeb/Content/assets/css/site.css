@@ -521,3 +521,28 @@ td.actions {
         .admin-candidate-container .nav-link.active i {
             color: #ffffff;
         }
+
+.page-wrapper {
+    margin: 0 auto;
+    width: 960px;
+    max-width: 100%;
+}
+
+
+/* box */
+.box-content {
+    padding: 20px;
+    background-color: #EFEFEF;
+}
+
+
+textarea {
+    background-color: #FAFAFA;
+    border: #EFEFEF solid 1px;
+    color: #333;
+    height: 150px;
+    width: 100%;
+}
+
+
+

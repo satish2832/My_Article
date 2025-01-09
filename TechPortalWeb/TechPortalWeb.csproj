@@ -159,6 +159,7 @@
     <Compile Include="Helpers\AdminAuthorizeAttribute.cs" />
     <Compile Include="Helpers\MapperHelper.cs" />
     <Compile Include="Helpers\UnityConfigHelper.cs" />
+    <Compile Include="Models\ArticleCreateModel.cs" />
     <Compile Include="Models\ContentModel.cs" />
     <Compile Include="Models\EnquiryFormModel.cs" />
     <Compile Include="Models\FollowUpModel.cs" />
@@ -167,6 +168,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\css\richtext.min.css" />
     <Content Include="Content\assets\css\site.css" />
     <Content Include="Content\assets\css\style.css" />
     <Content Include="Content\assets\img\about-img.svg" />
@@ -198,6 +200,8 @@
     <Content Include="Content\assets\img\courses\testing-tech-stack.png" />
     <Content Include="Content\assets\img\favicon.png" />
     <Content Include="Content\assets\img\hero-img.svg" />
+    <Content Include="Content\assets\js\jquery.richtext.js" />
+    <Content Include="Content\assets\js\jquery.richtext.min.js" />
     <Content Include="Content\assets\js\main.js" />
     <Content Include="Content\assets\scss\Readme.txt" />
     <Content Include="Content\assets\vendor\aos\aos.cjs.js" />
@@ -286,6 +290,7 @@
     <Content Include="Content\assets\vendor\boxicons\fonts\boxicons.woff" />
     <Content Include="Content\assets\vendor\boxicons\fonts\boxicons.woff2" />
     <Content Include="Content\assets\vendor\swiper\swiper-bundle.min.js.map" />
+    <Content Include="Content\assets\css\richtext.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -336,6 +341,7 @@
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Admin\Candidate.cshtml" />
     <Content Include="Views\Admin\CandidateFollowupDetails.cshtml" />
+    <Content Include="Views\Admin\ArticleCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

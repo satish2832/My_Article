@@ -1,0 +1,29 @@
+﻿<div class="container">
+    <section class="enquiry-detail-section">
+        <div class="d-flex justify-content-end mt-3">
+            <a href="/admin" class="btn btn-secondary">Back to Articles</a>
+        </div>
+        <h2><i class="fa-solid fa-edit"></i> Article Create</h2>
+        <hr />
+        <div class="row">
+            <!-- First Column -->
+            <div class="col-md-12 mb-3">
+                <label class="form-label">Title</label>
+                <input type="text" class="form-control" />
+            </div>
+            <div class="col-md-12 mb-3">
+                <label class="form-label">Content</label>
+                <textarea class="content form-control" id="content-editor" name="content"></textarea>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#content-editor').richText();
+    });
+</script>
+
+
+
+

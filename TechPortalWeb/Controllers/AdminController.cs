@@ -96,6 +96,19 @@ namespace TechPortalWeb.Controllers
             return Json(enquiryFormModels, JsonRequestBehavior.AllowGet);
         }
 
+        [AdminAuthorize]
+        [Route("admin/article-create")]
+        public ActionResult ArticleCreate()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult ArticleCreate(ArticleCreateModel articleCreateModel)
+        {
+            return Json(new { },JsonRequestBehavior.AllowGet);
+        }
+
         [Route("login")]
         public ActionResult Login()
         {
