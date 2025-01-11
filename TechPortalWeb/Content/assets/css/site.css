@@ -522,21 +522,7 @@ td.actions {
             color: #ffffff;
         }
 
-.page-wrapper {
-    margin: 0 auto;
-    width: 960px;
-    max-width: 100%;
-}
-
-
-/* box */
-.box-content {
-    padding: 20px;
-    background-color: #EFEFEF;
-}
-
-
-textarea {
+.article-create textarea {
     background-color: #FAFAFA;
     border: #EFEFEF solid 1px;
     color: #333;
@@ -544,5 +530,38 @@ textarea {
     width: 100%;
 }
 
+.article-create h2 {
+    font-size: 22px;
+    font-weight: bold;
+}
 
+.preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
 
+.preview-item {
+    position: relative;
+    display: inline-block;
+}
+
+    .preview-item img {
+        max-width: 150px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+.remove-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #ff5722;
+    color: white;
+    border: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 16px;
+    cursor: pointer;
+}

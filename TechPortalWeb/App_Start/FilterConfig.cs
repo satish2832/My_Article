@@ -8,6 +8,7 @@ namespace TechPortalWeb
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
+            filters.Add(new GlobalExceptionFilter());
             filters.Add(new HandleErrorAttribute());            
         }
     }

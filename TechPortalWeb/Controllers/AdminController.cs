@@ -103,9 +103,12 @@ namespace TechPortalWeb.Controllers
             return PartialView();
         }
 
-        [HttpPost]
-        public ActionResult ArticleCreate(ArticleCreateModel articleCreateModel)
+        [AdminAuthorize]           
+        public JsonResult SaveArticle(ArticleCreateModel articleCreateModel)
         {
+            var content = HttpUtility.UrlDecode(articleCreateModel.Content);
+            var fileName = Guid.NewGuid().ToString() + DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss");
+            var res = ArticleCreateHelper.GenerateGzipFile(content, fileName);
             return Json(new { },JsonRequestBehavior.AllowGet);
         }
 

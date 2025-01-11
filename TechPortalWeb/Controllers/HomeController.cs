@@ -57,9 +57,7 @@ namespace TechPortalWeb.Controllers
             var skillSets = SkillsetService.GetSkillsetList();
             var skillSetsModel = skillSets.Select(x => MapperHelper.Map<Skillset, SkillsetModel>(x));
             return Json(new { Data = skillSetsModel }, JsonRequestBehavior.AllowGet);
-        }
-
-        
+        }        
 
         public ActionResult Content()
         {

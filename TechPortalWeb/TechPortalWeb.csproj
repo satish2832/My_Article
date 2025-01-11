@@ -154,9 +154,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ArticleCreateHelper.cs" />
     <Compile Include="Helpers\CamelCaseJsonResult.cs" />
     <Compile Include="Helpers\Constants.cs" />
     <Compile Include="Helpers\AdminAuthorizeAttribute.cs" />
+    <Compile Include="Helpers\GlobalExceptionFilter.cs" />
     <Compile Include="Helpers\MapperHelper.cs" />
     <Compile Include="Helpers\UnityConfigHelper.cs" />
     <Compile Include="Models\ArticleCreateModel.cs" />

@@ -231,3 +231,116 @@ function loadPageContent(selector, parentSelector) {
     });
 }
 
+$(document).ready(function () {   
+    let selectedFiles = []; // Array to hold selected files
+    // Handle file input change event
+    $(document).on('change', '#file-input', function () {
+        const files = Array.from(this.files);
+
+        // Add new files to the selected files array
+        files.forEach((file, index) => {
+            if (file.type.startsWith('image/')) {
+                selectedFiles.push(file);
+                addPreview(file, selectedFiles.length - 1); // Add preview for the new file
+            } else {
+                alert('Only image files are allowed.');
+            }
+        });
+
+        // Update the file input to match selectedFiles
+        updateFileInput();
+    });
+
+    // Add image preview
+    function addPreview(file, index) {
+        const reader = new FileReader();
+
+        reader.onload = function () {
+            // Create a container for the image and remove button
+            const $previewItem = $(`
+                <div class="preview-item" data-index="${index}">
+                    <img src="${reader.result}" alt="Preview" />
+                    <button type="button" class="remove-btn" title="Remove Image">&times;</button>
+                </div>
+            `);
+            const $preview = $('#preview');
+            // Append the preview item to the preview container
+            $preview.append($previewItem);
+        };
+
+        reader.readAsDataURL(file); // Read the file as a data URL
+    }
+
+    // Handle remove button click event
+    $(document).on('click', '.remove-btn', function () {
+        const $previewItem = $(this).closest('.preview-item');
+        const index = parseInt($previewItem.data('index'));
+
+        // Remove the file from the selected files array
+        selectedFiles.splice(index, 1);
+
+        // Remove the preview item from the DOM
+        $previewItem.remove();
+        const $preview = $('#preview');
+        // Update indices of remaining preview items
+        $preview.find('.preview-item').each((i, item) => {
+            $(item).attr('data-index', i);
+        });
+
+        // Update the file input to match selectedFiles
+        updateFileInput();
+    });
+
+    // Update file input with selectedFiles array
+    function updateFileInput() {
+        const dataTransfer = new DataTransfer();
+
+        // Append all files from selectedFiles array to DataTransfer
+        selectedFiles.forEach(file => dataTransfer.items.add(file));
+        const $fileInput = $('#file-input');
+        // Assign the new FileList to the file input
+        $fileInput[0].files = dataTransfer.files;
+    }
+
+    // Handle form submission
+    $(document).on('click', '#btnCreateArticle', function (e) {
+        e.preventDefault();
+        const $fileInput = $('#file-input');
+        // Collect form data
+        const title = $('#article-title').val();
+        const content = $('#content-editor').val();
+        const files = $fileInput[0].files;
+
+        // Validate inputs
+        if (!title || !content) {
+            alert('Title and content are required!');
+            return;
+        }
+
+        // Create FormData object
+        const formData = new FormData();
+        formData.append('Title', title);
+        formData.append('Content', content);
+
+        // Append files to FormData
+        for (let i = 0; i < files.length; i++) {
+            formData.append('Images', files[i]);
+        }
+
+        // Send data to the server via AJAX
+        $.ajax({
+            url: '/Admin/SaveArticle',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                alert('Article created successfully!');                
+            },
+            error: function (error) {
+                alert('Failed to create the article!');
+                console.log(error);
+            }
+        });
+    });
+});
