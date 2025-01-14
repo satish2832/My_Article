@@ -11,14 +11,23 @@
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Title" Type="varchar" MaxLength="1000" Nullable="false" />
-          <Property Name="PageURL" Type="varchar" MaxLength="1000" Nullable="false" />
-          <Property Name="PageImageURLs" Type="varchar(max)" Nullable="false" />
-          <Property Name="Tags" Type="varchar" MaxLength="2000" />
-          <Property Name="SkillsetId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TitleURL" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="ContentText" Type="varchar(max)" />
+          <Property Name="ContentFile" Type="varbinary(max)" />
+          <Property Name="ContentFileURL" Type="varchar" MaxLength="1000" />
+          <Property Name="ArticleTypeId" Type="uniqueidentifier" />
+          <Property Name="Tags" Type="varchar" MaxLength="1000" />
           <Property Name="CreatedBy" Type="uniqueidentifier" />
           <Property Name="CreateDT" Type="datetime" />
           <Property Name="UpdatedBy" Type="uniqueidentifier" />
           <Property Name="UpdateDT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ArticleType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="CandidateEnquiry">
           <Key>
@@ -55,6 +64,18 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="500" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Article_ArticleType">
+          <End Role="ArticleType" Type="Self.ArticleType" Multiplicity="0..1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArticleType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="ArticleTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CandidateEnquiry_SkillsetId">
           <End Role="Skillset" Type="Self.Skillset" Multiplicity="1" />
           <End Role="CandidateEnquiry" Type="Self.CandidateEnquiry" Multiplicity="*" />
@@ -81,9 +102,14 @@
         </Association>
         <EntityContainer Name="TechPortalModelStoreContainer">
           <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArticleType" EntityType="Self.ArticleType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CandidateEnquiry" EntityType="Self.CandidateEnquiry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CandidateEnquiryFollowup" EntityType="Self.CandidateEnquiryFollowup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Skillset" EntityType="Self.Skillset" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Article_ArticleType" Association="Self.FK_Article_ArticleType">
+            <End Role="ArticleType" EntitySet="ArticleType" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
           <AssociationSet Name="FK_CandidateEnquiry_SkillsetId" Association="Self.FK_CandidateEnquiry_SkillsetId">
             <End Role="Skillset" EntitySet="Skillset" />
             <End Role="CandidateEnquiry" EntitySet="CandidateEnquiry" />
@@ -97,21 +123,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TechPortalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Article">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PageURL" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PageImageURLs" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Tags" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="SkillsetId" Type="Guid" Nullable="false" />
-          <Property Name="CreatedBy" Type="Guid" />
-          <Property Name="CreateDT" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="Guid" />
-          <Property Name="UpdateDT" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="CandidateEnquiry">
           <Key>
             <PropertyRef Name="Id" />
@@ -139,7 +150,6 @@
           <NavigationProperty Name="CandidateEnquiries" Relationship="TechPortalModel.FK_CandidateEnquiry_SkillsetId" FromRole="Skillset" ToRole="CandidateEnquiry" />
         </EntityType>
         <EntityContainer Name="TechPortalEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Articles" EntityType="Self.Article" />
           <EntitySet Name="CandidateEnquiries" EntityType="Self.CandidateEnquiry" />
           <EntitySet Name="Skillsets" EntityType="Self.Skillset" />
           <AssociationSet Name="FK_CandidateEnquiry_SkillsetId" Association="TechPortalModel.FK_CandidateEnquiry_SkillsetId">
@@ -150,6 +160,12 @@
           <AssociationSet Name="FK_CandidateEnquiryFollowup_CandidateEnquiry" Association="TechPortalModel.FK_CandidateEnquiryFollowup_CandidateEnquiry">
             <End Role="CandidateEnquiry" EntitySet="CandidateEnquiries" />
             <End Role="CandidateEnquiryFollowup" EntitySet="CandidateEnquiryFollowups" />
+          </AssociationSet>
+          <EntitySet Name="Articles" EntityType="TechPortalModel.Article" />
+          <EntitySet Name="ArticleTypes" EntityType="TechPortalModel.ArticleType" />
+          <AssociationSet Name="FK_Article_ArticleType" Association="TechPortalModel.FK_Article_ArticleType">
+            <End Role="ArticleType" EntitySet="ArticleTypes" />
+            <End Role="Article" EntitySet="Articles" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="FK_CandidateEnquiry_SkillsetId">
@@ -189,28 +205,50 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="TitleURL" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ContentText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ContentFile" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ContentFileURL" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ArticleTypeId" Type="Guid" />
+          <Property Name="Tags" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="Guid" />
+          <Property Name="CreateDT" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="Guid" />
+          <Property Name="UpdateDT" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ArticleType" Relationship="TechPortalModel.FK_Article_ArticleType" FromRole="Article" ToRole="ArticleType" />
+        </EntityType>
+        <EntityType Name="ArticleType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Articles" Relationship="TechPortalModel.FK_Article_ArticleType" FromRole="ArticleType" ToRole="Article" />
+        </EntityType>
+        <Association Name="FK_Article_ArticleType">
+          <End Type="TechPortalModel.ArticleType" Role="ArticleType" Multiplicity="0..1" />
+          <End Type="TechPortalModel.Article" Role="Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ArticleType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="ArticleTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="TechPortalModelStoreContainer" CdmEntityContainer="TechPortalEntities">
-          <EntitySetMapping Name="Articles">
-            <EntityTypeMapping TypeName="TechPortalModel.Article">
-              <MappingFragment StoreEntitySet="Article">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="PageURL" ColumnName="PageURL" />
-                <ScalarProperty Name="PageImageURLs" ColumnName="PageImageURLs" />
-                <ScalarProperty Name="Tags" ColumnName="Tags" />
-                <ScalarProperty Name="SkillsetId" ColumnName="SkillsetId" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
-                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CandidateEnquiries">
             <EntityTypeMapping TypeName="TechPortalModel.CandidateEnquiry">
               <MappingFragment StoreEntitySet="CandidateEnquiry">
@@ -245,6 +283,32 @@
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CandidateEnquiryId" ColumnName="CandidateEnquiryId" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="TechPortalModel.Article">
+              <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="ArticleTypeId" ColumnName="ArticleTypeId" />
+                <ScalarProperty Name="ContentFileURL" ColumnName="ContentFileURL" />
+                <ScalarProperty Name="ContentFile" ColumnName="ContentFile" />
+                <ScalarProperty Name="ContentText" ColumnName="ContentText" />
+                <ScalarProperty Name="TitleURL" ColumnName="TitleURL" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArticleTypes">
+            <EntityTypeMapping TypeName="TechPortalModel.ArticleType">
+              <MappingFragment StoreEntitySet="ArticleType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

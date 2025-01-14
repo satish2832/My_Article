@@ -20,6 +20,7 @@ namespace TechPortalWeb.Helpers
             // Register your types here
             container.RegisterType<ISkillsetService, SkillsetService>();
             container.RegisterType<IEnquiryService, EnquiryService>();
+            container.RegisterType<IArticleService, ArticleService>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

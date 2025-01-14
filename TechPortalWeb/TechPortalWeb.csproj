@@ -318,7 +318,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Content.cshtml" />
+    <Content Include="Views\Content\Content.cshtml" />
     <Content Include="Views\Home\_SuccessStories.cshtml" />
     <Content Include="Views\Home\CourseDetails.cshtml" />
     <Content Include="Views\Shared\_BookDemo.cshtml" />

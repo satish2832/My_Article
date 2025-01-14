@@ -36,8 +36,53 @@ namespace TechPortalWeb.Helpers
             {
                 return ConvertToSkillsetModel(source as Skillset, destination as SkillsetModel) as Destination;
             }
-
+            else if (source is ArticleCreateModel && destination is Article)
+            {
+                return ConvertToArticle(source as ArticleCreateModel, destination as Article) as Destination;
+            }
+            else if (source is Article && destination is ArticleCreateModel)
+            {
+                return ConvertToArticleModel(source as Article, destination as ArticleCreateModel) as Destination;
+            }
             throw new InvalidOperationException($"Mapping from {typeof(Source)} to {typeof(Destination)} is not supported.");
+        }
+
+        private static Article ConvertToArticle(ArticleCreateModel articleCreateModel, Article article)
+        {
+            if (articleCreateModel == null) throw new ArgumentNullException(nameof(articleCreateModel));
+            if (article == null) article = new Article();
+
+            article.Id = articleCreateModel.Id == Guid.Empty ? Guid.NewGuid() : articleCreateModel.Id;
+            article.Title = articleCreateModel.Title;
+            article.TitleURL = articleCreateModel.TitleURL;
+            article.ContentFile = articleCreateModel.ContentFile;
+            article.ContentFileURL = articleCreateModel.ContentFileURL;
+            article.ArticleTypeId = articleCreateModel.ArticleTypeId;
+            article.Tags = articleCreateModel.Tags;
+            article.CreatedBy = Guid.Parse(Constants.GlobalUserId);
+            article.CreateDT = DateTime.Now;
+            article.UpdatedBy = Guid.Parse(Constants.GlobalUserId);
+            article.UpdateDT = DateTime.Now;
+
+            return article;
+        }
+
+        private static ArticleCreateModel ConvertToArticleModel(Article article, ArticleCreateModel articleCreateModel)
+        {
+            if (article == null) throw new ArgumentNullException(nameof(article));
+            if (articleCreateModel == null) articleCreateModel = new ArticleCreateModel();
+
+            articleCreateModel.Id = article.Id;
+            articleCreateModel.Title = article.Title;
+            articleCreateModel.TitleURL = article.TitleURL;
+            articleCreateModel.ContentFile = article.ContentFile;
+            articleCreateModel.ContentFileURL = article.ContentFileURL;
+            articleCreateModel.ArticleTypeId = article.ArticleTypeId;
+            articleCreateModel.Tags = article.Tags;
+            articleCreateModel.CreatedBy = Guid.Parse(Constants.GlobalUserId).ToString();
+            articleCreateModel.CreatedDate = article.CreateDT;
+
+            return articleCreateModel;
         }
 
         private static CandidateEnquiry ConvertToCandidateEnquiry(EnquiryFormModel enquiryFormModel, CandidateEnquiry candidateEnquiry)

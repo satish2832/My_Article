@@ -15,11 +15,13 @@ namespace TechPortalWeb.Controllers
     {
         public IEnquiryService EnquiryService { get; }
         public ISkillsetService SkillsetService { get; }
+        public IArticleService ArticleService { get; }
 
-        public AdminController(IEnquiryService enquiryService, ISkillsetService skillsetService)
+        public AdminController(IEnquiryService enquiryService, ISkillsetService skillsetService,IArticleService articleService)
         {
             EnquiryService = enquiryService;
-            SkillsetService = skillsetService;            
+            SkillsetService = skillsetService;
+            ArticleService = articleService;
         }
 
         [AdminAuthorize]
@@ -103,13 +105,20 @@ namespace TechPortalWeb.Controllers
             return PartialView();
         }
 
-        [AdminAuthorize]           
+        [AdminAuthorize]
         public JsonResult SaveArticle(ArticleCreateModel articleCreateModel)
         {
             var content = HttpUtility.UrlDecode(articleCreateModel.Content);
             var fileName = Guid.NewGuid().ToString() + DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss");
-            var res = ArticleCreateHelper.GenerateGzipFile(content, fileName);
-            return Json(new { },JsonRequestBehavior.AllowGet);
+            var isFileGenerated = ArticleCreateHelper.GenerateGzipFile(content, fileName);
+            if (isFileGenerated)
+            {
+                articleCreateModel.ContentFileURL = fileName;
+                articleCreateModel.ContentFile = ArticleCreateHelper.GetByFileName(fileName);
+            }
+            var article = MapperHelper.Map<ArticleCreateModel, Article>(articleCreateModel);
+            ArticleService.Save(article);
+            return Json(new { IsSaved = true }, JsonRequestBehavior.AllowGet);
         }
 
         [Route("login")]

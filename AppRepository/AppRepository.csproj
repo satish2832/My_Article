@@ -53,12 +53,16 @@
     <Compile Include="Article.cs">
       <DependentUpon>TechPortal.tt</DependentUpon>
     </Compile>
+    <Compile Include="ArticleType.cs">
+      <DependentUpon>TechPortal.tt</DependentUpon>
+    </Compile>
     <Compile Include="CandidateEnquiry.cs">
       <DependentUpon>TechPortal.tt</DependentUpon>
     </Compile>
     <Compile Include="CandidateEnquiryFollowup.cs">
       <DependentUpon>TechPortal.tt</DependentUpon>
     </Compile>
+    <Compile Include="Enquiry\ArticleService.cs" />
     <Compile Include="Enquiry\EnquiryService.cs" />
     <Compile Include="Enquiry\SkillsetService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

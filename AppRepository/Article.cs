@@ -16,13 +16,17 @@ namespace AppRepository
     {
         public System.Guid Id { get; set; }
         public string Title { get; set; }
-        public string PageURL { get; set; }
-        public string PageImageURLs { get; set; }
+        public string TitleURL { get; set; }
+        public string ContentText { get; set; }
+        public byte[] ContentFile { get; set; }
+        public string ContentFileURL { get; set; }
+        public Nullable<System.Guid> ArticleTypeId { get; set; }
         public string Tags { get; set; }
-        public System.Guid SkillsetId { get; set; }
         public Nullable<System.Guid> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreateDT { get; set; }
         public Nullable<System.Guid> UpdatedBy { get; set; }
         public Nullable<System.DateTime> UpdateDT { get; set; }
+    
+        public virtual ArticleType ArticleType { get; set; }
     }
 }

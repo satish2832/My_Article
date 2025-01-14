@@ -5,12 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e9bfc09da8064d119003c1a6d0a8cb90" Name="Diagram1">
-        <EntityTypeShape EntityType="TechPortalModel.Article" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TechPortalModel.CandidateEnquiry" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TechPortalModel.Skillset" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechPortalModel.CandidateEnquiry" Width="1.5" PointX="6.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechPortalModel.Skillset" Width="1.5" PointX="3.25" PointY="0.5" IsExpanded="true" />
         <AssociationConnector Association="TechPortalModel.FK_CandidateEnquiry_SkillsetId" />
-        <EntityTypeShape EntityType="TechPortalModel.CandidateEnquiryFollowup" Width="1.5" PointX="4.875" PointY="2.875" />
+        <EntityTypeShape EntityType="TechPortalModel.CandidateEnquiryFollowup" Width="1.5" PointX="3.25" PointY="2.5" />
         <AssociationConnector Association="TechPortalModel.FK_CandidateEnquiryFollowup_CandidateEnquiry" />
+        <EntityTypeShape EntityType="TechPortalModel.Article" Width="1.5" PointX="3.25" PointY="5.25" />
+        <EntityTypeShape EntityType="TechPortalModel.ArticleType" Width="1.5" PointX="1" PointY="6.25" />
+        <AssociationConnector Association="TechPortalModel.FK_Article_ArticleType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
