@@ -161,7 +161,7 @@
     <Compile Include="Helpers\GlobalExceptionFilter.cs" />
     <Compile Include="Helpers\MapperHelper.cs" />
     <Compile Include="Helpers\UnityConfigHelper.cs" />
-    <Compile Include="Models\ArticleCreateModel.cs" />
+    <Compile Include="Models\ArticleModel.cs" />
     <Compile Include="Models\ContentModel.cs" />
     <Compile Include="Models\EnquiryFormModel.cs" />
     <Compile Include="Models\FollowUpModel.cs" />
@@ -336,7 +336,7 @@
     <Content Include="Views\Home\DevOpsCourse.cshtml" />
     <Content Include="Views\Admin\Enquiries.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
-    <Content Include="Views\Admin\CandidateEnquiry.cshtml" />
+    <Content Include="Views\Admin\CandidateEnquiryCreate.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
@@ -344,6 +344,7 @@
     <Content Include="Views\Admin\Candidate.cshtml" />
     <Content Include="Views\Admin\CandidateFollowupDetails.cshtml" />
     <Content Include="Views\Admin\ArticleCreate.cshtml" />
+    <Content Include="Views\Admin\GetAllArticle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

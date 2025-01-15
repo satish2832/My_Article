@@ -50,7 +50,7 @@ namespace TechPortalWeb.Controllers
 
         [AdminAuthorize]
         [Route("admin/enquiry-candidate/{id}/basic-information")]
-        public ActionResult CandidateEnquiry(Guid id)
+        public ActionResult CandidateEnquiryCreate(Guid id)
         {
             var enquiry = EnquiryService.GetById(id);
             if (enquiry == null)
@@ -99,14 +99,22 @@ namespace TechPortalWeb.Controllers
         }
 
         [AdminAuthorize]
-        [Route("admin/article-create")]
-        public ActionResult ArticleCreate()
+        [Route("admin/article-create/{id?}")]
+        public ActionResult ArticleCreate(Guid? id)
         {
             return PartialView();
         }
 
+        [Route("admin/articles-all")]
+        public ActionResult GetAllArticle()
+        {
+            var articleList = ArticleService.GetAll();
+            var articleModels = articleList.Select(x => MapperHelper.Map<Article, ArticleModel>(x));
+            return PartialView(articleModels);
+        }
+
         [AdminAuthorize]
-        public JsonResult SaveArticle(ArticleCreateModel articleCreateModel)
+        public JsonResult SaveArticle(ArticleModel articleCreateModel)
         {
             var content = HttpUtility.UrlDecode(articleCreateModel.Content);
             var fileName = Guid.NewGuid().ToString() + DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss");
@@ -116,7 +124,7 @@ namespace TechPortalWeb.Controllers
                 articleCreateModel.ContentFileURL = fileName;
                 articleCreateModel.ContentFile = ArticleCreateHelper.GetByFileName(fileName);
             }
-            var article = MapperHelper.Map<ArticleCreateModel, Article>(articleCreateModel);
+            var article = MapperHelper.Map<ArticleModel, Article>(articleCreateModel);
             ArticleService.Save(article);
             return Json(new { IsSaved = true }, JsonRequestBehavior.AllowGet);
         }

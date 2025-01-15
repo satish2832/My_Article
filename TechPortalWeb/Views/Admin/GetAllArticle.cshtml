@@ -1,0 +1,37 @@
+﻿@model IEnumerable<TechPortalWeb.Models.ArticleModel>
+<div class="container">
+    <section class="enquiry-section">
+        <div class="enquiry-header">
+            <h2><i class="fa-solid fa-circle-info"></i> Articles List</h2>
+            <span id="loadingIcon" style="display:none;">
+                <i class="fa fa-spinner fa-spin"></i> Loading...
+            </span>
+            <button id="refreshButton" class="btn btn-primary"><i class="fa-solid fa-rotate"></i> Refresh</button>
+        </div>
+        <hr />
+        <table class="table table-bordered table-data" id="articleTable">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Updated On</th>                    
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var article in Model)
+                {
+                    <tr>
+                        <td>@article.Title</td>
+                        <td>@article.ArticleType</td>
+                        <td>@article.UpdatedDate</td>                        
+                        <td class="actions">
+                            <a class="data-url" href="javascript:void(0)" data-url="/admin/article-create/@article.Id"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+</div>
+

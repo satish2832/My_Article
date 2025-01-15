@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace TechPortalWeb.Models
 {
-    public class ArticleCreateModel
+    public class ArticleModel
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
@@ -17,9 +17,12 @@ namespace TechPortalWeb.Models
         public byte[] ContentFile { get; set; }
         public string ContentFileURL { get; set; }
         public Guid? ArticleTypeId { get; set; }
+        public string ArticleType { get; set; }
         public string Tags { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
+        public string UpdatedBy { get; set; }
+        public DateTime? UpdatedDate { get; set; }
 
     }
 }

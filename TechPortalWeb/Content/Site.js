@@ -192,6 +192,10 @@ $(document).ready(function () {
         $(this).addClass('active');
         loadPageContent(this, '.admin-container');
     });
+    $(document).on('click', '.table-data a.data-url', function (e) {
+        e.preventDefault();
+        loadPageContent(this, '.admin-container');
+    });
 });
 
 $(document).ready(function () {
@@ -308,18 +312,20 @@ $(document).ready(function () {
         const $fileInput = $('#file-input');
         // Collect form data
         const title = $('#article-title').val();
+        const titleurl = $('#article-title-url').val();
         const content = $('#content-editor').val();
         const files = $fileInput[0].files;
 
         // Validate inputs
-        if (!title || !content) {
-            alert('Title and content are required!');
+        if (!title || !titleurl || !content) {
+            alert('Title and Title URL and content are required!');
             return;
         }
 
         // Create FormData object
         const formData = new FormData();
         formData.append('Title', title);
+        formData.append('TitleURL', titleurl);
         formData.append('Content', content);
 
         // Append files to FormData

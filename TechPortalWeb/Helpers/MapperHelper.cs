@@ -36,18 +36,18 @@ namespace TechPortalWeb.Helpers
             {
                 return ConvertToSkillsetModel(source as Skillset, destination as SkillsetModel) as Destination;
             }
-            else if (source is ArticleCreateModel && destination is Article)
+            else if (source is ArticleModel && destination is Article)
             {
-                return ConvertToArticle(source as ArticleCreateModel, destination as Article) as Destination;
+                return ConvertToArticle(source as ArticleModel, destination as Article) as Destination;
             }
-            else if (source is Article && destination is ArticleCreateModel)
+            else if (source is Article && destination is ArticleModel)
             {
-                return ConvertToArticleModel(source as Article, destination as ArticleCreateModel) as Destination;
+                return ConvertToArticleModel(source as Article, destination as ArticleModel) as Destination;
             }
             throw new InvalidOperationException($"Mapping from {typeof(Source)} to {typeof(Destination)} is not supported.");
         }
 
-        private static Article ConvertToArticle(ArticleCreateModel articleCreateModel, Article article)
+        private static Article ConvertToArticle(ArticleModel articleCreateModel, Article article)
         {
             if (articleCreateModel == null) throw new ArgumentNullException(nameof(articleCreateModel));
             if (article == null) article = new Article();
@@ -67,10 +67,10 @@ namespace TechPortalWeb.Helpers
             return article;
         }
 
-        private static ArticleCreateModel ConvertToArticleModel(Article article, ArticleCreateModel articleCreateModel)
+        private static ArticleModel ConvertToArticleModel(Article article, ArticleModel articleCreateModel)
         {
             if (article == null) throw new ArgumentNullException(nameof(article));
-            if (articleCreateModel == null) articleCreateModel = new ArticleCreateModel();
+            if (articleCreateModel == null) articleCreateModel = new ArticleModel();
 
             articleCreateModel.Id = article.Id;
             articleCreateModel.Title = article.Title;
@@ -81,6 +81,8 @@ namespace TechPortalWeb.Helpers
             articleCreateModel.Tags = article.Tags;
             articleCreateModel.CreatedBy = Guid.Parse(Constants.GlobalUserId).ToString();
             articleCreateModel.CreatedDate = article.CreateDT;
+            articleCreateModel.UpdatedBy = Guid.Parse(Constants.GlobalUserId).ToString();
+            articleCreateModel.UpdatedDate = article.UpdateDT;
 
             return articleCreateModel;
         }

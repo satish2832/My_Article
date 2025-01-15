@@ -11,6 +11,7 @@ namespace AppRepository.Enquiry
         void Save(Article article);
         Article GetById(Guid id);
         Article GetByTitle(string title);
+        IList<Article> GetAll();
     }
     public class ArticleService : IArticleService
     {
@@ -34,6 +35,11 @@ namespace AppRepository.Enquiry
         public Article GetByTitle(string title)
         {
             return this.techPortalEntities.Articles.SingleOrDefault(x => x.Title == title);
+        }
+
+        public IList<Article> GetAll()
+        {
+            return this.techPortalEntities.Articles.ToList();
         }
     }
 }
