@@ -1,4 +1,5 @@
-﻿using AppRepository.Enquiry;
+﻿using AppRepository;
+using AppRepository.Enquiry;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,8 +27,9 @@ namespace TechPortalWeb.Controllers
         {
             var article = ArticleService.GetByTitle(title);           
             var content = ArticleCreateHelper.ReadContentFromGzipFile(article.ContentFileURL);
-            ViewBag.htmlCotent = content;
-            return View();
+            article.ContentText = content;
+            var articleModel = MapperHelper.Map<Article, ArticleModel>(article);
+            return View("Content", articleModel);
         }
     }
 }

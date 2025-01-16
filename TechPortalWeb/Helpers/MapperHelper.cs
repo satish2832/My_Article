@@ -64,6 +64,14 @@ namespace TechPortalWeb.Helpers
             article.UpdatedBy = Guid.Parse(Constants.GlobalUserId);
             article.UpdateDT = DateTime.Now;
 
+            article.ArticleImages = articleCreateModel.Images.Select(x => new ArticleImage()
+            {
+                Id = Guid.NewGuid(),
+                Image = ArticleCreateHelper.ConvertImageToByteArray(x),
+                ArticleId = article.Id,
+                ImageURL = "Image_" + Guid.NewGuid().ToString() + "_" + DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss")
+            }).ToList();
+
             return article;
         }
 
@@ -75,6 +83,7 @@ namespace TechPortalWeb.Helpers
             articleCreateModel.Id = article.Id;
             articleCreateModel.Title = article.Title;
             articleCreateModel.TitleURL = article.TitleURL;
+            articleCreateModel.Content = article.ContentText;
             articleCreateModel.ContentFile = article.ContentFile;
             articleCreateModel.ContentFileURL = article.ContentFileURL;
             articleCreateModel.ArticleTypeId = article.ArticleTypeId;
@@ -83,6 +92,7 @@ namespace TechPortalWeb.Helpers
             articleCreateModel.CreatedDate = article.CreateDT;
             articleCreateModel.UpdatedBy = Guid.Parse(Constants.GlobalUserId).ToString();
             articleCreateModel.UpdatedDate = article.UpdateDT;
+            articleCreateModel.ImageUrls = article.ArticleImages.Select(x => x.ImageURL).ToList();
 
             return articleCreateModel;
         }

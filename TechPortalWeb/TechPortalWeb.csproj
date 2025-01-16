@@ -351,6 +351,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\assets\img\articles\" />
     <Folder Include="Pages\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

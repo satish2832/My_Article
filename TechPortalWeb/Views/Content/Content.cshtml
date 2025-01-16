@@ -1,29 +1,32 @@
-﻿@{
-    ViewBag.Title = "Content";
-}
-<style>
-    .container{
-        max-width:850px !important;
-    }
-    .codesnippet {
-        max-width: 90%;
-        background-color: black;
-        color: whitesmoke;
-        margin: 0 auto;
-        border-radius: 5px;
-        display: block;
-        white-space: pre-wrap; /* Wrap lines if they are too long */
-        word-break: break-word; /* Break long words to avoid overflow */
-    }
-</style>
+﻿@model TechPortalWeb.Models.ArticleModel
 
-<main>
-    <section id="about" class="about">
-        <div class="container">
-            <div class="flex-col gap-1 md:gap-3">
-                @Html.Raw(ViewBag.htmlCotent)
+
+<section class="article-content">
+    <div class="container">
+        <div class="header">
+            <h1>@Model.Title</h1>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-9">
+                @Html.Raw(Model.Content)
+            </div>
+            <div class="col-md-3">
+                <div class="article-right-bar">
+                    <ul class="custom-bullet">
+                        <li><a>How to solve this code</a></li>
+                        <li><a>How to solve this code</a></li>
+                        <li><a>How to solve this code</a></li>
+                        <li><a>How to solve this code</a></li>
+                        <li><a>How to solve this code</a></li>
+                        <li><a>How to solve this code</a></li>
+                        <li><a>How to solve this code</a></li>
+                        <li><a>How to solve this code</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </section>
-</main>
+    </div>
+</section>
+
 

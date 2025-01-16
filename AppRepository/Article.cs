@@ -14,6 +14,12 @@ namespace AppRepository
     
     public partial class Article
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Article()
+        {
+            this.ArticleImages = new HashSet<ArticleImage>();
+        }
+    
         public System.Guid Id { get; set; }
         public string Title { get; set; }
         public string TitleURL { get; set; }
@@ -28,5 +34,7 @@ namespace AppRepository
         public Nullable<System.DateTime> UpdateDT { get; set; }
     
         public virtual ArticleType ArticleType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ArticleImage> ArticleImages { get; set; }
     }
 }

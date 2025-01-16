@@ -14,6 +14,7 @@ namespace TechPortalWeb.Models
         [AllowHtml]
         public string Content { get; set; }
         public IEnumerable<HttpPostedFileBase> Images { get; set; }
+        public IEnumerable<string> ImageUrls { get; set; }
         public byte[] ContentFile { get; set; }
         public string ContentFileURL { get; set; }
         public Guid? ArticleTypeId { get; set; }

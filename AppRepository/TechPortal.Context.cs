@@ -30,5 +30,6 @@ namespace AppRepository
         public virtual DbSet<CandidateEnquiryFollowup> CandidateEnquiryFollowups { get; set; }
         public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<ArticleType> ArticleTypes { get; set; }
+        public virtual DbSet<ArticleImage> ArticleImages { get; set; }
     }
 }

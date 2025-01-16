@@ -12,7 +12,7 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Title" Type="varchar" MaxLength="1000" Nullable="false" />
           <Property Name="TitleURL" Type="varchar" MaxLength="1000" Nullable="false" />
-          <Property Name="ContentText" Type="varchar(max)" />
+          <Property Name="ContentText" Type="nvarchar(max)" />
           <Property Name="ContentFile" Type="varbinary(max)" />
           <Property Name="ContentFileURL" Type="varchar" MaxLength="1000" />
           <Property Name="ArticleTypeId" Type="uniqueidentifier" />
@@ -21,6 +21,15 @@
           <Property Name="CreateDT" Type="datetime" />
           <Property Name="UpdatedBy" Type="uniqueidentifier" />
           <Property Name="UpdateDT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ArticleImages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ArticleId" Type="uniqueidentifier" />
+          <Property Name="Image" Type="varbinary(max)" />
+          <Property Name="ImageURL" Type="varchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="ArticleType">
           <Key>
@@ -76,6 +85,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ArticleImages_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="ArticleImages" Type="Self.ArticleImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArticleImages">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CandidateEnquiry_SkillsetId">
           <End Role="Skillset" Type="Self.Skillset" Multiplicity="1" />
           <End Role="CandidateEnquiry" Type="Self.CandidateEnquiry" Multiplicity="*" />
@@ -102,6 +123,7 @@
         </Association>
         <EntityContainer Name="TechPortalModelStoreContainer">
           <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArticleImages" EntityType="Self.ArticleImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ArticleType" EntityType="Self.ArticleType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CandidateEnquiry" EntityType="Self.CandidateEnquiry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CandidateEnquiryFollowup" EntityType="Self.CandidateEnquiryFollowup" Schema="dbo" store:Type="Tables" />
@@ -109,6 +131,10 @@
           <AssociationSet Name="FK_Article_ArticleType" Association="Self.FK_Article_ArticleType">
             <End Role="ArticleType" EntitySet="ArticleType" />
             <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleImages_Article" Association="Self.FK_ArticleImages_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="ArticleImages" EntitySet="ArticleImages" />
           </AssociationSet>
           <AssociationSet Name="FK_CandidateEnquiry_SkillsetId" Association="Self.FK_CandidateEnquiry_SkillsetId">
             <End Role="Skillset" EntitySet="Skillset" />
@@ -167,6 +193,11 @@
             <End Role="ArticleType" EntitySet="ArticleTypes" />
             <End Role="Article" EntitySet="Articles" />
           </AssociationSet>
+          <EntitySet Name="ArticleImages" EntityType="TechPortalModel.ArticleImage" />
+          <AssociationSet Name="FK_ArticleImages_Article" Association="TechPortalModel.FK_ArticleImages_Article">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="ArticleImage" EntitySet="ArticleImages" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_CandidateEnquiry_SkillsetId">
           <End Type="TechPortalModel.Skillset" Role="Skillset" Multiplicity="1" />
@@ -212,7 +243,7 @@
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="TitleURL" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="ContentText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ContentText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ContentFile" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ContentFileURL" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="ArticleTypeId" Type="Guid" />
@@ -222,6 +253,7 @@
           <Property Name="UpdatedBy" Type="Guid" />
           <Property Name="UpdateDT" Type="DateTime" Precision="3" />
           <NavigationProperty Name="ArticleType" Relationship="TechPortalModel.FK_Article_ArticleType" FromRole="Article" ToRole="ArticleType" />
+          <NavigationProperty Name="ArticleImages" Relationship="TechPortalModel.FK_ArticleImages_Article" FromRole="Article" ToRole="ArticleImage" />
         </EntityType>
         <EntityType Name="ArticleType">
           <Key>
@@ -240,6 +272,28 @@
             </Principal>
             <Dependent Role="Article">
               <PropertyRef Name="ArticleTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ArticleImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ArticleId" Type="Guid" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Article" Relationship="TechPortalModel.FK_ArticleImages_Article" FromRole="ArticleImage" ToRole="Article" />
+          <Property Name="ImageURL" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_ArticleImages_Article">
+          <End Type="TechPortalModel.Article" Role="Article" Multiplicity="0..1" />
+          <End Type="TechPortalModel.ArticleImage" Role="ArticleImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArticleImage">
+              <PropertyRef Name="ArticleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -309,6 +363,16 @@
             <EntityTypeMapping TypeName="TechPortalModel.ArticleType">
               <MappingFragment StoreEntitySet="ArticleType">
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArticleImages">
+            <EntityTypeMapping TypeName="TechPortalModel.ArticleImage">
+              <MappingFragment StoreEntitySet="ArticleImages">
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

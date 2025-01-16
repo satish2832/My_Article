@@ -13,6 +13,8 @@
         <EntityTypeShape EntityType="TechPortalModel.Article" Width="1.5" PointX="3.25" PointY="5.25" />
         <EntityTypeShape EntityType="TechPortalModel.ArticleType" Width="1.5" PointX="1" PointY="6.25" />
         <AssociationConnector Association="TechPortalModel.FK_Article_ArticleType" />
+        <EntityTypeShape EntityType="TechPortalModel.ArticleImage" Width="1.5" PointX="5.5" PointY="6.25" />
+        <AssociationConnector Association="TechPortalModel.FK_ArticleImages_Article" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

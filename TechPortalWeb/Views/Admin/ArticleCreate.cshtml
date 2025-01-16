@@ -17,6 +17,7 @@
             <!-- Title URL -->
             <div class="col-md-12 mb-3">
                 @Html.LabelFor(model => model.TitleURL, new { @class = "form-label" })
+                <button class="btn btn-primary mb-1" id="btnUpdateTitleUrl"><i class="fa fa-refresh" aria-hidden="true"></i></button>
                 @Html.TextBoxFor(model => model.TitleURL, new { @class = "form-control", id = "article-title-url" })
                 <span class="text-danger" id="error-title-url"></span>
             </div>
@@ -27,7 +28,7 @@
                     model => model.ArticleTypeId,
                     new SelectList(Model.ArticleTypes, "Id", "Name"),
                     "Select an Article Type",
-                    new { @class = "form-control", id = "article-type-dropdown" }
+                    new { @class = "form-select", id = "article-type-dropdown" }
                 )
                 <span class="text-danger" id="error-article-type"></span>
             </div>

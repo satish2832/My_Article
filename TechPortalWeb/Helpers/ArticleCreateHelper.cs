@@ -61,5 +61,35 @@ namespace TechPortalWeb.Helpers
                 }
             }
         }
+
+        public static byte[] ConvertImageToByteArray(HttpPostedFileBase image)
+        {
+            if (image != null && image.ContentLength > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    image.InputStream.CopyTo(memoryStream);
+                    return memoryStream.ToArray();
+                }
+            }
+            return null;
+        }
+
+        public static void SaveByteArrayAsImage(byte[] imageBytes, string fileName)
+        {
+            // Ensure the folder path exists
+            var folderPath = HttpContext.Current.Server.MapPath("~/Content/assets/img/articles/");
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            // Generate the full file path with the .jpg extension
+            var filePath = Path.Combine(folderPath, fileName + ".jpg");
+
+            // Write the byte array to the file
+            File.WriteAllBytes(filePath, imageBytes);
+        }
+
     }
 }

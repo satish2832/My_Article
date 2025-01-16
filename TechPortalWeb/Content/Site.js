@@ -364,6 +364,12 @@ $(document).ready(function () {
             }
         });
     });
+
+    $(document).on('click', '#btnUpdateTitleUrl', function (e) {
+        const title = $('#article-title').val();
+        var convertedTitleUrl = title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]/g, '');
+        $('#article-title-url').val(convertedTitleUrl);
+    });
 });
 
 $(document).ready(function () {
@@ -498,17 +504,13 @@ $(document).ready(function () {
     // Initial variables
     let rowsPerPage = 5;  // Default rows per page
     let currentPage = 1;
-    let totalRows = $('.enquiry-row').length;
-    let totalPages = Math.ceil(totalRows / rowsPerPage);
-
-    // Update the total pages text
-    $('#total-pages').text(totalPages);
-
+    
     // Show the first page
     showPage(currentPage, rowsPerPage);
 
     // Page size dropdown change    
     $(document).on('change', '#page-size', function () {
+        let totalRows = $('.enquiry-row').length;
         rowsPerPage = parseInt($(this).val());
         totalPages = Math.ceil(totalRows / rowsPerPage);
         $('#total-pages').text(totalPages);
@@ -519,6 +521,8 @@ $(document).ready(function () {
 
     // Previous page button click    
     $(document).on('click', '#prev-page', function () {
+        let totalRows = $('.enquiry-row').length;
+        let totalPages = Math.ceil(totalRows / rowsPerPage);
         if (currentPage > 1) {
             currentPage--;
             $('#current-page').text(currentPage);
@@ -528,6 +532,8 @@ $(document).ready(function () {
 
     // Next page button click   
     $(document).on('click', '#next-page', function () {
+        let totalRows = $('.enquiry-row').length;
+        let totalPages = Math.ceil(totalRows / rowsPerPage);
         if (currentPage < totalPages) {
             currentPage++;
             $('#current-page').text(currentPage);

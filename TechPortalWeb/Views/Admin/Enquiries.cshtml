@@ -37,7 +37,7 @@
             </tbody>
         </table>
         <div id="pagination-controls">
-            <select id="page-size" class="form-control">
+            <select id="page-size" class="form-select">
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="50">50</option>
@@ -51,14 +51,12 @@
     </section>
 </div>
 <script>
-    $(function () {
-        debugger;
+    $(function () {        
         let rowsPerPage = 5;
         let currentPage = 1;
         var totalRows = $('#enquiryTable tbody tr').length;
         var totalPages = Math.ceil(totalRows / rowsPerPage);
         $('#total-pages').text(totalPages);
-
         // Show the first page
         showPage(currentPage, rowsPerPage);
     });

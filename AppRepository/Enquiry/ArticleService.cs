@@ -25,7 +25,7 @@ namespace AppRepository.Enquiry
         }
         public void Save(Article article)
         {
-            this.techPortalEntities.Articles.Add(article);
+            this.techPortalEntities.Articles.Add(article);            
             this.techPortalEntities.SaveChanges();
         }
 
@@ -36,7 +36,7 @@ namespace AppRepository.Enquiry
 
         public Article GetByTitle(string title)
         {
-            return this.techPortalEntities.Articles.SingleOrDefault(x => x.Title == title);
+            return this.techPortalEntities.Articles.SingleOrDefault(x => x.TitleURL == title);
         }
 
         public IList<Article> GetAll()

@@ -53,6 +53,9 @@
     <Compile Include="Article.cs">
       <DependentUpon>TechPortal.tt</DependentUpon>
     </Compile>
+    <Compile Include="ArticleImage.cs">
+      <DependentUpon>TechPortal.tt</DependentUpon>
+    </Compile>
     <Compile Include="ArticleType.cs">
       <DependentUpon>TechPortal.tt</DependentUpon>
     </Compile>

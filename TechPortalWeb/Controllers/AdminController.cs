@@ -105,15 +105,17 @@ namespace TechPortalWeb.Controllers
         public ActionResult ArticleCreate(Guid? id)
         {
             ArticleModel articleModel = new ArticleModel();
+            var articleTypes = ArticleService.GetAllType();
             if (id == null)
-            {
-                var articleTypes = ArticleService.GetAllType();
+            {                
                 articleModel.ArticleTypes = articleTypes.Select(x => new ArticleTypeModel() { Id = x.Id, Name = x.Name });
                 return PartialView(articleModel);
             }
 
             var article = ArticleService.GetById(id.Value);
-            articleModel = MapperHelper.Map<Article, ArticleModel>(article);
+            articleModel = MapperHelper.Map<Article, ArticleModel>(article);          
+            articleModel.ArticleTypes = articleTypes.Select(x => new ArticleTypeModel() { Id = x.Id, Name = x.Name });
+
             articleModel.Content = ArticleCreateHelper.ReadContentFromGzipFile(articleModel.ContentFileURL);
             return PartialView(articleModel);
         }
@@ -130,16 +132,23 @@ namespace TechPortalWeb.Controllers
 
         [AdminAuthorize]
         public JsonResult SaveArticle(ArticleModel articleCreateModel)
-        {
+        {            
+            var article = MapperHelper.Map<ArticleModel, Article>(articleCreateModel);
+            foreach (var articleImage in article.ArticleImages)
+            {
+                if (articleImage != null)
+                {
+                    ArticleCreateHelper.SaveByteArrayAsImage(articleImage.Image, articleImage.ImageURL);
+                }
+            }
             var content = HttpUtility.UrlDecode(articleCreateModel.Content);
-            var fileName = Guid.NewGuid().ToString() + DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss");
+            var fileName = "Article_" + Guid.NewGuid().ToString() + "_" + DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss");
             var isFileGenerated = ArticleCreateHelper.GenerateGzipFile(content, fileName);
             if (isFileGenerated)
             {
-                articleCreateModel.ContentFileURL = fileName;
-                articleCreateModel.ContentFile = ArticleCreateHelper.GetByFileName(fileName);
+                article.ContentFileURL = fileName;
+                article.ContentFile = ArticleCreateHelper.GetByFileName(fileName);
             }
-            var article = MapperHelper.Map<ArticleModel, Article>(articleCreateModel);
             ArticleService.Save(article);
             return Json(new { IsSaved = true }, JsonRequestBehavior.AllowGet);
         }
