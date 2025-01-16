@@ -10,14 +10,14 @@ using TechPortalWeb.Helpers;
 using TechPortalWeb.Models;
 
 namespace TechPortalWeb.Controllers
-{    
+{
     public class AdminController : BaseController
     {
         public IEnquiryService EnquiryService { get; }
         public ISkillsetService SkillsetService { get; }
         public IArticleService ArticleService { get; }
 
-        public AdminController(IEnquiryService enquiryService, ISkillsetService skillsetService,IArticleService articleService)
+        public AdminController(IEnquiryService enquiryService, ISkillsetService skillsetService, IArticleService articleService)
         {
             EnquiryService = enquiryService;
             SkillsetService = skillsetService;
@@ -40,6 +40,7 @@ namespace TechPortalWeb.Controllers
         }
 
         [AdminAuthorize]
+        [AjaxOrFullView("Enquiries", "Admin")]
         [Route("admin/enquiry-list")]
         public ActionResult Enquiries()
         {
@@ -100,11 +101,25 @@ namespace TechPortalWeb.Controllers
 
         [AdminAuthorize]
         [Route("admin/article-create/{id?}")]
+        [AjaxOrFullView("ArticleCreate", "Admin")]
         public ActionResult ArticleCreate(Guid? id)
         {
-            return PartialView();
+            ArticleModel articleModel = new ArticleModel();
+            if (id == null)
+            {
+                var articleTypes = ArticleService.GetAllType();
+                articleModel.ArticleTypes = articleTypes.Select(x => new ArticleTypeModel() { Id = x.Id, Name = x.Name });
+                return PartialView(articleModel);
+            }
+
+            var article = ArticleService.GetById(id.Value);
+            articleModel = MapperHelper.Map<Article, ArticleModel>(article);
+            articleModel.Content = ArticleCreateHelper.ReadContentFromGzipFile(articleModel.ContentFileURL);
+            return PartialView(articleModel);
         }
 
+        [AdminAuthorize]
+        [AjaxOrFullView("GetAllArticle", "Admin")]
         [Route("admin/articles-all")]
         public ActionResult GetAllArticle()
         {
@@ -127,6 +142,25 @@ namespace TechPortalWeb.Controllers
             var article = MapperHelper.Map<ArticleModel, Article>(articleCreateModel);
             ArticleService.Save(article);
             return Json(new { IsSaved = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        [AdminAuthorize]
+        [AjaxOrFullView("ArticleTypeCreate", "Admin")]
+        [Route("admin/article-type-create")]
+        public ActionResult ArticleTypeCreate()
+        {
+            var articleTypes = this.ArticleService.GetAllType();
+            var articleTypesModels = articleTypes.Select(x => new ArticleTypeModel() { Id = x.Id, Name = x.Name }).ToList();
+            return PartialView(articleTypesModels);
+        }
+
+        [AdminAuthorize]
+        [Route("admin/article-type-save")]
+        public ActionResult ArticleTypeSave(ArticleTypeModel articleTypeModel)
+        {
+            var articleType = new ArticleType() { Id = articleTypeModel.Id, Name = articleTypeModel.Name };
+            ArticleService.UpdateType(articleType);
+            return Json(new { IsSaved = true, Id = articleType.Id }, JsonRequestBehavior.AllowGet);
         }
 
         [Route("login")]
@@ -157,6 +191,6 @@ namespace TechPortalWeb.Controllers
         {
             FormsAuthentication.SignOut();
             return Redirect("~/");
-        }        
+        }
     }
 }

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TechPortalWeb.Models.ArticleTypeModel>
+
+<div class="container">
+    <section class="article-types">       
+        <h2><i class="fa-solid fa-edit"></i> Manage Article Types</h2>
+        <hr />
+        <!-- Form for Adding New Article Type -->
+        <div class="mb-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" id="new-article-type-name" class="form-control" placeholder="Enter new article type name" />
+                </div>
+                <div class="col-md-2">
+                    <button id="add-article-type" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+            <span class="text-danger d-none" id="add-error-message">Please enter a name for the article type.</span>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="article-type-table">
+                @foreach (var item in Model)
+                {
+                    <tr data-id="@item.Id">
+                        <td class="name">
+                            <span class="view-mode">@item.Name</span>
+                            <input type="text" class="edit-mode form-control d-none" value="@item.Name" />
+                        </td>
+                        <td class="action-buttons">
+                            <button class="btn btn-warning btn-sm edit-button">Edit</button>
+                            <button class="btn btn-success btn-sm save-button d-none">Save</button>
+                            <button class="btn btn-danger btn-sm cancel-button d-none">Cancel</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+</div>
+

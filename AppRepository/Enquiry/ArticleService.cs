@@ -12,6 +12,8 @@ namespace AppRepository.Enquiry
         Article GetById(Guid id);
         Article GetByTitle(string title);
         IList<Article> GetAll();
+        IList<ArticleType> GetAllType();
+        void UpdateType(ArticleType type);
     }
     public class ArticleService : IArticleService
     {
@@ -40,6 +42,26 @@ namespace AppRepository.Enquiry
         public IList<Article> GetAll()
         {
             return this.techPortalEntities.Articles.ToList();
+        }
+
+        public IList<ArticleType> GetAllType()
+        {
+            return this.techPortalEntities.ArticleTypes.ToList();
+        }
+
+        public void UpdateType(ArticleType type)
+        {
+            if(type.Id != Guid.Empty)
+            {
+                var artileType= this.techPortalEntities.ArticleTypes.SingleOrDefault(x => x.Id == type.Id); 
+                artileType.Name = type.Name;                
+            }
+            else
+            {
+                type.Id = Guid.NewGuid();
+                this.techPortalEntities.ArticleTypes.Add(type);
+            }
+            this.techPortalEntities.SaveChanges();
         }
     }
 }

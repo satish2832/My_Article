@@ -1,41 +1,68 @@
-﻿<div class="container">
+﻿@model TechPortalWeb.Models.ArticleModel
+
+<div class="container">
     <section class="article-create">
         <div class="d-flex justify-content-end mt-3">
-            <a href="/admin" class="btn btn-secondary">Back to Articles</a>
+            <a href="@Url.Action("Index", "Admin")" class="btn btn-secondary">Back to Articles</a>
         </div>
         <h2><i class="fa-solid fa-edit"></i> Article Create</h2>
         <hr />
         <div class="row">
-            <!-- First Column -->
+            <!-- Title -->
             <div class="col-md-12 mb-3">
-                <label class="form-label">Title</label>
-                <input type="text" id="article-title" class="form-control" />
+                @Html.LabelFor(model => model.Title, new { @class = "form-label" })
+                @Html.TextBoxFor(model => model.Title, new { @class = "form-control", id = "article-title" })
+                <span class="text-danger" id="error-title"></span>
             </div>
+            <!-- Title URL -->
             <div class="col-md-12 mb-3">
-                <label class="form-label">Title URL</label>
-                <input type="text" id="article-title-url" class="form-control" />
+                @Html.LabelFor(model => model.TitleURL, new { @class = "form-label" })
+                @Html.TextBoxFor(model => model.TitleURL, new { @class = "form-control", id = "article-title-url" })
+                <span class="text-danger" id="error-title-url"></span>
             </div>
+            <!-- Article Type -->
             <div class="col-md-12 mb-3">
-                <label class="form-label">Content</label>
-                <textarea class="content form-control" id="content-editor" name="content"></textarea>
+                @Html.LabelFor(model => model.ArticleTypeId, "Select Article Type", new { @class = "form-label" })
+                @Html.DropDownListFor(
+                    model => model.ArticleTypeId,
+                    new SelectList(Model.ArticleTypes, "Id", "Name"),
+                    "Select an Article Type",
+                    new { @class = "form-control", id = "article-type-dropdown" }
+                )
+                <span class="text-danger" id="error-article-type"></span>
             </div>
+            <!-- Content -->
             <div class="col-md-12 mb-3">
-                <label class="form-label">Images</label>
+                @Html.LabelFor(model => model.Content, new { @class = "form-label" })
+                @Html.TextAreaFor(model => model.Content, new { @class = "form-control content", id = "content-editor", rows = 10 })
+                <span class="text-danger" id="error-content"></span>
+            </div>
+            <!-- Images -->
+            <div class="col-md-12 mb-3">
+                @Html.Label("Images", new { @class = "form-label" })
                 <input type="file" id="file-input" class="form-control" multiple accept="image/*" />
                 <div class="preview mt-3" id="preview"></div>
+                <span class="text-danger" id="error-images"></span>
             </div>
+            <!-- Tags -->
+            <div class="col-md-12 mb-3">
+                @Html.LabelFor(model => model.Tags, "Tags", new { @class = "form-label" })
+                <input type="text" id="tags-input" class="form-control" placeholder="Press Enter to add a tag" />
+                <div class="tags-container mt-2" id="tags-container"></div>
+                @Html.HiddenFor(model => model.Tags, new { id = "tags-hidden" })
+                <span class="text-danger" id="error-tags"></span>
+            </div>
+
         </div>
+        <!-- Submit Button -->
         <div class="d-flex justify-content-end mt-3">
             <button id="btnCreateArticle" class="btn btn-primary">Create</button>
         </div>
     </section>
 </div>
+
 <script>
     $(document).ready(function () {
-        $('#content-editor').richText();        
+        $('#content-editor').richText();
     });
 </script>
-
-
-
-

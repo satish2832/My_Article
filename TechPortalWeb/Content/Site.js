@@ -182,9 +182,17 @@ $(document).ready(function () {
     if (!firstNavLink || firstNavLink.length == 0) {
         return;
     }
-    loadPageContent('.admin-container .nav-item:first-child .nav-link', '.admin-container');
-    // Handle sidebar link click
-    $('.admin-container .nav-link').on('click', function (e) {
+    const currentUrl = window.location.pathname;
+    const defaultAdminUrl = '/admin/enquiry-list'
+    // Dynamically load the content based on the current URL
+    if (currentUrl.startsWith('/admin/')) {
+        loadPageContent('.admin-container .nav-item:first-child .nav-link', '.admin-container', currentUrl);       
+    }
+    if (currentUrl == '/admin' || currentUrl == '/admin/') {
+        loadPageContent('.admin-container .nav-item:first-child .nav-link', '.admin-container', defaultAdminUrl);
+    } 
+    // Handle sidebar link click   
+    $(document).on('click', '.admin-container .nav-link', function (e) {
         e.preventDefault(); // Prevent default link behavior
 
         // Remove active class from all links and add it to the clicked one
@@ -205,7 +213,8 @@ $(document).ready(function () {
     }
     loadPageContent('.admin-candidate-container .nav-item:first-child .nav-link', '.admin-candidate-container');
     // Handle sidebar link click
-    $('.admin-candidate-container .nav-link').on('click', function (e) {
+  
+    $(document).on('click', '.admin-candidate-container .nav-link', function (e) {
         e.preventDefault(); // Prevent default link behavior
 
         // Remove active class from all links and add it to the clicked one
@@ -215,9 +224,9 @@ $(document).ready(function () {
     });
 });
 
-function loadPageContent(selector, parentSelector) {
+function loadPageContent(selector, parentSelector, pageUrl) {
     // Get the URL from the data attribute
-    const url = $(selector).data('url');
+    const url = pageUrl ? pageUrl : $(selector).data('url');
     if (!url) {
         return;
     }
@@ -228,6 +237,9 @@ function loadPageContent(selector, parentSelector) {
         success: function (data) {
             // Load the fetched content into the right-side panel
             $(`${parentSelector} #content-area`).html(data);
+            if (history.pushState) {
+                history.pushState(null, '', url);
+            }
         },
         error: function (error) {
             $(`${parentSelector} #content-area`).html('<p class="text-danger">Failed to load content. Please try again.</p>');
@@ -235,7 +247,7 @@ function loadPageContent(selector, parentSelector) {
     });
 }
 
-$(document).ready(function () {   
+$(document).ready(function () {
     let selectedFiles = []; // Array to hold selected files
     // Handle file input change event
     $(document).on('change', '#file-input', function () {
@@ -313,9 +325,10 @@ $(document).ready(function () {
         // Collect form data
         const title = $('#article-title').val();
         const titleurl = $('#article-title-url').val();
+        const articleType = $('#article-type-dropdown option:selected').val();
         const content = $('#content-editor').val();
         const files = $fileInput[0].files;
-
+        const tags = $('#tags-hidden').val();
         // Validate inputs
         if (!title || !titleurl || !content) {
             alert('Title and Title URL and content are required!');
@@ -326,12 +339,14 @@ $(document).ready(function () {
         const formData = new FormData();
         formData.append('Title', title);
         formData.append('TitleURL', titleurl);
+        formData.append('ArticleTypeId', articleType);
         formData.append('Content', content);
 
         // Append files to FormData
         for (let i = 0; i < files.length; i++) {
             formData.append('Images', files[i]);
         }
+        formData.append('Tags', tags);
 
         // Send data to the server via AJAX
         $.ajax({
@@ -341,7 +356,7 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (response) {
-                alert('Article created successfully!');                
+                alert('Article created successfully!');
             },
             error: function (error) {
                 alert('Failed to create the article!');
@@ -349,4 +364,132 @@ $(document).ready(function () {
             }
         });
     });
+});
+
+$(document).ready(function () {
+    // Add New Article Type
+    $(document).on('click', '#add-article-type', function () {
+        const newName = $('#new-article-type-name').val().trim();
+
+        if (!newName) {
+            $('#add-error-message').removeClass('d-none');
+            return;
+        }
+
+        $('#add-error-message').addClass('d-none');
+
+        // Simulate AJAX call to add new article type
+        $.ajax({
+            url: '/admin/article-type-save', // Update with your actual endpoint
+            method: 'POST',
+            data: { name: newName },
+            success: function (response) {
+                if (response.isSaved) {
+                    const newRow = `
+                                <tr data-id="${response.id}">
+                                    <td class="name">
+                                        <span class="view-mode">${newName}</span>
+                                        <input type="text" class="edit-mode form-control d-none" value="${newName}" />
+                                    </td>
+                                    <td class="action-buttons">
+                                        <button class="btn btn-warning btn-sm edit-button">Edit</button>
+                                        <button class="btn btn-success btn-sm save-button d-none">Save</button>
+                                        <button class="btn btn-danger btn-sm cancel-button d-none">Cancel</button>
+                                    </td>
+                                </tr>
+                            `;
+                    $('#article-type-table').append(newRow);
+                    $('#new-article-type-name').val('');
+                } else {
+                    alert('Failed to add article type.');
+                }
+            },
+            error: function () {
+                alert('Error occurred while adding the article type.');
+            }
+        });
+    });
+
+    // Edit Button Click
+    $(document).on('click', '#article-type-table .edit-button', function () {
+        const row = $(this).closest('tr');
+        row.find('.view-mode').addClass('d-none');
+        row.find('.edit-mode').removeClass('d-none');
+        row.find('.edit-button').addClass('d-none');
+        row.find('.save-button, .cancel-button').removeClass('d-none');
+    });
+
+    // Cancel Button Click
+    $(document).on('click', '#article-type-table .cancel-button', function () {
+        const row = $(this).closest('tr');
+        row.find('.view-mode').removeClass('d-none');
+        row.find('.edit-mode').addClass('d-none');
+        row.find('.edit-button').removeClass('d-none');
+        row.find('.save-button, .cancel-button').addClass('d-none');
+    });
+
+    // Save Button Click
+    $(document).on('click', '#article-type-table .save-button', function () {
+        const row = $(this).closest('tr');
+        const id = row.data('id');
+        const newName = row.find('.edit-mode').val();
+
+        $.ajax({
+            url: '/admin/article-type-save', // Update with your actual endpoint
+            method: 'POST',
+            data: { id: id, name: newName },
+            success: function (response) {
+                if (response.isSaved) {
+                    row.find('.view-mode').text(newName).removeClass('d-none');
+                    row.find('.edit-mode').addClass('d-none');
+                    row.find('.edit-button').removeClass('d-none');
+                    row.find('.save-button, .cancel-button').addClass('d-none');
+                } else {
+                    alert('Failed to update article type.');
+                }
+            },
+            error: function () {
+                alert('Error occurred while updating the article type.');
+            }
+        });
+    });
+});
+
+$(document).ready(function () {
+    let tags = [];
+
+    // Add tag on Enter
+    $(document).on('keypress', '#tags-input', function (e) {
+        if (e.which === 13) { // Enter key
+            e.preventDefault();
+            const tag = $(this).val().trim();
+            if (tag && !tags.includes(tag)) {
+                tags.push(tag);
+                updateTagsContainer();
+            }
+            $(this).val(''); // Clear the input
+        }
+    });
+
+    // Remove tag
+    $(document).on('click', '.remove-tag', function () {
+        const tag = $(this).data('tag');
+        tags = tags.filter(t => t !== tag);
+        updateTagsContainer();
+    });
+
+    // Update the tags container and hidden input
+    function updateTagsContainer() {
+        const container = $('#tags-container');
+        container.empty();
+        tags.forEach(tag => {
+            container.append(`
+                    <span class="badge bg-primary me-2">
+                        ${tag} 
+                        <i class="fa fa-times remove-tag" data-tag="${tag}" style="cursor: pointer;"></i>
+                    </span>
+                `);
+        });
+        $('#tags-hidden').val(tags.join(',')); // Update hidden input
+    }
 });

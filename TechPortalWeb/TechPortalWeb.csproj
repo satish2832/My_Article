@@ -154,6 +154,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AjaxOrFullViewAttribute.cs" />
     <Compile Include="Helpers\ArticleCreateHelper.cs" />
     <Compile Include="Helpers\CamelCaseJsonResult.cs" />
     <Compile Include="Helpers\Constants.cs" />
@@ -162,6 +163,7 @@
     <Compile Include="Helpers\MapperHelper.cs" />
     <Compile Include="Helpers\UnityConfigHelper.cs" />
     <Compile Include="Models\ArticleModel.cs" />
+    <Compile Include="Models\ArticleTypeModel.cs" />
     <Compile Include="Models\ContentModel.cs" />
     <Compile Include="Models\EnquiryFormModel.cs" />
     <Compile Include="Models\FollowUpModel.cs" />
@@ -345,6 +347,7 @@
     <Content Include="Views\Admin\CandidateFollowupDetails.cshtml" />
     <Content Include="Views\Admin\ArticleCreate.cshtml" />
     <Content Include="Views\Admin\GetAllArticle.cshtml" />
+    <Content Include="Views\Admin\ArticleTypeCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

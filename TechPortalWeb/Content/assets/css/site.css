@@ -565,3 +565,9 @@ td.actions {
     font-size: 16px;
     cursor: pointer;
 }
+.action-buttons {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 10px; 
+}

@@ -24,5 +24,7 @@ namespace TechPortalWeb.Models
         public string UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
 
+        public IEnumerable<ArticleTypeModel> ArticleTypes { get; set; }
+
     }
 }
