@@ -571,3 +571,14 @@ td.actions {
     align-items: center; 
     gap: 10px; 
 }
+#pagination-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    gap:5px;
+}
+
+    #pagination-controls select, #pagination-controls button {
+        margin-right: 10px;
+    }

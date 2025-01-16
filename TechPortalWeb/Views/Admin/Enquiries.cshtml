@@ -23,7 +23,7 @@
             <tbody>
                 @foreach (var enquiry in Model)
                 {
-                    <tr>
+                    <tr class="enquiry-row">
                         <td>@enquiry.Name</td>
                         <td>@enquiry.PhoneNumber</td>
                         <td>@enquiry.Email</td>
@@ -36,6 +36,31 @@
                 }
             </tbody>
         </table>
+        <div id="pagination-controls">
+            <select id="page-size" class="form-control">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+            <button id="prev-page" class="btn btn-secondary">Previous</button>
+            <span id="current-page">1</span> / <span id="total-pages">1</span>
+            <button id="next-page" class="btn btn-secondary">Next</button>
+        </div>
+
     </section>
 </div>
+<script>
+    $(function () {
+        debugger;
+        let rowsPerPage = 5;
+        let currentPage = 1;
+        var totalRows = $('#enquiryTable tbody tr').length;
+        var totalPages = Math.ceil(totalRows / rowsPerPage);
+        $('#total-pages').text(totalPages);
+
+        // Show the first page
+        showPage(currentPage, rowsPerPage);
+    });
+</script>
 

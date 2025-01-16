@@ -186,11 +186,11 @@ $(document).ready(function () {
     const defaultAdminUrl = '/admin/enquiry-list'
     // Dynamically load the content based on the current URL
     if (currentUrl.startsWith('/admin/')) {
-        loadPageContent('.admin-container .nav-item:first-child .nav-link', '.admin-container', currentUrl);       
+        loadPageContent('.admin-container .nav-item:first-child .nav-link', '.admin-container', currentUrl);
     }
     if (currentUrl == '/admin' || currentUrl == '/admin/') {
         loadPageContent('.admin-container .nav-item:first-child .nav-link', '.admin-container', defaultAdminUrl);
-    } 
+    }
     // Handle sidebar link click   
     $(document).on('click', '.admin-container .nav-link', function (e) {
         e.preventDefault(); // Prevent default link behavior
@@ -213,7 +213,7 @@ $(document).ready(function () {
     }
     loadPageContent('.admin-candidate-container .nav-item:first-child .nav-link', '.admin-candidate-container');
     // Handle sidebar link click
-  
+
     $(document).on('click', '.admin-candidate-container .nav-link', function (e) {
         e.preventDefault(); // Prevent default link behavior
 
@@ -493,3 +493,59 @@ $(document).ready(function () {
         $('#tags-hidden').val(tags.join(',')); // Update hidden input
     }
 });
+
+$(document).ready(function () {
+    // Initial variables
+    let rowsPerPage = 5;  // Default rows per page
+    let currentPage = 1;
+    let totalRows = $('.enquiry-row').length;
+    let totalPages = Math.ceil(totalRows / rowsPerPage);
+
+    // Update the total pages text
+    $('#total-pages').text(totalPages);
+
+    // Show the first page
+    showPage(currentPage, rowsPerPage);
+
+    // Page size dropdown change    
+    $(document).on('change', '#page-size', function () {
+        rowsPerPage = parseInt($(this).val());
+        totalPages = Math.ceil(totalRows / rowsPerPage);
+        $('#total-pages').text(totalPages);
+        currentPage = 1; // Reset to the first page
+        $('#current-page').text(currentPage);
+        showPage(currentPage, rowsPerPage);
+    });
+
+    // Previous page button click    
+    $(document).on('click', '#prev-page', function () {
+        if (currentPage > 1) {
+            currentPage--;
+            $('#current-page').text(currentPage);
+            showPage(currentPage, rowsPerPage);
+        }
+    });
+
+    // Next page button click   
+    $(document).on('click', '#next-page', function () {
+        if (currentPage < totalPages) {
+            currentPage++;
+            $('#current-page').text(currentPage);
+            showPage(currentPage, rowsPerPage);
+        }
+    });
+});
+
+// Function to show the relevant rows for the current page
+function showPage(page, rowsPerPage) {
+    // Hide all rows
+    $('.enquiry-row').hide();
+
+    // Calculate the range of rows to show for the current page
+    let startIndex = (page - 1) * rowsPerPage;
+    let endIndex = startIndex + rowsPerPage;
+
+    // Show the relevant rows
+    $('.enquiry-row').slice(startIndex, endIndex).show();
+}
+
