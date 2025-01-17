@@ -634,15 +634,13 @@ td.actions {
 .article-content {
     background: #fff;
     padding: 20px;
-    margin: 20px auto;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
     color: #333;
     background-color: #f9f9f9;
-    margin: 0;
-    padding: 0;
+    margin-top: 75px !important;
 }
 
     /* Header Styles */
