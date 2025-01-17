@@ -1,0 +1,276 @@
+﻿@{
+    ViewBag.Title = "JobTemplate";
+    //Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Job Post Template</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+
+
+        .section-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .generate-btn {
+            margin-top: 20px;
+            background: linear-gradient(to right, #ff512f, #dd2476);
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .output-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .generated-html-content {
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            background: #ffffff;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .widget {
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            position: relative;
+            transition: all 0.3s;
+            margin:10px 10px;
+        }
+
+            .widget:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .widget .form-control {
+                border-radius: 8px;
+                padding: 10px;
+                border: 1px solid #ddd;
+            }
+
+        .qualification-widget {
+            background: linear-gradient(to right, #ff512f, #ff3366);
+        }
+
+        .location-widget {
+            background: linear-gradient(to right, #1e90ff, #00bfff);
+        }
+
+        .company-widget {
+            background: linear-gradient(to right, #43cea2, #185a9d);
+        }
+
+        .interview-widget {
+            background: linear-gradient(to right, #ffafbd, #ffc3a0);
+        }
+
+        .apply-widget {
+            background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+        }
+
+        .widget .form-control:focus {
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+            border-color: #007bff;
+        }
+
+        .widget h3 {
+            color: #fff;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .widget p {
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .output-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-post {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 25px;
+        }
+
+            .job-post h2 {
+                font-size: 1.7rem;
+                margin-bottom: 20px;
+                color: #ff512f;
+                font-weight: 700;
+            }
+
+        .btn-success {
+            background: linear-gradient(to right, #43cea2, #185a9d);
+            border: none;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+            .btn-success:hover {
+                transform: scale(1.05);
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            }
+
+        .modal-content {
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Create Job Post Template</h2>
+
+        <!-- Job Title Widget -->
+        <div class="widget qualification-widget">
+            <h3>Job Title</h3>
+            <input type="text" class="form-control" id="jobTitle" placeholder="Enter job title">
+        </div>
+
+        <!-- Qualification Widget -->
+        <div class="widget qualification-widget">
+            <h3>Qualification</h3>
+            <textarea class="form-control" id="qualification" placeholder="Enter qualifications"></textarea>
+        </div>
+
+        <!-- Last Date to Apply Widget -->
+        <div class="widget location-widget">
+            <h3>Last Date to Apply</h3>
+            <input type="date" class="form-control" id="lastDate">
+        </div>
+
+        <!-- Job Location Widget -->
+        <div class="widget location-widget">
+            <h3>Job Location</h3>
+            <input type="text" class="form-control" id="jobLocation" placeholder="Enter job location">
+        </div>
+
+        <!-- Company Profile Widget -->
+        <div class="widget company-widget">
+            <h3>Company Profile</h3>
+            <textarea class="form-control" id="companyProfile" placeholder="Enter company profile"></textarea>
+        </div>
+
+        <!-- Interview Process Widget -->
+        <div class="widget interview-widget">
+            <h3>Interview Process Levels</h3>
+            <textarea class="form-control" id="interviewProcess" placeholder="Describe the interview process, one step per line"></textarea>
+        </div>
+
+        <!-- Apply Button Link Widget -->
+        <div class="widget apply-widget">
+            <h3>Apply Button Link</h3>
+            <input type="url" class="form-control" id="applyLink" placeholder="Enter apply link URL">
+        </div>
+
+        <!-- Generate Button -->
+        <button id="generateHtml" class="btn btn-primary generate-btn">Generate HTML</button>
+
+        <!-- Output Section -->
+        <div class="output-section">
+            <h4>Generated HTML Content</h4>
+            <div id="output" class="generated-html-content"></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#generateHtml').click(function () {
+                const jobTitle = $('#jobTitle').val();
+                const qualification = $('#qualification').val().split('\n').map(item => item.trim()).filter(item => item);
+                const lastDate = $('#lastDate').val();
+                const jobLocation = $('#jobLocation').val();
+                const companyProfile = $('#companyProfile').val();
+                const interviewProcess = $('#interviewProcess').val().split('\n').map(step => step.trim()).filter(step => step);
+                const applyLink = $('#applyLink').val();
+
+                const qualificationHtml = `<ul class="qualification-list">${qualification.map(item => `<li>${item}</li>`).join('')}</ul>`;
+                const interviewProcessHtml = interviewProcess.map((step, index) => `
+                <div class="process-step">
+                    <div><strong>Level ${index + 1}:</strong> ${step}</div>
+                </div>
+            `).join('');
+
+                const htmlContent = `
+        <div class="job-post">
+            <div class="widget qualification-widget">
+                <h3>${jobTitle}</h3>
+            </div>
+
+            <div class="widget qualification-widget">
+                <h4>Qualifications</h4>
+                <div class="qualification-list">${qualificationHtml}</div>
+            </div>
+
+            <div class="widget-container">
+                <div class="widget location-widget">
+                    <h4>Last Date to Apply</h4>
+                    <p>${lastDate}</p>
+                </div>
+
+                <div class="widget location-widget">
+                    <h4>Location</h4>
+                    <p>${jobLocation}</p>
+                </div>
+            </div>
+
+            <div class="widget company-widget">
+                <h4>Company Profile</h4>
+                <p>${companyProfile}</p>
+            </div>
+
+            <div class="widget interview-widget">
+                <h4>Interview Process</h4>
+                <div class="process-container">
+                    ${interviewProcessHtml}
+                </div>
+            </div>
+
+            <div class="widget apply-widget">
+                <a href="${applyLink}" class="btn btn-success" target="_blank">Apply Now</a>
+            </div>
+        </div>`;
+
+
+                $('#output').text(htmlContent);  // Use .html() to render the rich content
+            });
+        });
+
+    </script>
+</body>
+</html>

@@ -32,8 +32,11 @@ namespace AppRepository.Enquiry
             }
             else
             {
-                var removedImages = this.techPortalEntities.ArticleImages.Where(x=> article.removedImageIds.Contains(x.Id)).ToList();  
-                this.techPortalEntities.ArticleImages.RemoveRange(removedImages);
+                if (article.removedImageIds != null)
+                {
+                    var removedImages = this.techPortalEntities.ArticleImages.Where(x => article.removedImageIds.Contains(x.Id)).ToList();
+                    this.techPortalEntities.ArticleImages.RemoveRange(removedImages);
+                }
                 articleExisted.Title = article.Title;
                 articleExisted.ArticleTypeId = article.ArticleTypeId;
                 articleExisted.ContentFile = article.ContentFile;

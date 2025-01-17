@@ -199,6 +199,11 @@ namespace TechPortalWeb.Controllers
             return View(model);
         }
 
+        public ActionResult JobTemplate()
+        {
+            return View();
+        }
+
         [AdminAuthorize]
         [Route("logout")]
         public ActionResult Logout()
