@@ -248,85 +248,81 @@ function loadPageContent(selector, parentSelector, pageUrl) {
 }
 
 $(document).ready(function () {
-    let selectedFiles = []; // Array to hold selected files
-    // Handle file input change event
+    let selectedFiles = []; // New files
+    let removedIds = []; // IDs of existing images marked for removal
+
+    // Handle new file selection
     $(document).on('change', '#file-input', function () {
         const files = Array.from(this.files);
 
-        // Add new files to the selected files array
         files.forEach((file, index) => {
             if (file.type.startsWith('image/')) {
                 selectedFiles.push(file);
-                addPreview(file, selectedFiles.length - 1); // Add preview for the new file
+                addPreview(file, selectedFiles.length - 1, false);
             } else {
                 alert('Only image files are allowed.');
             }
         });
 
-        // Update the file input to match selectedFiles
         updateFileInput();
     });
 
-    // Add image preview
-    function addPreview(file, index) {
+    // Add preview for a file
+    function addPreview(file, index, isExisting) {
         const reader = new FileReader();
 
         reader.onload = function () {
-            // Create a container for the image and remove button
-            const $previewItem = $(`
-                <div class="preview-item" data-index="${index}">
-                    <img src="${reader.result}" alt="Preview" />
-                    <button type="button" class="remove-btn" title="Remove Image">&times;</button>
-                </div>
-            `);
-            const $preview = $('#preview');
-            // Append the preview item to the preview container
-            $preview.append($previewItem);
+            const previewItem = `
+            <div class="preview-item ${isExisting ? 'existing' : ''}" data-index="${index}">
+                <img src="${reader.result}" alt="Preview" />
+                <button type="button" class="remove-btn" title="Remove Image">&times;</button>
+            </div>
+        `;
+            $('#preview').append(previewItem);
         };
 
-        reader.readAsDataURL(file); // Read the file as a data URL
+        reader.readAsDataURL(file);
     }
 
-    // Handle remove button click event
+    // Handle remove button click
     $(document).on('click', '.remove-btn', function () {
         const $previewItem = $(this).closest('.preview-item');
-        const index = parseInt($previewItem.data('index'));
 
-        // Remove the file from the selected files array
-        selectedFiles.splice(index, 1);
+        if ($previewItem.hasClass('existing')) {
+            // Mark existing image for removal
+            const id = $previewItem.data('id');
+            removedIds.push(id);
+        } else {
+            // Remove new file from the selected files array
+            const index = parseInt($previewItem.data('index'));
+            selectedFiles.splice(index, 1);
+        }
 
-        // Remove the preview item from the DOM
+        // Remove preview item from the DOM
         $previewItem.remove();
-        const $preview = $('#preview');
-        // Update indices of remaining preview items
-        $preview.find('.preview-item').each((i, item) => {
-            $(item).attr('data-index', i);
-        });
 
-        // Update the file input to match selectedFiles
         updateFileInput();
     });
 
-    // Update file input with selectedFiles array
+    // Update the file input's FileList to match selectedFiles
     function updateFileInput() {
         const dataTransfer = new DataTransfer();
-
-        // Append all files from selectedFiles array to DataTransfer
         selectedFiles.forEach(file => dataTransfer.items.add(file));
-        const $fileInput = $('#file-input');
-        // Assign the new FileList to the file input
-        $fileInput[0].files = dataTransfer.files;
+        $('#file-input')[0].files = dataTransfer.files;
     }
+
 
     // Handle form submission
     $(document).on('click', '#btnCreateArticle', function (e) {
         e.preventDefault();
         const $fileInput = $('#file-input');
         // Collect form data
+        const id = $("#article-id").val();
         const title = $('#article-title').val();
         const titleurl = $('#article-title-url').val();
         const articleType = $('#article-type-dropdown option:selected').val();
         const content = $('#content-editor').val();
+        const contentFileUrl = $("#article-content-file-url").val();
         const files = $fileInput[0].files;
         const tags = $('#tags-hidden').val();
         // Validate inputs
@@ -337,15 +333,18 @@ $(document).ready(function () {
 
         // Create FormData object
         const formData = new FormData();
+        formData.append("Id", id);
         formData.append('Title', title);
         formData.append('TitleURL', titleurl);
         formData.append('ArticleTypeId', articleType);
         formData.append('Content', content);
+        formData.append("ContentFileURL", contentFileUrl);
 
         // Append files to FormData
         for (let i = 0; i < files.length; i++) {
             formData.append('Images', files[i]);
         }
+        formData.append("removedImageIds", removedIds);
         formData.append('Tags', tags);
 
         // Send data to the server via AJAX

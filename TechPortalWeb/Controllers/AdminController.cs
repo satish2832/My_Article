@@ -142,7 +142,8 @@ namespace TechPortalWeb.Controllers
                 }
             }
             var content = HttpUtility.UrlDecode(articleCreateModel.Content);
-            var fileName = "Article_" + Guid.NewGuid().ToString() + "_" + DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss");
+            var fileName = articleCreateModel.Id == Guid.Empty ?
+                "Article_" + Guid.NewGuid().ToString() + "_" + DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss") : articleCreateModel.ContentFileURL;
             var isFileGenerated = ArticleCreateHelper.GenerateGzipFile(content, fileName);
             if (isFileGenerated)
             {

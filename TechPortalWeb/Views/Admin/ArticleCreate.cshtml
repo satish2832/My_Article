@@ -3,11 +3,13 @@
 <div class="container">
     <section class="article-create">
         <div class="d-flex justify-content-end mt-3">
-            <a href="@Url.Action("Index", "Admin")" class="btn btn-secondary">Back to Articles</a>
+            <a href="/admin/articles-all" class="btn btn-secondary">Back to Articles</a>
         </div>
         <h2><i class="fa-solid fa-edit"></i> Article Create</h2>
         <hr />
         <div class="row">
+            @Html.HiddenFor(model => model.Id, new { @Id = "article-id" })
+            @Html.HiddenFor(model => model.ContentFileURL, new { @Id = "article-content-file-url" })
             <!-- Title -->
             <div class="col-md-12 mb-3">
                 @Html.LabelFor(model => model.Title, new { @class = "form-label" })
@@ -17,7 +19,7 @@
             <!-- Title URL -->
             <div class="col-md-12 mb-3">
                 @Html.LabelFor(model => model.TitleURL, new { @class = "form-label" })
-                <button class="btn btn-primary mb-1" id="btnUpdateTitleUrl"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+                <button class="btn btn-primary mb-1" id="btnUpdateTitleUrl"><i class="fa fa-refresh" aria-hidden="true"></i></button><span> (This will auto-populate from title)</span>
                 @Html.TextBoxFor(model => model.TitleURL, new { @class = "form-control", id = "article-title-url" })
                 <span class="text-danger" id="error-title-url"></span>
             </div>
@@ -42,7 +44,15 @@
             <div class="col-md-12 mb-3">
                 @Html.Label("Images", new { @class = "form-label" })
                 <input type="file" id="file-input" class="form-control" multiple accept="image/*" />
-                <div class="preview mt-3" id="preview"></div>
+                <div class="preview mt-3" id="preview">
+                    @foreach (var image in Model.ImageUrls)
+                    {
+                        <div class="preview-item existing" data-id="@image.Key">
+                            <img src="@image.Value" alt="Preview" />
+                            <button type="button" class="remove-btn" title="Remove Image">&times;</button>
+                        </div>
+                    }
+                </div>
                 <span class="text-danger" id="error-images"></span>
             </div>
             <!-- Tags -->

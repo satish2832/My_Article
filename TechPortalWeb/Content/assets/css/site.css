@@ -454,6 +454,10 @@ td.actions {
     text-align: center;
 }
 
+    td.actions a {
+        margin: 10px;
+    }
+
 /* Sidebar General Styles */
 .admin-container .sidebar,
 .admin-candidate-container .sidebar {
@@ -565,19 +569,21 @@ td.actions {
     font-size: 16px;
     cursor: pointer;
 }
+
 .action-buttons {
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    gap: 10px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
+
 #pagination-controls {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 10px;
-    gap:5px;
-    width:300px;
+    gap: 5px;
+    width: 300px;
 }
 
     #pagination-controls select, #pagination-controls button {
@@ -591,8 +597,8 @@ td.actions {
     margin: 0 auto;
     border-radius: 5px;
     display: block;
-    white-space: pre-wrap; /* Wrap lines if they are too long */
-    word-break: break-word; /* Break long words to avoid overflow */
+    white-space: pre-wrap; 
+    word-break: break-word; 
 }
 
 .article-content h1, h2, h3 {
@@ -608,6 +614,7 @@ td.actions {
     text-decoration: underline;
     cursor: pointer;
 }
-.article-content .header h1{
-    font-size:26px !important;
+
+.article-content .header h1 {
+    font-size: 26px !important;
 }

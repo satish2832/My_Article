@@ -25,7 +25,23 @@ namespace AppRepository.Enquiry
         }
         public void Save(Article article)
         {
-            this.techPortalEntities.Articles.Add(article);            
+            if (article.Id == Guid.Empty)
+            {
+                this.techPortalEntities.Articles.Add(article);               
+            }
+            else
+            {
+                var removedImages = this.techPortalEntities.ArticleImages.Where(x=> article.removedImageIds.Contains(x.Id)).ToList();  
+                this.techPortalEntities.ArticleImages.RemoveRange(removedImages);
+                
+                var articleExisted = this.techPortalEntities.Articles.SingleOrDefault(x => x.Id == article.Id);
+                articleExisted.Title = article.Title;
+                articleExisted.ArticleTypeId = article.ArticleTypeId;
+                articleExisted.ContentFile = article.ContentFile;
+                articleExisted.Tags = article.Tags;                
+                articleExisted.ArticleImages = article.ArticleImages;
+                articleExisted.UpdateDT = article.UpdateDT;
+            }
             this.techPortalEntities.SaveChanges();
         }
 

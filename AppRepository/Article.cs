@@ -11,7 +11,8 @@ namespace AppRepository
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Article
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -36,5 +37,8 @@ namespace AppRepository
         public virtual ArticleType ArticleType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ArticleImage> ArticleImages { get; set; }
+
+        [NotMapped]
+        public Guid[] removedImageIds { get; set; }
     }
 }
