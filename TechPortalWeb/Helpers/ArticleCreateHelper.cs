@@ -25,6 +25,24 @@ namespace TechPortalWeb.Helpers
             return true;
         }
 
+        public static string UpdateImageInContent(string[] images,string content)
+        {
+            if (images == null || images.Length == 0 || string.IsNullOrEmpty(content))
+                return content;
+
+            for (int i = 0; i < images.Length; i++)
+            {
+                // Build the placeholder based on the index
+                string placeholder = $"<<image{i + 1}>>";
+                string encodedPlaceholder = HttpUtility.HtmlEncode(placeholder);
+                // Replace the placeholder with the <img> tag
+                string imgTag = $"<img src=\"{images[i]}\" alt=\"Image{i + 1}\" class=\"img-fluid\" />";
+                content = content.Replace(encodedPlaceholder, imgTag);
+            }
+
+            return content;
+        }
+
         public static byte[] GetByFileName(string fileName)
         {
             string filePath = HttpContext.Current.Server.MapPath($"~/Pages/{fileName}.txt.gz");

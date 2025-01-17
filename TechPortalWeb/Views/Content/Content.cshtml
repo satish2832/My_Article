@@ -1,5 +1,5 @@
 ﻿@model TechPortalWeb.Models.ArticleModel
-
+@using System.Linq;
 
 <section class="article-content">
     <div class="container">
@@ -10,18 +10,32 @@
         <div class="row">
             <div class="col-md-9">
                 @Html.Raw(Model.Content)
+                <!-- Tags Section -->
+                @if (!string.IsNullOrEmpty(Model.Tags))
+                {
+                    var tags = Model.Tags.Split(',');
+                    <div class="tags-section mt-3">
+                        @foreach (var tag in tags)
+                        {
+                            <span class="badge bg-primary me-2">@tag.Trim()</span>
+                        }
+                    </div>
+                }
             </div>
             <div class="col-md-3">
                 <div class="article-right-bar">
-                    <ul class="custom-bullet">
-                        <li><a>How to solve this code</a></li>
-                        <li><a>How to solve this code</a></li>
-                        <li><a>How to solve this code</a></li>
-                        <li><a>How to solve this code</a></li>
-                        <li><a>How to solve this code</a></li>
-                        <li><a>How to solve this code</a></li>
-                        <li><a>How to solve this code</a></li>
-                        <li><a>How to solve this code</a></li>
+                    <ul class="artile-list">
+                        @{
+                            foreach (var article in ViewBag.RelatedArticles)
+                            {
+                                <li>
+                                    <a href="/article/@article.TitleURL">
+                                        <img src="@article.DefualtImageUrl" class="img-fluid" />
+                                        <p>@article.Title</p>
+                                    </a>
+                                </li>
+                            }
+                        }
                     </ul>
                 </div>
             </div>

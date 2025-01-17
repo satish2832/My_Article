@@ -25,7 +25,8 @@ namespace AppRepository.Enquiry
         }
         public void Save(Article article)
         {
-            if (article.Id == Guid.Empty)
+            var articleExisted = this.techPortalEntities.Articles.SingleOrDefault(x => x.Id == article.Id);
+            if (articleExisted == null)
             {
                 this.techPortalEntities.Articles.Add(article);               
             }
@@ -33,8 +34,6 @@ namespace AppRepository.Enquiry
             {
                 var removedImages = this.techPortalEntities.ArticleImages.Where(x=> article.removedImageIds.Contains(x.Id)).ToList();  
                 this.techPortalEntities.ArticleImages.RemoveRange(removedImages);
-                
-                var articleExisted = this.techPortalEntities.Articles.SingleOrDefault(x => x.Id == article.Id);
                 articleExisted.Title = article.Title;
                 articleExisted.ArticleTypeId = article.ArticleTypeId;
                 articleExisted.ContentFile = article.ContentFile;
@@ -57,7 +56,7 @@ namespace AppRepository.Enquiry
 
         public IList<Article> GetAll()
         {
-            return this.techPortalEntities.Articles.ToList();
+            return this.techPortalEntities.Articles.OrderByDescending(x=>x.UpdateDT).ToList();
         }
 
         public IList<ArticleType> GetAllType()

@@ -27,7 +27,7 @@ namespace AppRepository
         public string ContentText { get; set; }
         public byte[] ContentFile { get; set; }
         public string ContentFileURL { get; set; }
-        public Nullable<System.Guid> ArticleTypeId { get; set; }
+        public Nullable<System.Guid> ArticleTypeId { get; set; }        
         public string Tags { get; set; }
         public Nullable<System.Guid> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreateDT { get; set; }

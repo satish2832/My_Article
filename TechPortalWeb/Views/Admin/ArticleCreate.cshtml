@@ -45,13 +45,18 @@
                 @Html.Label("Images", new { @class = "form-label" })
                 <input type="file" id="file-input" class="form-control" multiple accept="image/*" />
                 <div class="preview mt-3" id="preview">
-                    @foreach (var image in Model.ImageUrls)
-                    {
-                        <div class="preview-item existing" data-id="@image.Key">
-                            <img src="@image.Value" alt="Preview" />
-                            <button type="button" class="remove-btn" title="Remove Image">&times;</button>
-                        </div>
-                    }
+                    @{
+                        if (Model.ImageUrls != null)
+                        {
+                            foreach (var image in Model.ImageUrls)
+                            {
+                                <div class="preview-item existing" data-id="@image.Key">
+                                    <img src="@image.Value" alt="Preview" />
+                                    <button type="button" class="remove-btn" title="Remove Image">&times;</button>
+                                </div>
+                            }
+                        }
+                    }                    
                 </div>
                 <span class="text-danger" id="error-images"></span>
             </div>
@@ -75,5 +80,9 @@
 <script>
     $(document).ready(function () {
         $('#content-editor').richText();
+        const existingTags = $("#tags-hidden").val();
+        tags = existingTags ? existingTags.split(',').map(tag => tag.trim()).filter(tag => tag !== '') : [];
+
+        updateTagsContainer(tags);
     });
 </script>

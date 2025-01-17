@@ -64,13 +64,16 @@ namespace TechPortalWeb.Helpers
             article.UpdatedBy = Guid.Parse(Constants.GlobalUserId);
             article.UpdateDT = DateTime.Now;
 
-            article.ArticleImages = articleCreateModel.Images.Select(x => new ArticleImage()
+            if (articleCreateModel.Images != null)
             {
-                Id = Guid.NewGuid(),
-                Image = ArticleCreateHelper.ConvertImageToByteArray(x),
-                ArticleId = article.Id,
-                ImageURL = "Image_" + Guid.NewGuid().ToString() + "_" + DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss")
-            }).ToList();
+                article.ArticleImages = articleCreateModel.Images.Select(x => new ArticleImage()
+                {
+                    Id = Guid.NewGuid(),
+                    Image = ArticleCreateHelper.ConvertImageToByteArray(x),
+                    ArticleId = article.Id,
+                    ImageURL = "Image_" + Guid.NewGuid().ToString() + "_" + DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss")
+                }).ToList();
+            }
             article.removedImageIds = articleCreateModel.removedImageIds;
 
             return article;
@@ -88,13 +91,15 @@ namespace TechPortalWeb.Helpers
             articleCreateModel.ContentFile = article.ContentFile;
             articleCreateModel.ContentFileURL = article.ContentFileURL;
             articleCreateModel.ArticleTypeId = article.ArticleTypeId;
+            articleCreateModel.ArticleType = article.ArticleType?.Name;
             articleCreateModel.Tags = article.Tags;
             articleCreateModel.CreatedBy = Guid.Parse(Constants.GlobalUserId).ToString();
             articleCreateModel.CreatedDate = article.CreateDT;
             articleCreateModel.UpdatedBy = Guid.Parse(Constants.GlobalUserId).ToString();
             articleCreateModel.UpdatedDate = article.UpdateDT;
             articleCreateModel.ImageUrls = article.ArticleImages.ToDictionary(x => x.Id, x => $"/Content/assets/img/articles/{x.ImageURL}.jpg");
-
+            articleCreateModel.DefualtImageUrl = articleCreateModel.ImageUrls.FirstOrDefault().Value != null ?
+                                                 articleCreateModel.ImageUrls.FirstOrDefault().Value : "/Content/assets/img/articles/default.jpg";
             return articleCreateModel;
         }
 

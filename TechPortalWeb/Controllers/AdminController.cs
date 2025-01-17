@@ -92,6 +92,7 @@ namespace TechPortalWeb.Controllers
         }
 
         [AdminAuthorize]
+        [Route("admin/enquiries-all")]
         public JsonResult GetEnquiryData()
         {
             var enquiryList = EnquiryService.GetAll();
@@ -131,6 +132,7 @@ namespace TechPortalWeb.Controllers
         }
 
         [AdminAuthorize]
+        [Route("admin/save-article")]
         public JsonResult SaveArticle(ArticleModel articleCreateModel)
         {            
             var article = MapperHelper.Map<ArticleModel, Article>(articleCreateModel);
@@ -141,7 +143,9 @@ namespace TechPortalWeb.Controllers
                     ArticleCreateHelper.SaveByteArrayAsImage(articleImage.Image, articleImage.ImageURL);
                 }
             }
-            var content = HttpUtility.UrlDecode(articleCreateModel.Content);
+            var imageUrls = article.ArticleImages.Select(x => $"/Content/assets/img/articles/{x.ImageURL}.jpg").ToArray();
+            var contentWithImages = ArticleCreateHelper.UpdateImageInContent(imageUrls, articleCreateModel.Content);
+            var content = HttpUtility.UrlDecode(contentWithImages);
             var fileName = articleCreateModel.Id == Guid.Empty ?
                 "Article_" + Guid.NewGuid().ToString() + "_" + DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss") : articleCreateModel.ContentFileURL;
             var isFileGenerated = ArticleCreateHelper.GenerateGzipFile(content, fileName);

@@ -597,8 +597,8 @@ td.actions {
     margin: 0 auto;
     border-radius: 5px;
     display: block;
-    white-space: pre-wrap; 
-    word-break: break-word; 
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 
 .article-content h1, h2, h3 {
@@ -611,10 +611,123 @@ td.actions {
     min-height: 100%;
     padding: 10px;
     text-decoration-color: #eb5d1e;
-    text-decoration: underline;
+    text-decoration: none;
     cursor: pointer;
+    font-weight: 600;
 }
 
 .article-content .header h1 {
     font-size: 26px !important;
+}
+
+.article-right-bar .artile-list {
+    padding: 0px !important;
+}
+
+    .article-right-bar .artile-list li {
+        list-style: none;
+    }
+
+
+
+/* Article Container */
+.article-content {
+    background: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+    /* Header Styles */
+    .article-content h1 {
+        font-size: 2.5rem;
+        color: #2c3e50;
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    .article-content h2 {
+        font-size: 2rem;
+        color: #34495e;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .article-content h3 {
+        font-size: 1.5rem;
+        color: #4a4a4a;
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+
+    /* Paragraph Styles */
+    .article-content p {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 15px;
+        line-height: 1.8;
+        text-align: justify;
+    }
+
+    /* Strong Text */
+    .article-content strong {
+        color: #d35400;
+        font-weight: bold;
+    }
+
+/* Custom Bullet Points */
+.custom-bullet ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+    .custom-bullet ul li {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 15px;
+    }
+
+        .custom-bullet ul li:before {
+            content: '•';
+            color: #3498db;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+/* Fluid Images */
+.article-content img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+    .article-content h1 {
+        font-size: 2rem;
+    }
+
+    .article-content h2 {
+        font-size: 1.7rem;
+    }
+
+    .article-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .article-content p {
+        font-size: 0.9rem;
+    }
 }

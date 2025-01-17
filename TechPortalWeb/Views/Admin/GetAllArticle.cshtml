@@ -6,7 +6,7 @@
             <span id="loadingIcon" style="display:none;">
                 <i class="fa fa-spinner fa-spin"></i> Loading...
             </span>
-            <button id="refreshButton" class="btn btn-primary"><i class="fa-solid fa-rotate"></i> Refresh</button>
+            <a href="/admin/article-create" class="btn btn-primary"><i class="fa-solid fa-add"></i> Create Article</a>            
         </div>
         <hr />
         <table class="table table-bordered table-data" id="articleTable">
@@ -14,17 +14,17 @@
                 <tr>
                     <th>Title</th>
                     <th>Type</th>
-                    <th>Updated On</th>                    
+                    <th>Updated On</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var article in Model)
                 {
-                    <tr>
+                    <tr class="table-row">
                         <td>@article.Title</td>
                         <td>@article.ArticleType</td>
-                        <td>@article.UpdatedDate</td>                        
+                        <td>@article.UpdatedDate.Value.ToString("dd/MM/yyyy hh:mm tt")</td>
                         <td class="actions">
                             <a class="data-url" href="javascript:void(0)" data-url="/admin/article-create/@article.Id"><i class="fa fa-edit" aria-hidden="true"></i></a>
                             <a href="/article/@article.TitleURL"><i class="fa fa-eye" aria-hidden="true"></i></a>
@@ -33,6 +33,28 @@
                 }
             </tbody>
         </table>
+        <div id="pagination-controls">
+            <select id="page-size" class="form-select">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+            <button id="prev-page" class="btn btn-secondary">Previous</button>
+            <span id="current-page">1</span> / <span id="total-pages">1</span>
+            <button id="next-page" class="btn btn-secondary">Next</button>
+        </div>
     </section>
 </div>
+<script>
+    $(function () {
+        let rowsPerPage = 5;
+        let currentPage = 1;
+        var totalRows = $('#articleTable tbody tr').length;
+        var totalPages = Math.ceil(totalRows / rowsPerPage);
+        $('#total-pages').text(totalPages);
+        // Show the first page
+        showPage(currentPage, rowsPerPage);
+    });
+</script>
 

@@ -90,7 +90,7 @@ $(document).ready(function () {
     $('#refreshButton').on('click', function (e) {
         $('#loadingIcon').show();
         $.ajax({
-            url: '/Admin/GetEnquiryData', // API endpoint
+            url: '/admin/enquiries-all', // API endpoint
             method: 'GET',
             success: function (data) {
                 // Clear the table body
@@ -349,19 +349,42 @@ $(document).ready(function () {
 
         // Send data to the server via AJAX
         $.ajax({
-            url: '/Admin/SaveArticle',
+            url: '/admin/save-article',
             type: 'POST',
             data: formData,
             contentType: false,
             processData: false,
             success: function (response) {
-                alert('Article created successfully!');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Article Created!',
+                    text: 'Your article has been created successfully.',
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        confirmButton: 'btn btn-primary'
+                    },
+                    buttonsStyling: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '/admin/articles-all'; // Navigate to the articles list page
+                    }
+                });
             },
             error: function (error) {
-                alert('Failed to create the article!');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Failed to create the article. Please try again.',
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        confirmButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: false
+                });
                 console.log(error);
             }
         });
+
     });
 
     $(document).on('click', '#btnUpdateTitleUrl', function (e) {
@@ -459,18 +482,17 @@ $(document).ready(function () {
         });
     });
 });
-
-$(document).ready(function () {
-    let tags = [];
-
+var tags = [];
+$(document).ready(function () {    
     // Add tag on Enter
     $(document).on('keypress', '#tags-input', function (e) {
+        
         if (e.which === 13) { // Enter key
             e.preventDefault();
             const tag = $(this).val().trim();
             if (tag && !tags.includes(tag)) {
                 tags.push(tag);
-                updateTagsContainer();
+                updateTagsContainer(tags);
             }
             $(this).val(''); // Clear the input
         }
@@ -480,24 +502,24 @@ $(document).ready(function () {
     $(document).on('click', '.remove-tag', function () {
         const tag = $(this).data('tag');
         tags = tags.filter(t => t !== tag);
-        updateTagsContainer();
-    });
-
-    // Update the tags container and hidden input
-    function updateTagsContainer() {
-        const container = $('#tags-container');
-        container.empty();
-        tags.forEach(tag => {
-            container.append(`
-                    <span class="badge bg-primary me-2">
-                        ${tag} 
-                        <i class="fa fa-times remove-tag" data-tag="${tag}" style="cursor: pointer;"></i>
-                    </span>
-                `);
-        });
-        $('#tags-hidden').val(tags.join(',')); // Update hidden input
-    }
+        updateTagsContainer(tags);
+    }); 
+    
 });
+// Update the tags container and hidden input
+function updateTagsContainer(tags) {
+    const container = $('#tags-container');
+    container.empty();
+    tags.forEach(tag => {
+        container.append(`
+            <span class="badge bg-primary me-2">
+                ${tag} 
+                <i class="fa fa-times remove-tag" data-tag="${tag}" style="cursor: pointer;"></i>
+            </span>
+        `);
+    });
+    $('#tags-hidden').val(tags.join(',')); // Update hidden input
+}
 
 $(document).ready(function () {
     // Initial variables
@@ -509,7 +531,7 @@ $(document).ready(function () {
 
     // Page size dropdown change    
     $(document).on('change', '#page-size', function () {
-        let totalRows = $('.enquiry-row').length;
+        let totalRows = $('.table-row').length;
         rowsPerPage = parseInt($(this).val());
         totalPages = Math.ceil(totalRows / rowsPerPage);
         $('#total-pages').text(totalPages);
@@ -520,7 +542,7 @@ $(document).ready(function () {
 
     // Previous page button click    
     $(document).on('click', '#prev-page', function () {
-        let totalRows = $('.enquiry-row').length;
+        let totalRows = $('.table-row').length;
         let totalPages = Math.ceil(totalRows / rowsPerPage);
         if (currentPage > 1) {
             currentPage--;
@@ -531,7 +553,7 @@ $(document).ready(function () {
 
     // Next page button click   
     $(document).on('click', '#next-page', function () {
-        let totalRows = $('.enquiry-row').length;
+        let totalRows = $('.table-row').length;
         let totalPages = Math.ceil(totalRows / rowsPerPage);
         if (currentPage < totalPages) {
             currentPage++;
@@ -544,13 +566,13 @@ $(document).ready(function () {
 // Function to show the relevant rows for the current page
 function showPage(page, rowsPerPage) {
     // Hide all rows
-    $('.enquiry-row').hide();
+    $('.table-row').hide();
 
     // Calculate the range of rows to show for the current page
     let startIndex = (page - 1) * rowsPerPage;
     let endIndex = startIndex + rowsPerPage;
 
     // Show the relevant rows
-    $('.enquiry-row').slice(startIndex, endIndex).show();
+    $('.table-row').slice(startIndex, endIndex).show();
 }
 
