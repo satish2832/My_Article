@@ -177,6 +177,14 @@ namespace TechPortalWeb.Controllers
             return Json(new { IsSaved = true, Id = articleType.Id }, JsonRequestBehavior.AllowGet);
         }
 
+        [AdminAuthorize]
+        [AjaxOrFullView("JobTemplate", "Admin")]
+        [Route("admin/job-template")]
+        public ActionResult JobTemplate()
+        {
+            return PartialView();
+        }
+
         [Route("login")]
         public ActionResult Login()
         {
@@ -197,12 +205,7 @@ namespace TechPortalWeb.Controllers
                 ViewData["login-error"] = "Invalid username or password.";
             }
             return View(model);
-        }
-
-        public ActionResult JobTemplate()
-        {
-            return View();
-        }
+        }        
 
         [AdminAuthorize]
         [Route("logout")]

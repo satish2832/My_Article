@@ -1,0 +1,25 @@
+﻿@model IEnumerable<TechPortalWeb.Models.ArticleModel>
+
+<section>
+    <!-- Jobs Section -->
+    <div class="container">
+        @{
+            foreach (var item in Model)
+            {
+                <div class="job-card row">
+                    <!-- Image Section -->
+                    <div class="col-md-3">
+                        <img src="@item.DefualtImageUrl" alt="Job Image" class="img-fluid">
+                    </div>
+                    <!-- Details Section -->
+                    <div class="col-md-9 job-details">
+                        <h4>@item.Title</h4>
+                        <p>We are looking for a skilled Software Engineer to join our team.</p>
+                        <a href="/article/@item.TitleURL" class="btn">Apply Now</a>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</section>
+

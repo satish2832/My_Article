@@ -12,6 +12,7 @@ namespace AppRepository.Enquiry
         Article GetById(Guid id);
         Article GetByTitle(string title);
         IList<Article> GetAll();
+        IList<Article> GetAllByType(string type);
         IList<ArticleType> GetAllType();
         void UpdateType(ArticleType type);
     }
@@ -28,7 +29,7 @@ namespace AppRepository.Enquiry
             var articleExisted = this.techPortalEntities.Articles.SingleOrDefault(x => x.Id == article.Id);
             if (articleExisted == null)
             {
-                this.techPortalEntities.Articles.Add(article);               
+                this.techPortalEntities.Articles.Add(article);
             }
             else
             {
@@ -40,7 +41,7 @@ namespace AppRepository.Enquiry
                 articleExisted.Title = article.Title;
                 articleExisted.ArticleTypeId = article.ArticleTypeId;
                 articleExisted.ContentFile = article.ContentFile;
-                articleExisted.Tags = article.Tags;                
+                articleExisted.Tags = article.Tags;
                 articleExisted.ArticleImages = article.ArticleImages;
                 articleExisted.UpdateDT = article.UpdateDT;
             }
@@ -59,7 +60,7 @@ namespace AppRepository.Enquiry
 
         public IList<Article> GetAll()
         {
-            return this.techPortalEntities.Articles.OrderByDescending(x=>x.UpdateDT).ToList();
+            return this.techPortalEntities.Articles.OrderByDescending(x => x.UpdateDT).ToList();
         }
 
         public IList<ArticleType> GetAllType()
@@ -69,10 +70,10 @@ namespace AppRepository.Enquiry
 
         public void UpdateType(ArticleType type)
         {
-            if(type.Id != Guid.Empty)
+            if (type.Id != Guid.Empty)
             {
-                var artileType= this.techPortalEntities.ArticleTypes.SingleOrDefault(x => x.Id == type.Id); 
-                artileType.Name = type.Name;                
+                var artileType = this.techPortalEntities.ArticleTypes.SingleOrDefault(x => x.Id == type.Id);
+                artileType.Name = type.Name;
             }
             else
             {
@@ -80,6 +81,11 @@ namespace AppRepository.Enquiry
                 this.techPortalEntities.ArticleTypes.Add(type);
             }
             this.techPortalEntities.SaveChanges();
+        }
+
+        public IList<Article> GetAllByType(string type)
+        {
+            return this.techPortalEntities.Articles.Where(x => x.ArticleType.Name.Contains(type)).OrderByDescending(x => x.UpdateDT).ToList();
         }
     }
 }

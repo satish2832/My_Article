@@ -17,11 +17,13 @@ namespace TechPortalWeb.Controllers
     {
         public IEnquiryService EnquiryService { get; }
         public ISkillsetService SkillsetService { get; }
+        public IArticleService ArticleService { get; }
 
-        public HomeController(IEnquiryService enquiryService, ISkillsetService skillsetService)
+        public HomeController(IEnquiryService enquiryService, ISkillsetService skillsetService,IArticleService articleService)
         {
             EnquiryService = enquiryService;
             SkillsetService = skillsetService;
+            ArticleService = articleService;
         }
         public ActionResult Index()
         {
@@ -92,10 +94,24 @@ namespace TechPortalWeb.Controllers
             return View(viewName);
         }
 
+        [Route("jobs")]
+        public ActionResult Jobs()
+        {
+            var jobs = ArticleService.GetAllByType("jobs");
+            var jobModels = jobs.Select(x => MapperHelper.Map<Article, ArticleModel>(x));
+            return View(jobModels);
+        }
+        [Route("articles")]
+        public ActionResult Articles()
+        {
+            var jobs = ArticleService.GetAll();
+            var jobModels = jobs.Select(x => MapperHelper.Map<Article, ArticleModel>(x));
+            return View(jobModels);
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page is here.";
-
             return View();
         }        
     }

@@ -30,7 +30,7 @@ namespace TechPortalWeb.Controllers
             var content = ArticleCreateHelper.ReadContentFromGzipFile(article.ContentFileURL);
             article.ContentText = content;
             var articleModel = MapperHelper.Map<Article, ArticleModel>(article);
-            var articles = ArticleService.GetAll();
+            var articles = ArticleService.GetAll().Where(x => x.Id != article.Id);
 
             ViewBag.RelatedArticles = articles.Select(x => MapperHelper.Map<Article, ArticleModel>(x));
             return View("Content", articleModel);

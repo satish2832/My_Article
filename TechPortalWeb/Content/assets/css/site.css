@@ -616,13 +616,15 @@ td.actions {
     cursor: pointer;
     font-weight: 600;
 }
-    .article-right-bar p{
-        line-height:1.3 !important;
-        font-size:14px !important;
+
+    .article-right-bar p {
+        line-height: 1.3 !important;
+        font-size: 14px !important;
     }
-    .article-content .header h1 {
-        font-size: 26px !important;
-    }
+
+.article-content .header h1 {
+    font-size: 26px !important;
+}
 
 .article-right-bar .artile-list {
     padding: 0px !important;
@@ -677,12 +679,12 @@ td.actions {
         line-height: 1.5;
         text-align: justify;
     }
+
     .article-content div {
-       
-        text-align: justify;
+        text-align: start;
     }
     /* Strong Text */
-    .article-content strong {        
+    .article-content strong {
         font-weight: bold;
     }
 
@@ -711,7 +713,7 @@ td.actions {
 /* Fluid Images */
 .article-content img {
     max-width: 100%;
-    min-width:100%;
+    min-width: 100%;
     height: auto;
     margin: 10px 0;
     border-radius: 8px;
@@ -737,7 +739,7 @@ td.actions {
     }
 }
 
-.richText-editor section, .article-content section{
+.richText-editor section, .article-content section {
     padding: 10px !important;
 }
 
@@ -765,15 +767,15 @@ td.actions {
 }
 
 .widget {
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 2px 15px 5px #ffefe8;
     position: relative;
     transition: all 0.3s;
     flex: 1;
-    min-width: 280px; /* Ensures widgets don't shrink too much */
-    margin: 10px 0px;
-    font-weight:500 !important;
+    min-width: 280px;
+    margin: 20px 0px;
+    font-weight: 500 !important;
 }
 
     .widget:hover {
@@ -782,30 +784,37 @@ td.actions {
     }
 
 .qualification-widget {
-    background: linear-gradient(to right, #ff512f, #ff3366);
-    color: #fff;
+    background: #7a6960;
+    color: #ffffff;
+    border: 5px solid #eb5d1e;
 }
-    .qualification-widget h3{
-        color:white;
-    }
-    .location-widget {
-        background: linear-gradient(to right, #1e90ff, #00bfff);
-        color: #fff;
+
+    .qualification-widget h3 {
+        color: white;
     }
 
+.location-widget {
+    background: #7a6960;
+    color: #ffffff;
+    border: 5px solid #eb5d1e;
+}
+
 .company-widget {
-    background: linear-gradient(to right, #43cea2, #185a9d);
-    color: #fff;
+    background: #7a6960;
+    color: #ffffff;
+    border: 5px solid #eb5d1e;
 }
 
 .interview-widget {
-    background: linear-gradient(to right, #ffafbd, #ffc3a0);
-    color: #fff;
+    background: #7a6960;
+    color: #ffffff;
+    border: 5px solid #eb5d1e;
 }
 
 .apply-widget {
-    background: linear-gradient(to right, #a1c4fd, #c2e9fb);
-    color: #fff;
+    background: #7a6960;
+    color: #ffffff;
+    border: 5px solid #eb5d1e;
 }
 
 .widget h3, .widget h4 {
@@ -820,11 +829,11 @@ td.actions {
 
 .qualification-list {
     list-style-type: disc;
-    padding-left: 20px;
+    padding-left: 10px;
 }
 
 .btn-success {
-    background: linear-gradient(to right, #43cea2, #185a9d);
+    background: #8BC34A;
     border: none;
     color: #fff;
     padding: 12px 20px;
@@ -849,9 +858,62 @@ td.actions {
 }
 
     .process-step div {
-        background: #03A9F4;
+        background: #eb5d1e;
         padding: 12px 20px;
         border-radius: 8px;
         box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
-        font-weight:500;
+        font-weight: 500;
     }
+
+.job-card {
+    background: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.job-image {
+    flex: 1;
+    max-width: 200px;
+    overflow: hidden;
+}
+
+    .job-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.job-details {
+    flex: 3;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+    .job-details h4 {
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .job-details p {
+        color: #666;
+        margin: 10px 0;
+    }
+
+    .job-details .btn {
+        background: linear-gradient(to right, #43cea2, #185a9d);
+        color: white;
+        border: none;
+        width: fit-content;
+        padding: 10px 20px;
+        margin-top: auto;
+    }
+
+        .job-details .btn:hover {
+            background: linear-gradient(to right, #185a9d, #43cea2);
+        }
