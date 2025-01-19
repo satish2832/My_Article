@@ -12,7 +12,8 @@ namespace AppRepository.Enquiry
         Article GetById(Guid id);
         Article GetByTitle(string title);
         IList<Article> GetAll();
-        IList<Article> GetAllByType(string type);
+        bool Delete(Guid id);
+        IList<Article> GetAllByType(string type,bool isContains);
         IList<ArticleType> GetAllType();
         void UpdateType(ArticleType type);
     }
@@ -83,9 +84,32 @@ namespace AppRepository.Enquiry
             this.techPortalEntities.SaveChanges();
         }
 
-        public IList<Article> GetAllByType(string type)
+        public IList<Article> GetAllByType(string type,bool isContains)
         {
-            return this.techPortalEntities.Articles.Where(x => x.ArticleType.Name.Contains(type)).OrderByDescending(x => x.UpdateDT).ToList();
+            if (isContains)
+            {
+                return this.techPortalEntities.Articles.Where(x => x.ArticleType.Name.Contains(type)).OrderByDescending(x => x.UpdateDT).ToList();
+            }
+            else
+            {
+                return this.techPortalEntities.Articles.Where(x => !x.ArticleType.Name.Contains(type)).OrderByDescending(x => x.UpdateDT).ToList();
+            }
+        }
+
+        public bool Delete(Guid id)
+        {
+            var articleImages = this.techPortalEntities.ArticleImages.Where(x => x.ArticleId == id);
+            if (articleImages.Any())
+            {
+                this.techPortalEntities.ArticleImages.RemoveRange(articleImages);
+            }
+            var articleExisted = this.techPortalEntities.Articles.SingleOrDefault(x => x.Id == id);
+            if (articleExisted != null)
+            {
+                this.techPortalEntities.Articles.Remove(articleExisted);
+            }            
+            this.techPortalEntities.SaveChanges();
+            return true;
         }
     }
 }

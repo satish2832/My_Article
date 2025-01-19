@@ -131,6 +131,15 @@ namespace TechPortalWeb.Controllers
             return PartialView(articleModels);
         }
 
+        [AdminAuthorize]        
+        [Route("admin/article-delete/{id}")]
+        [HttpPost]
+        public ActionResult DeleteArticle(Guid id)
+        {
+            var isDeleted = ArticleService.Delete(id);
+            return Json(new { IsDeleted = isDeleted }, JsonRequestBehavior.AllowGet);
+        }
+
         [AdminAuthorize]
         [Route("admin/save-article")]
         public JsonResult SaveArticle(ArticleModel articleCreateModel)

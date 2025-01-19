@@ -97,16 +97,16 @@ namespace TechPortalWeb.Controllers
         [Route("jobs")]
         public ActionResult Jobs()
         {
-            var jobs = ArticleService.GetAllByType("jobs");
+            var jobs = ArticleService.GetAllByType("jobs", true);
             var jobModels = jobs.Select(x => MapperHelper.Map<Article, ArticleModel>(x));
             return View(jobModels);
         }
         [Route("articles")]
         public ActionResult Articles()
         {
-            var jobs = ArticleService.GetAll();
-            var jobModels = jobs.Select(x => MapperHelper.Map<Article, ArticleModel>(x));
-            return View(jobModels);
+            var articles = ArticleService.GetAllByType("jobs", false);
+            var articleModels = articles.Select(x => MapperHelper.Map<Article, ArticleModel>(x));
+            return View(articleModels);
         }
 
         public ActionResult Contact()

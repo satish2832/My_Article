@@ -13,8 +13,18 @@
                     </div>
                     <!-- Details Section -->
                     <div class="col-md-9 job-details">
-                        <h4>@item.Title</h4>                       
-                        <a href="/article/@item.TitleURL" class="btn">Read More</a>
+                        <h4>@item.Title</h4>
+                        @if (!string.IsNullOrEmpty(item.Tags))
+                        {
+                            var tags = item.Tags.Split(',');
+                            <div class="tags-section">
+                                @foreach (var tag in tags)
+                                {
+                                    <span class="badge bg-primary me-2">@tag.Trim()</span>
+                                }
+                            </div>
+                        }
+                        <a href="/article/@item.TitleURL" class="btn btn-primary mt-2">Read More</a>
                     </div>
                 </div>
             }

@@ -391,9 +391,31 @@ $(document).ready(function () {
         const title = $('#article-title').val();
         var convertedTitleUrl = title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]/g, '');
         $('#article-title-url').val(convertedTitleUrl);
-    });
+    });  
 });
-
+function deleteArticle(id) {
+    // Show confirmation dialog
+    if (confirm("Are you sure you want to delete this article?")) {
+        // If confirmed, make an AJAX request
+        $.ajax({
+            url: `/admin/article-delete/${id}`, // Route with the article ID
+            type: 'POST', // HTTP method
+            success: function (response) {
+                // Handle success response
+                alert(response.message || "Article deleted successfully.");
+                // Optionally, reload the page or remove the article from the UI
+                document.location.href = '/admin/articles-all'; // Reload the page to reflect changes
+            },
+            error: function (xhr) {
+                // Handle error response
+                alert(xhr.responseJSON?.message || "An error occurred while deleting the article.");
+            }
+        });
+    } else {
+        // If not confirmed
+        console.log("Deletion canceled by the user.");
+    }
+}
 $(document).ready(function () {
     // Add New Article Type
     $(document).on('click', '#add-article-type', function () {
